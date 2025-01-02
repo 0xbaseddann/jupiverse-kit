@@ -204,7 +204,7 @@ const Swap = ({ rpcUrl }: SwapProps) => {
     isSwapping;
 
   return (
-    <div className="w-full max-w-[480px] p-4">
+    <div className="jupiverse-swap w-full max-w-[480px] p-4">
       <div className="rounded-xl border border-border bg-card shadow-sm">
         <div className="p-4">
           {/* Header */}

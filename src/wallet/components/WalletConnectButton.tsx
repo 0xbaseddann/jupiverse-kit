@@ -87,7 +87,7 @@ export const WalletConnectButton = ({ className }: { className?: string }) => {
         <button
           onClick={handleClick}
           className={`
-            relative group flex items-center gap-2 h-10 px-3 sm:px-4 py-2 rounded-xl
+            jupiverse-wallet relative group flex items-center gap-2 h-10 px-3 sm:px-4 py-2 rounded-xl
             font-semibold text-sm transition-all duration-200 whitespace-nowrap
             ${
               connected
