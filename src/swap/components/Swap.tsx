@@ -33,7 +33,7 @@ const Swap = ({ rpcUrl }: SwapProps) => {
   const [amountTo, setAmountTo] = useState("");
   const [isFromDialogOpen, setIsFromDialogOpen] = useState(false);
   const [isToDialogOpen, setIsToDialogOpen] = useState(false);
-  const { connected, publicKey } = useWallet();
+  const { connected } = useWallet();
   const {
     getQuote,
     executeSwap,
@@ -332,7 +332,7 @@ const Swap = ({ rpcUrl }: SwapProps) => {
           {/* Swap Button or Connect Wallet Button */}
           {connected ? (
             <button
-              className="w-full mt-4 py-6 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+              className="w-full mt-4 py-6 h-10 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
               onClick={handleSwap}
               disabled={isSwapDisabled}
             >

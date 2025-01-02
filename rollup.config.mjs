@@ -3,6 +3,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import postcss from 'rollup-plugin-postcss';
 import url from '@rollup/plugin-url';
+import typescript from '@rollup/plugin-typescript';
 import svgr from '@svgr/rollup';
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
@@ -70,7 +71,12 @@ export default {
     resolve({
       extensions
     }),
-    commonjs()
+    commonjs(),
+    typescript({
+      declaration: true,
+      declarationDir: './dist',
+      rootDir: './src'
+    })
   ],
   external
 };

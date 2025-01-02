@@ -98,7 +98,7 @@ export const useSwap = (rpcUrl: string) => {
         // Deserialize the transaction
         const swapTransactionBuf = Buffer.from(swapTransaction, "base64");
         const transaction =
-          VersionedTransaction.deserialize(swapTransactionBuf);
+          VersionedTransaction.deserialize(new Uint8Array(swapTransactionBuf.toJSON().data));
 
         // Sign the transaction
         const signedTransaction = await signTransaction(transaction);

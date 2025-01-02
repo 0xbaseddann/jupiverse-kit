@@ -1,6 +1,6 @@
 {
   "name": "jupiverse-kit",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Jupiverse Kit is the ultimate ready-to-use React components library powered by Jupiter's APIs for building onchain applications on Solana effortlessly.",
   "type": "module",
   "main": "dist/index.js",
@@ -44,6 +44,7 @@
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^28.0.2",
     "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-typescript": "^12.1.2",
     "@rollup/plugin-url": "^8.0.2",
     "@svgr/rollup": "^8.1.0",
     "@svgr/webpack": "^8.1.0",
