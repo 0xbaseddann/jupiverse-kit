@@ -144,31 +144,6 @@ const Hero = () => {
             </Tabs>
           </div>
         </motion.div>
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 20,
-          }}
-          animate={{
-            opacity: 1,
-            y: [20, -5, 0],
-          }}
-          transition={{
-            duration: 0.4,
-            ease: [0.4, 0.0, 0.2, 1],
-            delay: 0.8,
-          }}
-          className="mt-8 sm:mt-12 flex gap-4 flex-wrap justify-center"
-        >
-          <Button
-            variant="outline"
-            size="lg"
-            className="text-base sm:text-lg"
-            onClick={() => window.open("https://jup.ag", "_blank")}
-          >
-            Get Started
-          </Button>
-        </motion.div>
       </div>
     </div>
   );

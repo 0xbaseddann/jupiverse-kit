@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback, useState } from "react";
 
-import { ReactComponent as JupiterBrightLogo } from "../../assets/jupiter/poweredbyjupiter-bright.svg";
-import { ReactComponent as JupiterDarkLogo } from "../../assets/jupiter/poweredbyjupiter-dark.svg";
+import { ReactComponent as JupiterBrightLogo } from "../../assets/powered-by-jupiter/poweredbyjupiter-bright.svg";
+import { ReactComponent as JupiterDarkLogo } from "../../assets/powered-by-jupiter/poweredbyjupiter-dark.svg";
 
 import { ArrowDown, Loader2, SquareArrowOutUpRightIcon } from "lucide-react";
 

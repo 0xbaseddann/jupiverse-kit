@@ -15,6 +15,7 @@ import {
 import { itemVariants, navVariants } from "@/utils/motion";
 import { WalletConnectButton } from "jupiverse-kit";
 import Image from "next/image";
+import { ThemeToggle } from "./theme-toggle";
 
 const Navbar = () => {
   return (
@@ -58,12 +59,13 @@ const Navbar = () => {
           ))}
         </motion.div>
 
-        {/* Connect Wallet Button - Desktop */}
+        {/* Connect Wallet Button and Theme Toggle - Desktop */}
         <motion.div
           variants={itemVariants}
-          className="hidden md:flex flex-1 justify-end"
+          className="hidden md:flex flex-1 justify-end items-center gap-2"
         >
           <WalletConnectButton />
+          <ThemeToggle />
         </motion.div>
 
         {/* Mobile Menu */}
@@ -107,6 +109,9 @@ const Navbar = () => {
                 <div className="pt-4 border-t border-gray-800 w-full flex justify-center">
                   <WalletConnectButton />
                 </div>
+              </div>
+              <div className="absolute bottom-4 right-4">
+                <ThemeToggle />
               </div>
             </SheetContent>
           </Sheet>

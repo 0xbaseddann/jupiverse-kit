@@ -7,6 +7,7 @@ import { Toaster } from "jupiverse-kit";
 import NProgressBar from "@/components/ui/nprogressbar";
 import { UniverseBackground } from "@/components/ui/universe-background";
 import "jupiverse-kit/dist/index.css";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
 
@@ -30,16 +31,23 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${spaceGrotesk.className} bg-black`}>
-        <WalletProvider rpcUrl={process.env.NEXT_PUBLIC_RPC_URL}>
-          <UniverseBackground />
-          <NProgressBar>
-            <main className="min-h-screen">
-              <Navbar />
-              {children}
-              <Toaster />
-            </main>
-          </NProgressBar>
-        </WalletProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <WalletProvider rpcUrl={process.env.NEXT_PUBLIC_RPC_URL}>
+            <UniverseBackground />
+            <NProgressBar>
+              <main className="min-h-screen">
+                <Navbar />
+                {children}
+                <Toaster />
+              </main>
+            </NProgressBar>
+          </WalletProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
