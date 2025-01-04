@@ -68,7 +68,7 @@ const SwapTokenDialog = ({ open, onClose, onSelect }: SwapTokenDialogProps) => {
                 placeholder="Search by name or paste address"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="flex h-10 w-full rounded-lg border border-input/10 dark:border-input-dark/10 bg-background/50 dark:bg-background-dark/50 px-12 py-3 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground/70 dark:placeholder:text-muted-dark-foreground/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nebula/50 dark:focus-visible:ring-helix/50 focus-visible:ring-offset-1 transition-all"
+                className="flex h-10 w-full rounded-lg border border-input/10 dark:border-input-dark/10 bg-background/50 dark:bg-background-dark/50 px-12 py-3 text-sm text-foreground dark:text-foreground-dark ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground/70 dark:placeholder:text-muted-dark-foreground/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nebula/50 dark:focus-visible:ring-helix/50 focus-visible:ring-offset-1 transition-all"
               />
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/70 dark:text-muted-dark-foreground/70" />
             </div>

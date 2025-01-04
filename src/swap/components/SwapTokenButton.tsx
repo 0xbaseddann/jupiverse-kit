@@ -26,11 +26,11 @@ const SwapTokenButton = ({
       </>
     ) : (
       <>
-        <Coins className="h-5 w-5 text-muted dark:text-muted-dark" />
+        <Coins className="h-5 w-5 text-foreground dark:text-foreground-dark" />
         <span className="whitespace-nowrap">Select token</span>
       </>
     )}
-    <ChevronDown className="h-5 w-5 text-muted dark:text-muted-dark ml-0.5" />
+    <ChevronDown className="h-5 w-5 text-foreground dark:text-foreground-dark ml-0.5" />
   </button>
 );
 
