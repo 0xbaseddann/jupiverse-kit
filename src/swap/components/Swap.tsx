@@ -56,12 +56,26 @@ const Swap = ({ rpcUrl }: SwapProps) => {
     if (swapError) {
       toast({
         title: "Swap Error",
-        description: swapError,
+        description: (
+          <div className="break-words max-w-[280px] sm:max-w-[340px] whitespace-pre-wrap">
+            {swapError}
+          </div>
+        ),
         variant: "destructive",
         duration: 8000,
       });
+
+      // Refetch balances and recalculate swap when there's an error
+      const handleError = async () => {
+        await refetchFromBalance();
+        await refetchToBalance();
+        if (amountFrom) {
+          debouncedCalculateOutput(amountFrom);
+        }
+      };
+      handleError();
     }
-  }, [swapError, toast]);
+  }, [swapError, toast, refetchFromBalance, refetchToBalance, amountFrom]);
 
   const formatBalance = (balance: number | null) => {
     if (balance === null) return "0";
@@ -145,7 +159,11 @@ const Swap = ({ rpcUrl }: SwapProps) => {
     setIsSwapping(true);
     toast({
       title: "Preparing swap transaction...",
-      description: "Please approve the transaction in your wallet",
+      description: (
+        <div className="break-words">
+          Please approve the transaction in your wallet
+        </div>
+      ),
       duration: 8000,
     });
 
@@ -161,12 +179,12 @@ const Swap = ({ rpcUrl }: SwapProps) => {
           title: "Swap successful!",
           description: (
             <div className="break-all flex flex-col">
-              Transaction ID:{" "}
+              <span className="break-words">Transaction ID:</span>{" "}
               <a
                 href={`https://solana.fm/tx/${txid}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-500 hover:underline"
+                className="text-blue-500 hover:underline break-words"
               >
                 {txid}{" "}
                 <SquareArrowOutUpRightIcon className="h-3 w-3 inline align-text-bottom" />
@@ -181,10 +199,13 @@ const Swap = ({ rpcUrl }: SwapProps) => {
     } catch (err) {
       toast({
         title: "Swap failed",
-        description:
-          err instanceof Error
-            ? err.message
-            : "An error occurred during the swap",
+        description: (
+          <div className="break-words">
+            {err instanceof Error
+              ? err.message
+              : "An error occurred during the swap"}
+          </div>
+        ),
         variant: "destructive",
         duration: 8000,
       });
