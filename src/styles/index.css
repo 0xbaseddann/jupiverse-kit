@@ -4,12 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  .jupiverse-swap {
-    font-family: 'Space Grotesk', sans-serif;
-  }
-}
-
 @layer base {
   /* Light mode defaults */
   :root {
