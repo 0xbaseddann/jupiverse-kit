@@ -2,6 +2,8 @@
 
 This is the web application for Jupiverse Kit.
 
+![Screenshot 2025-01-05 at 3 04 29 AM](https://github.com/user-attachments/assets/b03aa49a-5d48-4b86-b0bd-75459961145a)
+
 ## Getting Started
 
 1. Clone the repository
