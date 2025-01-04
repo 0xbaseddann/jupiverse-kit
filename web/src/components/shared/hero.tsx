@@ -42,9 +42,7 @@ const Hero = () => {
           }}
           className="font-bold text-xl sm:text-3xl md:text-4xl lg:text-5xl text-center !leading-tight"
         >
-          <Highlight className="text-black dark:text-white rounded-xl">
-            Jupiverse Kit
-          </Highlight>
+          <Highlight className="text-black rounded-xl">Jupiverse Kit</Highlight>
         </motion.h1>
         <motion.p
           initial={{
