@@ -2,11 +2,13 @@
 
 Jupiverse Kit is the ultimate ready-to-use React components library powered by Jupiter's APIs for building onchain applications on Solana effortlessly.
 
+An open source initiative built by [@dannonchain](https://x.com/dannonchain)
+
 ## Features
 
+- 👛 Wallet Component - Easy wallet connection management
 - 🔄 Swap Component - A fully functional token swap interface
-- 👛 Wallet Components - Easy wallet connection management
-- 🔔 Toast Components - Beautiful notifications system
+- 🔔 Toast Component - Beautiful notifications system
 - 🎣 Custom Hooks - Utility hooks for token balances, swaps, and more
 
 ## Installation
@@ -20,16 +22,19 @@ npm install jupiverse-kit
 The SDK uses Tailwind CSS for styling. Follow these steps to set up styling in your project:
 
 1. Install required dependencies:
+
 ```bash
 npm install -D tailwindcss postcss autoprefixer tailwindcss-animate
 ```
 
 2. Import the SDK's CSS in your app's entry point (e.g., app.tsx, index.tsx, or layout.tsx):
+
 ```tsx
-import 'jupiverse-kit/dist/index.css';
+import "jupiverse-kit/dist/index.css";
 ```
 
 3. Configure Tailwind CSS. Create or update your tailwind.config.js:
+
 ```js
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -37,74 +42,76 @@ module.exports = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}",
     // Add this line to include the SDK's components
-    "./node_modules/jupiverse-kit/dist/**/*.{js,ts,jsx,tsx}"
+    "./node_modules/jupiverse-kit/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
       colors: {
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
         card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))'
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
         },
         popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))'
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
         },
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))'
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))'
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
         },
         muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))'
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))'
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
         },
         destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))'
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
         },
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
         chart: {
-          '1': 'hsl(var(--chart-1))',
-          '2': 'hsl(var(--chart-2))',
-          '3': 'hsl(var(--chart-3))',
-          '4': 'hsl(var(--chart-4))',
-          '5': 'hsl(var(--chart-5))'
-        }
+          1: "hsl(var(--chart-1))",
+          2: "hsl(var(--chart-2))",
+          3: "hsl(var(--chart-3))",
+          4: "hsl(var(--chart-4))",
+          5: "hsl(var(--chart-5))",
+        },
       },
       borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)'
-      }
-    }
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+    },
   },
-  plugins: [require("tailwindcss-animate")]
-}
+  plugins: [require("tailwindcss-animate")],
+};
 ```
 
 4. Create or update your postcss.config.js:
+
 ```js
 module.exports = {
   plugins: {
     tailwindcss: {},
     autoprefixer: {},
   },
-}
+};
 ```
 
 5. Add the base Tailwind directives to your global CSS file:
+
 ```css
 @tailwind base;
 @tailwind components;
@@ -129,6 +136,16 @@ function App() {
 }
 ```
 
+### WalletConnectButton
+
+```tsx
+import { WalletConnectButton } from "jupiverse-kit";
+
+function YourComponent() {
+  return <WalletConnectButton />;
+}
+```
+
 ### Swap Component
 
 Add the swap interface to your application:
@@ -137,7 +154,9 @@ Add the swap interface to your application:
 import { Swap } from "jupiverse-kit";
 
 function SwapPage() {
-  return <Swap rpcUrl="YOUR_RPC_URL" />;
+  return (
+    <Swap rpcUrl={"YOUR_RPC_URL" || "https://api.mainnet-beta.solana.com"} />
+  );
 }
 ```
 
@@ -151,8 +170,8 @@ import { Toaster, useToast } from "jupiverse-kit";
 function App() {
   return (
     <>
-      <Toaster />
       {/* Your app content */}
+      <Toaster />
     </>
   );
 }
@@ -197,33 +216,11 @@ function YourComponent() {
 }
 ```
 
-## Components
-
-### WalletConnectButton
-
-```tsx
-import { WalletConnectButton } from "jupiverse-kit";
-
-function YourComponent() {
-  return <WalletConnectButton />;
-}
-```
-
-### SwapTokenButton
-
-```tsx
-import { SwapTokenButton } from "jupiverse-kit";
-
-function YourComponent() {
-  return <SwapTokenButton token={token} onClick={() => setDialogOpen(true)} />;
-}
-```
-
 ## Requirements
 
 - React 16.8.0 or later
 - @solana/web3.js 1.0.0 or later
 
-## License
+## Contributions
 
-ISC
+Contributions are welcome! Please feel free to submit a pull request.
