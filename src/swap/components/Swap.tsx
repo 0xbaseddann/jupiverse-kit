@@ -226,7 +226,7 @@ const Swap = ({ rpcUrl }: SwapProps) => {
 
   return (
     <div className="w-full max-w-[480px] p-4 font-sans">
-      <div className="rounded-3xl shadow-lg bg-background dark:bg-background-dark">
+      <div className="rounded-3xl shadow-xl bg-background dark:bg-background-dark">
         <div className="p-6">
           {/* Header */}
           <div className="flex justify-between items-center mb-6">

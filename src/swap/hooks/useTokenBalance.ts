@@ -14,7 +14,6 @@ export const useTokenBalance = (token: Token | null) => {
 
   const fetchBalance = useCallback(async () => {
     if (!publicKey || !token) {
-      console.log("No publicKey or token", { publicKey, token });
       setBalance(null);
       return;
     }

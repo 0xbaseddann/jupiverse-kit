@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { WalletConnectModal } from "./WalletConnectModal";
+import { WalletConnectDialog } from "./WalletConnectDialog";
 
 import { useWallet } from "@solana/wallet-adapter-react";
 
@@ -49,17 +49,6 @@ export const WalletConnectButton = ({ className }: { className?: string }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, [publicKey]);
 
-  useEffect(() => {
-    console.log("Wallet connection status:", {
-      connected,
-      publicKey: publicKey?.toString(),
-      wallet: {
-        name: wallet?.adapter.name,
-        icon: wallet?.adapter.icon,
-      },
-    });
-  }, [connected, publicKey, wallet]);
-
   const handleClick = () => {
     if (connected) {
       setIsDropdownOpen(!isDropdownOpen);
@@ -87,21 +76,17 @@ export const WalletConnectButton = ({ className }: { className?: string }) => {
         <button
           onClick={handleClick}
           className={`
-            jupiverse-wallet relative group flex items-center gap-2 h-10 px-3 sm:px-4 py-2 rounded-xl
-            font-semibold text-sm transition-all duration-200 whitespace-nowrap
-            ${
-              connected
-                ? "bg-accent hover:bg-accent/80 text-accent-foreground"
-                : "bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white"
-            }
+            font-sans relative group flex items-center gap-2 h-10 px-4 py-2 rounded-2xl
+            font-semibold text-sm transition-all duration-200 whitespace-nowrap shadow-md
+            bg-trifid dark:bg-trifid hover:opacity-90 text-white
             ${className}
           `}
         >
           {connected ? (
             <>
-              <div className="flex items-center gap-1 sm:gap-2">
+              <div className="flex items-center gap-2">
                 {wallet?.adapter.icon && (
-                  <div className="relative w-4 sm:w-5 h-4 sm:h-5 rounded-full overflow-hidden bg-background">
+                  <div className="relative w-5 h-5 rounded-full overflow-hidden bg-white/10 backdrop-blur-sm p-0.5">
                     <img
                       src={wallet.adapter.icon}
                       alt={`${wallet.adapter.name} icon`}
@@ -109,9 +94,9 @@ export const WalletConnectButton = ({ className }: { className?: string }) => {
                     />
                   </div>
                 )}
-                <span className="text-xs sm:text-sm">{address}</span>
+                <span className="text-white font-bold">{address}</span>
                 <ChevronDown
-                  className={`h-3 sm:h-4 w-3 sm:w-4 opacity-50 transition-transform duration-200 ${
+                  className={`h-4 w-4 text-white opacity-70 transition-transform duration-200 ${
                     isDropdownOpen ? "rotate-180" : ""
                   }`}
                 />
@@ -119,28 +104,28 @@ export const WalletConnectButton = ({ className }: { className?: string }) => {
             </>
           ) : (
             <div className="flex items-center gap-2">
-              <span className="text-xs sm:text-sm">Connect Wallet</span>
+              <span className="text-white font-bold">Connect Wallet</span>
             </div>
           )}
         </button>
 
         {isDropdownOpen && connected && (
-          <div className="absolute right-0 mt-2 rounded-xl shadow-lg bg-background border border-border z-50 w-full">
+          <div className="absolute right-0 mt-2 rounded-xl shadow-xl bg-card dark:bg-card-dark backdrop-blur-md z-50 w-full overflow-hidden">
             <button
               onClick={() => {
                 disconnect();
                 setIsDropdownOpen(false);
               }}
-              className="w-full px-3 sm:px-4 py-2 text-xs sm:text-sm text-left flex items-center gap-2 hover:bg-accent rounded-xl transition-colors"
+              className="font-sans font-semibold bg-trifid dark:bg-trifid w-full px-4 py-3 text-sm text-left flex items-center gap-2 hover:opacity-90 dark:hover:opacity-90 transition-colors text-white dark:text-white"
             >
-              <LogOut className="h-3 sm:h-4 w-3 sm:w-4" />
+              <LogOut className="h-4 w-4 opacity-70" />
               Disconnect
             </button>
           </div>
         )}
       </div>
 
-      <WalletConnectModal
+      <WalletConnectDialog
         open={isModalOpen}
         onClose={() => setIsModalOpen(false)}
       />
