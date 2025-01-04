@@ -14,23 +14,23 @@ const SwapTokenButton = ({
   onClick: () => void;
 }) => (
   <button
-    className="inline-flex items-center justify-center gap-2 h-8 px-3 font-semibold rounded-md text-sm transition-colors hover:bg-accent bg-transparent w-fit"
+    className="inline-flex items-center justify-center gap-2 h-10 px-4 rounded-2xl text-sm font-medium transition-all hover:bg-muted/20 dark:hover:bg-muted-dark/20 bg-background dark:bg-background-dark w-fit text-foreground dark:text-foreground-dark shadow-sm hover:shadow-md"
     onClick={onClick}
   >
     {token ? (
       <>
-        <div className="w-6 h-6 relative rounded-full overflow-hidden bg-muted flex items-center justify-center">
+        <div className="w-5 h-5 relative rounded-full overflow-hidden bg-muted/10 dark:bg-muted-dark/10 flex items-center justify-center">
           <SwapTokenImage token={token} />
         </div>
-        <span className="whitespace-nowrap">{token.symbol}</span>
+        <span className="whitespace-nowrap font-semibold">{token.symbol}</span>
       </>
     ) : (
       <>
-        <Coins className="h-4 w-4 text-muted-foreground" />
+        <Coins className="h-5 w-5 text-muted dark:text-muted-dark" />
         <span className="whitespace-nowrap">Select token</span>
       </>
     )}
-    <ChevronDown className="h-4 w-4 flex-shrink-0" />
+    <ChevronDown className="h-5 w-5 text-muted dark:text-muted-dark ml-0.5" />
   </button>
 );
 

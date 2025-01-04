@@ -30,15 +30,16 @@ const SwapTokenDialog = ({ open, onClose, onSelect }: SwapTokenDialogProps) => {
   return (
     <Dialog.Root open={open} onOpenChange={(isOpen) => !isOpen && onClose()}>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 bg-black/50 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
-        <Dialog.Content className="fixed left-0 right-0 bottom-0 sm:left-[50%] sm:bottom-auto sm:top-[50%] max-h-[85vh] w-full sm:w-[95vw] sm:max-w-md sm:translate-x-[-50%] sm:translate-y-[-50%] rounded-t-lg sm:rounded-lg bg-background p-4 sm:p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:slide-out-to-bottom sm:data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-bottom sm:data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-bottom sm:data-[state=open]:slide-in-from-left-1/2 sm:data-[state=open]:slide-in-from-top-[48%]">
-          <div className="flex items-center justify-between mb-4">
-            <Dialog.Title className="text-lg font-semibold">
+        <Dialog.Overlay className="fixed inset-0 bg-black/50 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 z-40" />
+        <Dialog.Content className="fixed left-0 right-0 bottom-0 sm:left-[50%] sm:bottom-auto sm:top-[50%] h-[85vh] w-full sm:w-[95vw] sm:max-w-[420px] sm:translate-x-[-50%] sm:translate-y-[-50%] rounded-t-[24px] sm:rounded-[24px] bg-card/95 dark:bg-card-dark/95 backdrop-blur-md shadow-2xl border border-border/10 dark:border-border-dark/10 duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:slide-out-to-bottom sm:data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-bottom sm:data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-bottom sm:data-[state=open]:slide-in-from-left-1/2 sm:data-[state=open]:slide-in-from-top-[48%] z-50 flex flex-col">
+          {/* Header */}
+          <div className="flex items-center justify-between p-6 border-b border-border/10 dark:border-border-dark/10">
+            <Dialog.Title className="text-xl font-bold bg-gradient-to-r from-nebula to-cosmic bg-clip-text text-transparent dark:from-helix dark:to-trifid">
               Select a token
             </Dialog.Title>
             <Dialog.Close asChild>
               <button
-                className="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
+                className="rounded-full p-2 opacity-70 hover:opacity-100 hover:bg-muted/10 dark:hover:bg-muted-dark/10 transition-all"
                 aria-label="Close"
               >
                 <svg
@@ -51,7 +52,7 @@ const SwapTokenDialog = ({ open, onClose, onSelect }: SwapTokenDialogProps) => {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="h-5 w-5 sm:h-4 sm:w-4"
+                  className="h-5 w-5"
                 >
                   <line x1="18" y1="6" x2="6" y2="18"></line>
                   <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -60,40 +61,48 @@ const SwapTokenDialog = ({ open, onClose, onSelect }: SwapTokenDialogProps) => {
             </Dialog.Close>
           </div>
 
-          <div className="relative mb-4">
-            <input
-              placeholder="Search by name or paste address"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="flex h-12 sm:h-10 w-full rounded-md border border-input bg-background px-10 py-2 text-base sm:text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-            />
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 sm:h-4 sm:w-4 text-muted-foreground" />
+          {/* Search */}
+          <div className="px-6 py-4">
+            <div className="relative">
+              <input
+                placeholder="Search by name or paste address"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="flex h-10 w-full rounded-lg border border-input/10 dark:border-input-dark/10 bg-background/50 dark:bg-background-dark/50 px-12 py-3 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground/70 dark:placeholder:text-muted-dark-foreground/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nebula/50 dark:focus-visible:ring-helix/50 focus-visible:ring-offset-1 transition-all"
+              />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/70 dark:text-muted-dark-foreground/70" />
+            </div>
           </div>
 
-          <div className="overflow-y-auto max-h-[60vh] -mx-4 sm:mx-0">
+          {/* Token List */}
+          <div className="flex-1 overflow-y-auto min-h-0 px-4">
             {loading ? (
-              <div className="text-center py-4">Loading tokens...</div>
+              <div className="flex items-center justify-center h-full text-muted-foreground dark:text-muted-dark-foreground">
+                Loading tokens...
+              </div>
             ) : error ? (
-              <div className="text-center text-red-500 py-4">{error}</div>
+              <div className="flex items-center justify-center h-full text-destructive dark:text-destructive-dark">
+                {error}
+              </div>
             ) : (
-              <div className="space-y-1">
+              <div className="space-y-1 py-2">
                 {filteredTokens.map((token: Token) => (
                   <button
                     key={token.address}
-                    className="w-full flex items-center gap-3 p-4 sm:p-3 hover:bg-muted transition-colors"
+                    className="w-full flex items-center gap-4 p-3 rounded-2xl hover:bg-muted/5 dark:hover:bg-muted/5 active:bg-muted/10 dark:active:bg-muted-dark/10 transition-all duration-200 text-foreground dark:text-foreground-dark group"
                     onClick={() => {
                       onSelect(token);
                       onClose();
                     }}
                   >
-                    <div className="w-10 h-10 sm:w-8 sm:h-8 relative rounded-full overflow-hidden bg-muted flex items-center justify-center">
+                    <div className="w-6 h-6 relative rounded-full overflow-hidden bg-gradient-to-br from-nebula/10 to-cosmic/10 dark:from-helix/10 dark:to-trifid/10 flex items-center justify-center group-hover:shadow-lg transition-shadow duration-200">
                       <SwapTokenImage token={token} />
                     </div>
                     <div className="flex-1 text-left">
-                      <div className="font-medium text-base sm:text-sm">
+                      <div className="font-semibold text-sm">
                         {token.symbol}
                       </div>
-                      <div className="text-sm sm:text-xs text-muted-foreground">
+                      <div className="text-xs text-muted-foreground/80 dark:text-muted-dark-foreground/80">
                         {token.name}
                       </div>
                     </div>

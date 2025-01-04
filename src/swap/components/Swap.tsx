@@ -205,11 +205,11 @@ const Swap = ({ rpcUrl }: SwapProps) => {
 
   return (
     <div className="jupiverse-swap w-full max-w-[480px] p-4">
-      <div className="rounded-xl border border-border bg-card shadow-sm">
-        <div className="p-4">
+      <div className="rounded-3xl shadow-lg bg-background dark:bg-background-dark">
+        <div className="p-6">
           {/* Header */}
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-semibold">Swap</h2>
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-xl font-bold">Swap</h2>
             <SwapSettings
               slippage={slippage}
               onSlippageChange={(value: number) => {
@@ -227,14 +227,14 @@ const Swap = ({ rpcUrl }: SwapProps) => {
           </div>
 
           {/* From Token Input */}
-          <div className="rounded-2xl bg-muted p-4 mb-1">
-            <div className="flex justify-between mb-2">
+          <div className="themed-card rounded-2xl p-4 mb-2 ">
+            <div className="flex justify-between mb-3">
               <input
                 type="number"
                 placeholder="0"
                 value={amountFrom}
                 onChange={(e) => setAmountFrom(e.target.value)}
-                className="w-full border-0 bg-transparent text-2xl p-0 h-auto focus-visible:outline-none focus-visible:ring-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                className="w-full bg-transparent text-xl font-medium p-0 h-auto focus-visible:outline-none focus-visible:ring-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 disabled={isSwapping}
               />
               <SwapTokenButton
@@ -243,13 +243,13 @@ const Swap = ({ rpcUrl }: SwapProps) => {
               />
             </div>
             <div className="flex justify-between items-center">
-              <div className="text-sm text-muted-foreground">
+              <div className="text-sm text-muted-foreground dark:text-muted-dark-foreground">
                 {tokenFrom &&
                   `Balance: ${formatBalance(fromBalance)} ${tokenFrom.symbol}`}
               </div>
-              <div className="flex gap-1">
+              <div className="flex gap-1.5">
                 <button
-                  className="h-6 px-2 text-xs rounded-md transition-colors hover:bg-accent bg-transparent"
+                  className="h-7 px-2.5 text-xs font-medium rounded-lg transition-colors hover:bg-accent hover:text-accent-foreground"
                   onClick={() => {
                     if (fromBalance && tokenFrom) {
                       const amount = (fromBalance * 0.25).toFixed(
@@ -263,7 +263,7 @@ const Swap = ({ rpcUrl }: SwapProps) => {
                   25%
                 </button>
                 <button
-                  className="h-6 px-2 text-xs rounded-md transition-colors hover:bg-accent bg-transparent"
+                  className="h-7 px-2.5 text-xs font-medium rounded-lg transition-colors hover:bg-accent hover:text-accent-foreground"
                   onClick={() => {
                     if (fromBalance && tokenFrom) {
                       const amount = (fromBalance * 0.5).toFixed(
@@ -277,7 +277,7 @@ const Swap = ({ rpcUrl }: SwapProps) => {
                   50%
                 </button>
                 <button
-                  className="h-6 px-2 text-xs rounded-md transition-colors hover:bg-accent bg-transparent"
+                  className="h-7 px-2.5 text-xs font-medium rounded-lg transition-colors hover:bg-accent hover:text-accent-foreground"
                   onClick={async () => {
                     if (fromBalance && tokenFrom) {
                       const maxAmount = await calculateMaxInput(
@@ -296,9 +296,9 @@ const Swap = ({ rpcUrl }: SwapProps) => {
           </div>
 
           {/* Swap Button */}
-          <div className="flex justify-center -my-2.5 relative z-0 mt-1 mb-1">
+          <div className="flex justify-center -my-3 relative z-10 mt-3 mb-3">
             <button
-              className="h-10 w-10 rounded-xl bg-muted hover:bg-accent transition-colors flex items-center justify-center disabled:opacity-50"
+              className="h-9 w-9 rounded-xl bg-card dark:bg-card-dark hover:bg-accent dark:hover:bg-accent transition-colors flex items-center justify-center shadow-md disabled:opacity-50"
               onClick={handleSwapTokens}
               disabled={isSwapping}
               aria-label="Swap token positions"
@@ -308,14 +308,14 @@ const Swap = ({ rpcUrl }: SwapProps) => {
           </div>
 
           {/* To Token Input */}
-          <div className="rounded-2xl bg-muted p-4 mt-1">
-            <div className="flex justify-between mb-2">
+          <div className="themed-card rounded-2xl p-4 mt-2 bg-muted/20 dark:bg-muted-dark/20">
+            <div className="flex justify-between mb-3">
               <input
                 type="number"
                 placeholder="0"
                 value={amountTo}
                 onChange={(e) => setAmountTo(e.target.value)}
-                className="w-full border-0 bg-transparent text-2xl p-0 h-auto focus-visible:outline-none focus-visible:ring-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                className="w-full bg-transparent text-xl font-medium p-0 h-auto focus-visible:outline-none focus-visible:ring-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 disabled={true}
               />
               <SwapTokenButton
@@ -323,7 +323,7 @@ const Swap = ({ rpcUrl }: SwapProps) => {
                 onClick={() => setIsToDialogOpen(true)}
               />
             </div>
-            <div className="text-sm text-muted-foreground">
+            <div className="text-sm text-muted-foreground dark:text-muted-dark-foreground">
               {tokenTo &&
                 `Balance: ${formatBalance(toBalance)} ${tokenTo.symbol}`}
             </div>
@@ -332,18 +332,18 @@ const Swap = ({ rpcUrl }: SwapProps) => {
           {/* Swap Button or Connect Wallet Button */}
           {connected ? (
             <button
-              className="w-full mt-4 py-6 h-10 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+              className="w-full h-10 mt-6 py-4 text-base font-semibold rounded-2xl themed-button-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
               onClick={handleSwap}
               disabled={isSwapDisabled}
             >
               {isCalculating ? (
                 <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
                   Loading...
                 </>
               ) : isSwapping ? (
                 <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
                   Swapping...
                 </>
               ) : (
@@ -351,23 +351,25 @@ const Swap = ({ rpcUrl }: SwapProps) => {
               )}
             </button>
           ) : (
-            <WalletConnectButton className="w-full mt-4 py-6 text-base font-semibold text-center items-center flex justify-center" />
+            <WalletConnectButton className="w-full mt-6 py-4 text-base font-semibold rounded-2xl text-center items-center flex justify-center" />
           )}
 
           {/* Powered by Jupiter logo */}
-          <div className="flex justify-center mt-4">
-            <JupiterBrightLogo
-              width={150}
-              height={25}
-              className="block dark:hidden"
-              preserveAspectRatio="xMidYMid meet"
-            />
-            <JupiterDarkLogo
-              width={150}
-              height={25}
-              className="hidden dark:block"
-              preserveAspectRatio="xMidYMid meet"
-            />
+          <div className="flex justify-center mt-6">
+            <a href="https://jup.ag" target="_blank" rel="noopener noreferrer">
+              <JupiterBrightLogo
+                width={150}
+                height={25}
+                className="block dark:hidden opacity-75 hover:opacity-100 transition-opacity"
+                preserveAspectRatio="xMidYMid meet"
+              />
+              <JupiterDarkLogo
+                width={150}
+                height={25}
+                className="hidden dark:block opacity-75 hover:opacity-100 transition-opacity"
+                preserveAspectRatio="xMidYMid meet"
+              />
+            </a>
           </div>
         </div>
       </div>
