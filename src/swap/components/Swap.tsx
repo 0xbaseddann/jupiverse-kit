@@ -230,7 +230,9 @@ const Swap = ({ rpcUrl }: SwapProps) => {
         <div className="p-6">
           {/* Header */}
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-bold">Swap</h2>
+            <h2 className="text-xl font-bold text-foreground dark:text-foreground-dark">
+              Swap
+            </h2>
             <SwapSettings
               slippage={slippage}
               onSlippageChange={(value: number) => {
@@ -324,7 +326,7 @@ const Swap = ({ rpcUrl }: SwapProps) => {
               disabled={isSwapping}
               aria-label="Swap token positions"
             >
-              <ArrowDown className="h-4 w-4" />
+              <ArrowDown className="h-4 w-4 text-foreground dark:text-foreground-dark" />
             </button>
           </div>
 

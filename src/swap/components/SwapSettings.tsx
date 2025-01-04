@@ -47,7 +47,7 @@ const SwapSettings = ({
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className=" fixed inset-0 bg-black/50 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 z-40" />
-        <Dialog.Content className="font-sans fixed left-0 right-0 bottom-0 sm:left-[50%] sm:bottom-auto sm:top-[50%] max-h-[85vh] w-full sm:w-[95vw] sm:max-w-[400px] sm:translate-x-[-50%] sm:translate-y-[-50%] rounded-t-[20px] sm:rounded-[20px] bg-card dark:bg-card-dark p-4 sm:p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:slide-out-to-bottom sm:data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-bottom sm:data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-bottom sm:data-[state=open]:slide-in-from-left-1/2 sm:data-[state=open]:slide-in-from-top-[48%] z-50">
+        <Dialog.Content className="font-sans fixed left-[50%] top-[50%] -translate-x-1/2 -translate-y-1/2 max-h-[85vh] w-[95vw] max-w-[400px] rounded-[20px] bg-card dark:bg-card-dark p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 z-50 overflow-hidden">
           <Dialog.Title className="text-xl font-semibold mb-6 text-foreground dark:text-foreground-dark">
             Settings
           </Dialog.Title>
@@ -76,7 +76,7 @@ const SwapSettings = ({
                   type="number"
                   value={tempSlippage}
                   onChange={(e) => handleSlippageChange(e.target.value)}
-                  className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none flex h-12 w-full rounded-2xl border border-input dark:border-input-dark bg-background dark:bg-background-dark px-4 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:focus-visible:ring-ring-dark focus-visible:ring-offset-2"
+                  className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none flex h-12 w-full rounded-2xl border border-input dark:border-input-dark bg-background dark:bg-background-dark px-4 py-2 text-base text-foreground dark:text-foreground-dark ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:focus-visible:ring-ring-dark focus-visible:ring-offset-2"
                   step="0.1"
                   min="0.01"
                   max="100"

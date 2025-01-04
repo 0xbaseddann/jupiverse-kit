@@ -29,8 +29,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${spaceGrotesk.className} bg-black`}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${spaceGrotesk.className}`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

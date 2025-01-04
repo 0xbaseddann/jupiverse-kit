@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
 
 interface UniverseBackgroundProps {
   className?: string;
@@ -21,6 +22,7 @@ interface Star {
 export function UniverseBackground({ className }: UniverseBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -39,14 +41,23 @@ export function UniverseBackground({ className }: UniverseBackgroundProps) {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    // Star colors
-    const starColors = [
-      "#ffffff", // Pure white
-      "#fffaf0", // Warm white
-      "#f0f8ff", // Cool white
-      "#fff5ee", // Seashell
-      "#ffd700", // Gold (for some warmer stars)
-    ];
+    // Star colors based on theme
+    const starColors =
+      theme === "dark"
+        ? [
+            "#ffffff", // Pure white
+            "#fffaf0", // Warm white
+            "#f0f8ff", // Cool white
+            "#fff5ee", // Seashell
+            "#ffd700", // Gold
+          ]
+        : [
+            "#000000", // Pure black
+            "#1a1a1a", // Dark gray
+            "#2c2c2c", // Medium gray
+            "#3d3d3d", // Light gray
+            "#4a4a4a", // Charcoal
+          ];
 
     // Star properties
     const stars: Star[] = [];
@@ -160,7 +171,7 @@ export function UniverseBackground({ className }: UniverseBackgroundProps) {
     return () => {
       window.removeEventListener("resize", resizeCanvas);
     };
-  }, []);
+  }, [theme]); // Add theme as a dependency
 
   return (
     <div
@@ -174,7 +185,7 @@ export function UniverseBackground({ className }: UniverseBackgroundProps) {
         ref={canvasRef}
         className="w-full h-full"
         style={{
-          backgroundColor: "black",
+          backgroundColor: theme === "dark" ? "black" : "white",
         }}
       />
     </div>
