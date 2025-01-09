@@ -1,14 +1,11 @@
 import { useCallback, useMemo, useState } from "react";
-
 import { useWallet } from "@solana/wallet-adapter-react";
-
 import {
   Connection,
   LAMPORTS_PER_SOL,
   VersionedTransaction,
 } from "@solana/web3.js";
 import { Token } from "./useTokens";
-
 import { QuoteResponse, SwapResponse } from "../utils/interfaces";
 
 // Minimum SOL to keep for gas fees (0.01 SOL)
@@ -43,15 +40,18 @@ export const useSwap = (rpcUrl: string) => {
           }&slippageBps=${slippageBps}`
         );
 
+        const data = await response.json();
+
         if (!response.ok) {
-          throw new Error("Failed to get quote");
+          throw new Error(data.error || "Failed to get quote");
         }
 
-        const data = await response.json();
         return data as QuoteResponse;
       } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to get quote");
-        return null;
+        const errorMessage =
+          err instanceof Error ? err.message : "Failed to get quote";
+        setError(errorMessage);
+        throw new Error(errorMessage);
       } finally {
         setLoading(false);
       }
@@ -97,8 +97,9 @@ export const useSwap = (rpcUrl: string) => {
 
         // Deserialize the transaction
         const swapTransactionBuf = Buffer.from(swapTransaction, "base64");
-        const transaction =
-          VersionedTransaction.deserialize(new Uint8Array(swapTransactionBuf.toJSON().data));
+        const transaction = VersionedTransaction.deserialize(
+          new Uint8Array(swapTransactionBuf.toJSON().data)
+        );
 
         // Sign the transaction
         const signedTransaction = await signTransaction(transaction);
@@ -122,8 +123,10 @@ export const useSwap = (rpcUrl: string) => {
 
         return txid;
       } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to execute swap");
-        return null;
+        const errorMessage =
+          err instanceof Error ? err.message : "Failed to execute swap";
+        setError(errorMessage);
+        throw new Error(errorMessage);
       } finally {
         setLoading(false);
       }
@@ -148,8 +151,13 @@ export const useSwap = (rpcUrl: string) => {
 
         return outputAmount;
       } catch (err) {
+        const errorMessage =
+          err instanceof Error
+            ? err.message
+            : "Failed to calculate output amount";
         console.error("Failed to calculate output amount:", err);
-        return "0";
+        setError(errorMessage);
+        throw new Error(errorMessage);
       }
     },
     [getQuote]

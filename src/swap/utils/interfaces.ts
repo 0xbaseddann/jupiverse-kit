@@ -1,3 +1,5 @@
+import { Token } from "../hooks/useTokens";
+
 export interface QuoteResponse {
   inputMint: string;
   outputMint: string;
@@ -11,4 +13,35 @@ export interface QuoteResponse {
 
 export interface SwapResponse {
   swapTransaction: string;
+}
+
+export interface SwapState {
+  tokenFrom: Token | null;
+  tokenTo: Token | null;
+  amountFrom: string;
+  amountTo: string;
+  slippage: number;
+  quoteResponse: QuoteResponse | null;
+  isCalculating: boolean;
+  isSwapping: boolean;
+  isFromDialogOpen: boolean;
+  isToDialogOpen: boolean;
+  error: string | null;
+}
+
+export interface SwapActions {
+  setTokenFrom: (token: Token | null) => void;
+  setTokenTo: (token: Token | null) => void;
+  setAmountFrom: (amount: string) => void;
+  setAmountTo: (amount: string) => void;
+  setSlippage: (slippage: number) => void;
+  setQuoteResponse: (quote: QuoteResponse | null) => void;
+  setIsCalculating: (isCalculating: boolean) => void;
+  setIsSwapping: (isSwapping: boolean) => void;
+  setIsFromDialogOpen: (isOpen: boolean) => void;
+  setIsToDialogOpen: (isOpen: boolean) => void;
+  setError: (error: string | null) => void;
+  reset: () => void;
+  swapTokens: () => void;
+  resetAmounts: () => void;
 }
