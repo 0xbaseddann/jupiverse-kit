@@ -3,7 +3,12 @@ import React, { useEffect, useCallback, useState } from "react";
 import { ReactComponent as JupiterBrightLogo } from "../../assets/powered-by-jupiter/poweredbyjupiter-bright.svg";
 import { ReactComponent as JupiterDarkLogo } from "../../assets/powered-by-jupiter/poweredbyjupiter-dark.svg";
 
-import { ArrowDown, Loader2, SquareArrowOutUpRightIcon } from "lucide-react";
+import {
+  ArrowDown,
+  Loader2,
+  SquareArrowOutUpRightIcon,
+  WalletIcon,
+} from "lucide-react";
 
 import { useWallet } from "@solana/wallet-adapter-react";
 
@@ -11,13 +16,13 @@ import SwapSettings from "./SwapSettings";
 import SwapTokenButton from "./SwapTokenButton";
 import SwapTokenDialog from "./SwapTokenDialog";
 
-import { WalletConnectButton } from "../../wallet/components/WalletConnectButton";
+import { UnifiedWalletButton } from "@jup-ag/wallet-adapter";
 
 import { Token, useTokens } from "../hooks/useTokens";
 import { useTokenBalance } from "../hooks/useTokenBalance";
 import { useSwap } from "../hooks/useSwap";
 
-import { useToast } from "../../toast/hooks/useToast";
+import { toast } from "sonner";
 
 import { QuoteResponse } from "../utils/interfaces";
 
@@ -50,20 +55,21 @@ const Swap = ({ rpcUrl }: SwapProps) => {
     useTokenBalance(tokenTo);
   const [isCalculating, setIsCalculating] = useState(false);
   const [isSwapping, setIsSwapping] = useState(false);
-  const { toast } = useToast();
 
   useEffect(() => {
     if (swapError) {
-      toast({
-        title: "Swap Error",
-        description: (
-          <div className="break-words max-w-[280px] sm:max-w-[340px] whitespace-pre-wrap">
-            {swapError}
-          </div>
-        ),
-        variant: "destructive",
-        duration: 8000,
-      });
+      toast.error(
+        <div className="flex flex-col bg-green-100 w-full p-4">
+          <span className="font-semibold">Swap Error</span>
+          <span className="text-xs text-black/50">{swapError}</span>
+        </div>,
+        {
+          style: {
+            padding: 0,
+            margin: 0,
+          },
+        }
+      );
 
       // Refetch balances and recalculate swap when there's an error
       const handleError = async () => {
@@ -157,15 +163,11 @@ const Swap = ({ rpcUrl }: SwapProps) => {
     if (!quoteResponse || !connected) return;
 
     setIsSwapping(true);
-    toast({
-      title: "Preparing swap transaction...",
-      description: (
-        <div className="break-words">
-          Please approve the transaction in your wallet
-        </div>
-      ),
-      duration: 8000,
-    });
+    toast.info(
+      <div className="break-words">
+        Please approve the transaction in your wallet
+      </div>
+    );
 
     try {
       const txid = await executeSwap(quoteResponse);
@@ -175,41 +177,31 @@ const Swap = ({ rpcUrl }: SwapProps) => {
         setAmountTo("");
         setQuoteResponse(null);
         console.log(`Swap successful! Transaction ID: ${txid}`);
-        toast({
-          title: "Swap successful!",
-          description: (
-            <div className="break-all flex flex-col">
-              <span className="break-words">Transaction ID:</span>{" "}
-              <a
-                href={`https://solana.fm/tx/${txid}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-500 hover:underline break-words"
-              >
-                {txid}{" "}
-                <SquareArrowOutUpRightIcon className="h-3 w-3 inline align-text-bottom" />
-              </a>
-            </div>
-          ),
-          duration: 8000,
-        });
+        toast.success(
+          <div className="break-all flex flex-col">
+            <span className="break-words">Transaction ID:</span>{" "}
+            <a
+              href={`https://solana.fm/tx/${txid}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 hover:underline break-words"
+            >
+              {txid}{" "}
+              <SquareArrowOutUpRightIcon className="h-3 w-3 inline align-text-bottom" />
+            </a>
+          </div>
+        );
 
         await Promise.all([refetchFromBalance(), refetchToBalance()]);
       }
     } catch (err) {
-      toast({
-        title: "Swap failed",
-        description: (
-          <div className="break-words">
-            {err instanceof Error
-              ? err.message
-              : "An error occurred during the swap"}
-          </div>
-        ),
-        variant: "destructive",
-        duration: 8000,
-      });
-      console.error("Swap failed:", err);
+      toast.error(
+        <div className="break-words">
+          {err instanceof Error
+            ? err.message
+            : "An error occurred during the swap"}
+        </div>
+      );
     } finally {
       setIsSwapping(false);
     }
@@ -272,7 +264,7 @@ const Swap = ({ rpcUrl }: SwapProps) => {
               </div>
               <div className="flex gap-1.5">
                 <button
-                  className="h-7 px-2.5 text-xs font-medium rounded-lg transition-colors hover:bg-accent hover:text-accent-foreground"
+                  className="h-7 px-2.5 text-xs font-medium rounded-lg transition-colors hover:bg-accent hover:text-accent-foreground cursor-pointer"
                   onClick={() => {
                     if (fromBalance && tokenFrom) {
                       const amount = (fromBalance * 0.25).toFixed(
@@ -286,7 +278,7 @@ const Swap = ({ rpcUrl }: SwapProps) => {
                   25%
                 </button>
                 <button
-                  className="h-7 px-2.5 text-xs font-medium rounded-lg transition-colors hover:bg-accent hover:text-accent-foreground"
+                  className="h-7 px-2.5 text-xs font-medium rounded-lg transition-colors hover:bg-accent hover:text-accent-foreground cursor-pointer"
                   onClick={() => {
                     if (fromBalance && tokenFrom) {
                       const amount = (fromBalance * 0.5).toFixed(
@@ -300,7 +292,7 @@ const Swap = ({ rpcUrl }: SwapProps) => {
                   50%
                 </button>
                 <button
-                  className="h-7 px-2.5 text-xs font-medium rounded-lg transition-colors hover:bg-accent hover:text-accent-foreground"
+                  className="h-7 px-2.5 text-xs font-medium rounded-lg transition-colors hover:bg-accent hover:text-accent-foreground cursor-pointer"
                   onClick={async () => {
                     if (fromBalance && tokenFrom) {
                       const maxAmount = await calculateMaxInput(
@@ -374,7 +366,15 @@ const Swap = ({ rpcUrl }: SwapProps) => {
               )}
             </button>
           ) : (
-            <WalletConnectButton className="w-full mt-6 py-4 text-base font-semibold rounded-2xl text-center items-center flex justify-center" />
+            <UnifiedWalletButton
+              buttonClassName="font-sans font-semibold rounded-3xl mt-6 themed-button-primary w-full px-4 py-3 text-sm flex justify-center items-center text-center gap-2 hover:opacity-90 dark:hover:opacity-90 transition-colors text-white dark:text-white cursor-pointer"
+              overrideContent={
+                <>
+                  <WalletIcon className="h-4 w-4 opacity-70" />
+                  Connect Wallet
+                </>
+              }
+            />
           )}
 
           {/* Powered by Jupiter logo */}
