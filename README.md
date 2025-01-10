@@ -170,11 +170,7 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
 import { WalletProvider } from "@/providers/wallet-provider";
 
 function App() {
-  return (
-    <WalletProvider>
-      {/* Your app content */}
-    </WalletProvider>
-  );
+  return <WalletProvider>{/* Your app content */}</WalletProvider>;
 }
 ```
 
@@ -207,6 +203,21 @@ function SwapPage() {
 - React && React DOM 16.8.0 or later
 - @solana/web3.js 1.0.0 or later
 
-## Contributions
+## Contributors ✨
 
 Contributions are welcome! Please feel free to submit a pull request.
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
