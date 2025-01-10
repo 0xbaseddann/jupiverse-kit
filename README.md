@@ -130,7 +130,6 @@ Wrap your application with the Jupiverse Kit Provider:
 1. Create `providers/wallet-provider.tsx` in your project
 
 ````tsx
-import { WalletProvider } from "jupiverse-kit";
 "use client";
 
 import { JupiverseKitProvider } from "jupiverse-kit";
@@ -140,7 +139,7 @@ import { Connection } from "@solana/web3.js";
 import { useWallet } from "@solana/wallet-adapter-react";
 
 export function WalletProvider({ children }: { children: React.ReactNode }) {
-  const connection = new Connection(process.env.NEXT_PUBLIC_RPC_URL as string);
+  const connection = new Connection(process.env.RPC_URL as string);
   const wallet = useWallet();
   const { theme } = useTheme();
 
@@ -179,13 +178,13 @@ function App() {
 }
 ```
 
-### WalletConnectButton
+### Unified Wallet Button
 
 ```tsx
-import { WalletConnectButton } from "jupiverse-kit";
+import { UnifiedWalletButton } from "@jup-ag/wallet-adapter";
 
 function YourComponent() {
-  return <WalletConnectButton />;
+  return <UnifiedWalletButton />;
 }
 ```
 
@@ -203,65 +202,9 @@ function SwapPage() {
 }
 ```
 
-### Toast Notifications
-
-Set up the toast notification system:
-
-```tsx
-import { Toaster, useToast } from "jupiverse-kit";
-
-function App() {
-  return (
-    <>
-      {/* Your app content */}
-      <Toaster />
-    </>
-  );
-}
-
-// Using toast notifications
-function YourComponent() {
-  const { toast } = useToast();
-
-  const notify = () => {
-    toast({
-      title: "Success!",
-      description: "Operation completed successfully",
-      duration: 5000,
-    });
-  };
-
-  return <button onClick={notify}>Show Notification</button>;
-}
-```
-
-### Hooks
-
-The library provides several useful hooks:
-
-```tsx
-import { useSwap, useTokenBalance, useTokens, useToast } from "jupiverse-kit";
-
-function YourComponent() {
-  // Get token list
-  const { tokens } = useTokens();
-
-  // Get token balance
-  const { balance } = useTokenBalance(token);
-
-  // Use swap functionality
-  const { getQuote, executeSwap } = useSwap(rpcUrl);
-
-  // Use toast notifications
-  const { toast } = useToast();
-
-  // ... rest of your component
-}
-```
-
 ## Requirements
 
-- React 16.8.0 or later
+- React && React DOM 16.8.0 or later
 - @solana/web3.js 1.0.0 or later
 
 ## Contributions
