@@ -3,11 +3,12 @@
 import { Button } from "@/components/ui/button";
 import { Highlight } from "@/components/ui/hero-highlight";
 import { motion } from "framer-motion";
-import { Check, Copy } from "lucide-react";
+import { Check, Clipboard } from "lucide-react";
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
 import { useTheme } from "next-themes";
+import { Separator } from "../ui/separator";
 
 const Hero = () => {
   const [copied, setCopied] = useState(false);
@@ -83,14 +84,14 @@ const Hero = () => {
             alt="Powered by Jupiter"
             width={180}
             height={36}
-            className="sm:w-[220px] sm:h-[44px] dark:hidden"
+            className="w-[180px] h-[36px] sm:w-[220px] sm:h-[44px] dark:hidden"
           />
           <Image
             src="/jupiter/poweredbyjupiter-dark.svg"
             alt="Powered by Jupiter"
             width={180}
             height={36}
-            className="sm:w-[220px] sm:h-[44px] hidden dark:block"
+            className="w-[180px] h-[36px] sm:w-[220px] sm:h-[44px] hidden dark:block"
           />
         </motion.div>
         <motion.div
@@ -111,57 +112,63 @@ const Hero = () => {
         >
           <div className="relative w-full max-w-[650px] mx-auto bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-6 sm:p-8 shadow-2xl border border-gray-300 dark:border-gray-700">
             <Tabs defaultValue="npm" className="w-full">
-              <TabsList className="grid w-full grid-cols-4 mb-6 gap-2">
-                <TabsTrigger
-                  value="npm"
-                  className="text-xs sm:text-sm text-gray-800 dark:text-black data-[state=active]:bg-trifid dark:data-[state=active]:bg-trifid hover:bg-gray-200 dark:hover:bg-gray-200"
-                >
-                  npm
-                </TabsTrigger>
-                <TabsTrigger
-                  value="pnpm"
-                  className="text-xs sm:text-sm text-gray-800 dark:text-black data-[state=active]:bg-trifid dark:data-[state=active]:bg-trifid hover:bg-gray-200 dark:hover:bg-gray-200"
-                >
-                  pnpm
-                </TabsTrigger>
-                <TabsTrigger
-                  value="yarn"
-                  className="text-xs sm:text-sm text-gray-800 dark:text-black data-[state=active]:bg-trifid dark:data-[state=active]:bg-trifid hover:bg-gray-200 dark:hover:bg-gray-200"
-                >
-                  yarn
-                </TabsTrigger>
-                <TabsTrigger
-                  value="bun"
-                  className="text-xs sm:text-sm text-gray-800 dark:text-black data-[state=active]:bg-trifid dark:data-[state=active]:bg-trifid hover:bg-gray-200 dark:hover:bg-gray-200"
-                >
-                  bun
-                </TabsTrigger>
-              </TabsList>
-              {Object.entries(installCommands).map(([pkg, command]) => (
-                <TabsContent key={pkg} value={pkg} className="relative">
-                  <pre className="text-emerald-600 dark:text-emerald-400 font-mono text-md sm:text-xl overflow-x-auto">
-                    <code>{command}</code>
-                  </pre>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => handleCopy(command)}
-                    className="absolute top-0 right-0 text-gray-600 dark:text-gray-400 flex items-center gap-2 sm:gap-3 text-sm sm:text-base"
+              <div className="flex w-full justify-between mb-2">
+                <TabsList className="flex gap-2">
+                  <TabsTrigger
+                    value="npm"
+                    className="text-xs sm:text-sm text-gray-800 dark:text-gray-200 data-[state=active]:bg-trifid dark:data-[state=active]:bg-trifid dark:data-[state=active]:text-black hover:bg-gray-200 dark:hover:bg-gray-700"
                   >
-                    {copied ? (
-                      <>
-                        <Check size={16} className="sm:w-5 sm:h-5" />
-                        <span>Copied!</span>
-                      </>
-                    ) : (
-                      <>
-                        <Copy size={16} className="sm:w-5 sm:h-5" />
-                        <span>Copy</span>
-                      </>
-                    )}
-                  </Button>
-                </TabsContent>
-              ))}
+                    npm
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="pnpm"
+                    className="text-xs sm:text-sm text-gray-800 dark:text-gray-200 data-[state=active]:bg-trifid dark:data-[state=active]:bg-trifid dark:data-[state=active]:text-black hover:bg-gray-200 dark:hover:bg-gray-700"
+                  >
+                    pnpm
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="yarn"
+                    className="text-xs sm:text-sm text-gray-800 dark:text-gray-200 data-[state=active]:bg-trifid dark:data-[state=active]:bg-trifid dark:data-[state=active]:text-black hover:bg-gray-200 dark:hover:bg-gray-700"
+                  >
+                    yarn
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="bun"
+                    className="text-xs sm:text-sm text-gray-800 dark:text-gray-200 data-[state=active]:bg-trifid dark:data-[state=active]:bg-trifid dark:data-[state=active]:text-black hover:bg-gray-200 dark:hover:bg-gray-700"
+                  >
+                    bun
+                  </TabsTrigger>
+                </TabsList>
+                <Button
+                  size="sm"
+                  onClick={() => handleCopy(installCommands.npm)}
+                  className="bg-trifid text-black hover:bg-trifid/70 flex items-center gap-2 sm:gap-3 text-sm sm:text-base"
+                >
+                  {copied ? (
+                    <>
+                      <Check size={16} className="sm:w-5 sm:h-5" />
+                    </>
+                  ) : (
+                    <>
+                      <Clipboard size={16} className="sm:w-5 sm:h-5" />
+                    </>
+                  )}
+                </Button>
+              </div>
+              <Separator className="mb-6 opacity-15 dark:opacity-30 dark:bg-white" />
+              <div className="relative min-h-[40px]">
+                {Object.entries(installCommands).map(([pkg, command]) => (
+                  <TabsContent
+                    key={pkg}
+                    value={pkg}
+                    className="flex justify-center items-center absolute inset-0"
+                  >
+                    <pre className="text-emerald-600 dark:text-emerald-400 font-mono text-md sm:text-xl">
+                      <code>{command}</code>
+                    </pre>
+                  </TabsContent>
+                ))}
+              </div>
             </Tabs>
           </div>
         </motion.div>
