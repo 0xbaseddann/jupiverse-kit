@@ -71,7 +71,7 @@ const Navbar = () => {
           className="hidden md:flex flex-1 justify-end items-center gap-4"
         >
           <UnifiedWalletButton
-            buttonClassName="font-sans font-semibold rounded-3xl px-4 py-3 text-sm flex justify-center items-center text-center gap-2 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-white dark:text-white cursor-pointer"
+            buttonClassName="font-sans font-semibold rounded-3xl px-4 py-3 text-sm flex justify-center items-center text-center gap-2 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-white dark:text-white cursor-pointer"
             currentUserClassName="font-sans font-semibold min-w-[90px] min-h-[50px] rounded-full px-5 py-3 text-sm flex justify-center items-center text-center gap-2 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-600 transition-colors text-white dark:text-white cursor-pointer"
             overrideContent={
               <>
@@ -125,7 +125,7 @@ const Navbar = () => {
                 ))}
                 <div className="pt-6 border-t w-full flex justify-center border-gray-300 dark:border-gray-700">
                   <UnifiedWalletButton
-                    buttonClassName="font-sans font-semibold rounded-3xl px-4 py-3 text-sm flex justify-center items-center text-center gap-2 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-white dark:text-white cursor-pointer"
+                    buttonClassName="font-sans font-semibold rounded-3xl px-4 py-3 text-sm flex justify-center items-center text-center gap-2 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-white dark:bg-gray-800  dark:text-white cursor-pointer"
                     currentUserClassName="font-sans font-semibold min-w-[90px] min-h-[50px] rounded-full px-5 py-3 text-sm flex justify-center items-center text-center gap-2 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-600 transition-colors text-white dark:text-white cursor-pointer"
                     overrideContent={
                       <>
