@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
+
 import "./globals.css";
+import "jupiverse-kit/dist/index.css";
+
 import Navbar from "@/components/shared/navbar";
-import { WalletProvider } from "jupiverse-kit";
-import { Toaster } from "jupiverse-kit";
 import NProgressBar from "@/components/ui/nprogressbar";
 import { UniverseBackground } from "@/components/ui/universe-background";
-import "jupiverse-kit/dist/index.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { WalletProvider } from "@/components/providers/wallet-provider";
+
+import { Toaster } from "sonner";
 
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
 
@@ -37,7 +40,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <WalletProvider rpcUrl={process.env.NEXT_PUBLIC_RPC_URL}>
+          <WalletProvider>
             <UniverseBackground />
             <NProgressBar>
               <main className="min-h-screen">

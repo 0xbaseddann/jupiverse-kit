@@ -13,9 +13,9 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { itemVariants, navVariants } from "@/utils/motion";
-import { WalletConnectButton } from "jupiverse-kit";
 import Image from "next/image";
 import { ThemeToggle } from "./theme-toggle";
+import { UnifiedWalletButton } from "@jup-ag/wallet-adapter";
 
 const Navbar = () => {
   return (
@@ -64,7 +64,7 @@ const Navbar = () => {
           variants={itemVariants}
           className="hidden md:flex flex-1 justify-end items-center gap-2"
         >
-          <WalletConnectButton />
+          <UnifiedWalletButton />
           <ThemeToggle />
         </motion.div>
 
@@ -107,7 +107,7 @@ const Navbar = () => {
                   </Link>
                 ))}
                 <div className="pt-4 border-t border-gray-800 w-full flex justify-center">
-                  <WalletConnectButton />
+                  <UnifiedWalletButton />
                 </div>
               </div>
               <div className="absolute bottom-4 right-4">
