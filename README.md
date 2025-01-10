@@ -129,7 +129,7 @@ Wrap your application with the Jupiverse Kit Provider:
 
 1. Create `providers/wallet-provider.tsx` in your project
 
-````tsx
+```tsx
 "use client";
 
 import { JupiverseKitProvider } from "jupiverse-kit";
