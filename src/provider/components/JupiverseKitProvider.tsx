@@ -46,7 +46,7 @@ export function JupiverseKitProvider({
           notificationCallback: {
             onConnect: (props) =>
               toast.success(
-                <div className="flex flex-col bg-green-100 w-full p-4">
+                <div className="flex flex-col bg-green-100 w-full p-4  rounded-lg">
                   <span className="font-semibold">Wallet Connected</span>
                   <span className="text-xs text-black/50">{`Connected to wallet ${props.shortAddress}`}</span>
                 </div>,
@@ -88,7 +88,7 @@ export function JupiverseKitProvider({
               ),
             onNotInstalled: (props) =>
               toast.error(
-                <div className="flex flex-col bg-red-100 w-full p-4">
+                <div className="flex flex-col bg-red-100 w-full p-4 rounded-lg">
                   <span className="font-semibold">
                     {props.walletName} Wallet is not installed
                   </span>

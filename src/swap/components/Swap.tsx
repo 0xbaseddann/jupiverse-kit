@@ -12,12 +12,15 @@ import { useSwapStore } from "../store/useSwapStore";
 import { useSwapOperations } from "../hooks/useSwapOperations";
 import { formatBalance } from "../helpers/formatBalance";
 import { UnifiedWalletButton } from "@jup-ag/wallet-adapter";
+import SwapReset from "./SwapReset";
 
 interface SwapProps {
   rpcUrl: string;
+  referralKey?: string;
+  platformFeeBps?: number;
 }
 
-const Swap = ({ rpcUrl }: SwapProps) => {
+const Swap = ({ rpcUrl, referralKey, platformFeeBps = 0 }: SwapProps) => {
   const { tokens } = useTokens();
   const { connected } = useWallet();
   const {
@@ -39,8 +42,13 @@ const Swap = ({ rpcUrl }: SwapProps) => {
     swapTokens,
   } = useSwapStore();
 
-  const { calculateMaximumInput, handleSwap, fromBalance, toBalance } =
-    useSwapOperations(rpcUrl);
+  const {
+    calculateMaximumInput,
+    handleSwap,
+    handleRefreshQuote,
+    fromBalance,
+    toBalance,
+  } = useSwapOperations({ rpcUrl, referralKey, platformFeeBps });
 
   // Initialize default tokens only if no tokens are selected or persisted
   useEffect(() => {
@@ -87,11 +95,18 @@ const Swap = ({ rpcUrl }: SwapProps) => {
               <h2 className="text-xl font-bold text-foreground dark:text-foreground-dark">
                 Swap
               </h2>
-              <SwapSettings
-                slippage={slippage}
-                onSlippageChange={setSlippage}
-                onSave={() => {}}
-              />
+              <div className="flex items-center">
+                <SwapSettings
+                  slippage={slippage}
+                  onSlippageChange={setSlippage}
+                  onSave={() => {}}
+                />
+                <SwapReset
+                  onRefresh={handleRefreshQuote}
+                  isCalculating={isCalculating}
+                  isSwapping={isSwapping}
+                />
+              </div>
             </div>
 
             {/* From Token Input */}

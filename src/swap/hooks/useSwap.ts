@@ -3,6 +3,7 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import {
   Connection,
   LAMPORTS_PER_SOL,
+  PublicKey,
   VersionedTransaction,
 } from "@solana/web3.js";
 import { Token } from "./useTokens";
@@ -12,7 +13,17 @@ import { QuoteResponse, SwapResponse } from "../utils/interfaces";
 const MIN_SOL_FOR_GAS = 0.01 * LAMPORTS_PER_SOL;
 const WSOL_MINT = "So11111111111111111111111111111111111111112";
 
-export const useSwap = (rpcUrl: string) => {
+interface UseSwapProps {
+  rpcUrl: string;
+  referralKey?: string;
+  platformFeeBps?: number;
+}
+
+export const useSwap = ({
+  rpcUrl,
+  referralKey,
+  platformFeeBps,
+}: UseSwapProps) => {
   const { publicKey, signTransaction } = useWallet();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -26,20 +37,29 @@ export const useSwap = (rpcUrl: string) => {
       inputToken: Token,
       outputToken: Token,
       amount: number,
-      slippageBps: number = 300 // Default to 3% for dynamic slippage
+      slippageBps: number = 300
     ) => {
       try {
         setLoading(true);
         setError(null);
 
-        const response = await fetch(
-          `https://quote-api.jup.ag/v6/quote?inputMint=${
-            inputToken.address
-          }&outputMint=${outputToken.address}&amount=${
-            amount * Math.pow(10, inputToken.decimals)
-          }&slippageBps=${slippageBps}`
+        const url = new URL("https://quote-api.jup.ag/v6/quote");
+        url.searchParams.append("inputMint", inputToken.address);
+        url.searchParams.append("outputMint", outputToken.address);
+        url.searchParams.append(
+          "amount",
+          (amount * Math.pow(10, inputToken.decimals)).toString()
         );
+        url.searchParams.append("slippageBps", slippageBps.toString());
+        // Add this line
+        url.searchParams.append("restrictIntermediateTokens", "true");
 
+        // Add platform fee if provided
+        if (platformFeeBps) {
+          url.searchParams.append("platformFeeBps", platformFeeBps.toString());
+        }
+
+        const response = await fetch(url.toString());
         const data = await response.json();
 
         if (!response.ok) {
@@ -56,7 +76,7 @@ export const useSwap = (rpcUrl: string) => {
         setLoading(false);
       }
     },
-    []
+    [platformFeeBps]
   );
 
   // Execute swap
@@ -71,7 +91,20 @@ export const useSwap = (rpcUrl: string) => {
         setLoading(true);
         setError(null);
 
-        // Get serialized transactions for the swap with dynamic slippage
+        let feeAccount;
+        if (referralKey) {
+          // Calculate fee account address
+          const [feeAccountAddress] = await PublicKey.findProgramAddressSync(
+            [
+              Buffer.from("referral_ata"),
+              new PublicKey(referralKey).toBuffer(),
+              new PublicKey(quoteResponse.inputMint).toBuffer(),
+            ],
+            new PublicKey("REFER4ZgmyYx9c6He5XfaTMiGfdLwRnkV4RPp9t9iF3")
+          );
+          feeAccount = feeAccountAddress.toString();
+        }
+
         const swapResponse = await fetch("https://quote-api.jup.ag/v6/swap", {
           method: "POST",
           headers: {
@@ -82,9 +115,15 @@ export const useSwap = (rpcUrl: string) => {
             userPublicKey: publicKey.toString(),
             wrapAndUnwrapSol: true,
             dynamicComputeUnitLimit: true,
-            prioritizationFeeLamports: "auto",
+            feeAccount,
             dynamicSlippage: {
               maxBps: quoteResponse.slippageBps,
+            },
+            prioritizationFeeLamports: {
+              priorityLevelWithMaxLamports: {
+                maxLamports: 10000000,
+                priorityLevel: "veryHigh",
+              },
             },
           }),
         });
@@ -131,7 +170,7 @@ export const useSwap = (rpcUrl: string) => {
         setLoading(false);
       }
     },
-    [connection, publicKey, signTransaction]
+    [connection, publicKey, signTransaction, referralKey]
   );
 
   // Calculate output amount based on input

@@ -1,18 +1,26 @@
 import * as React from "react";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useSwapStore } from "../store/useSwapStore";
 import { useSwap } from "./useSwap";
 import { useTokenBalance } from "./useTokenBalance";
 import { SquareArrowOutUpRightIcon } from "lucide-react";
 import { toast } from "sonner";
 
-export const useSwapOperations = (rpcUrl: string) => {
+interface SwapOperationsConfig {
+  rpcUrl: string;
+  referralKey?: string;
+  platformFeeBps?: number;
+}
+
+export const useSwapOperations = (config: SwapOperationsConfig) => {
   const {
     tokenFrom,
     tokenTo,
     amountFrom,
     amountTo,
     slippage,
+    isCalculating,
+    isSwapping,
     setAmountFrom,
     setAmountTo,
     setQuoteResponse,
@@ -21,11 +29,13 @@ export const useSwapOperations = (rpcUrl: string) => {
     setError,
   } = useSwapStore();
 
-  const { getQuote, executeSwap, calculateMaxInput } = useSwap(rpcUrl);
+  const { getQuote, executeSwap, calculateMaxInput } = useSwap(config);
   const { balance: fromBalance, refetch: refetchFromBalance } =
     useTokenBalance(tokenFrom);
   const { balance: toBalance, refetch: refetchToBalance } =
     useTokenBalance(tokenTo);
+
+  const refreshTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Memoized quote calculation with debounce
   const calculateQuote = useCallback(
@@ -51,9 +61,20 @@ export const useSwapOperations = (rpcUrl: string) => {
         setAmountTo("0");
         setQuoteResponse(null);
         setIsCalculating(false);
-        toast.error("Invalid Input: Please enter a valid number", {
-          description: "The amount must be a valid numerical value",
-        });
+        toast.error(
+          <div className="flex flex-col bg-red-100 w-full p-4 rounded-lg">
+            <span className="font-semibold">
+              Invalid Input: Please enter a valid number
+            </span>
+            <span>The amount must be a valid numerical value</span>
+          </div>,
+          {
+            style: {
+              padding: 0,
+              margin: 0,
+            },
+          }
+        );
         return;
       }
 
@@ -63,9 +84,18 @@ export const useSwapOperations = (rpcUrl: string) => {
         setAmountTo("0");
         setQuoteResponse(null);
         setIsCalculating(false);
-        toast.error("Invalid Amount", {
-          description: "Amount must be greater than 0",
-        });
+        toast.error(
+          <div className="flex flex-col bg-red-100 w-full p-4 rounded-lg">
+            <span className="font-semibold">Invalid Amount</span>
+            <span>Amount must be greater than 0</span>
+          </div>,
+          {
+            style: {
+              padding: 0,
+              margin: 0,
+            },
+          }
+        );
         return;
       }
 
@@ -73,9 +103,18 @@ export const useSwapOperations = (rpcUrl: string) => {
       if (fromBalance !== null && parsedAmount > fromBalance) {
         setAmountTo("0");
         setQuoteResponse(null);
-        toast.error("Insufficient Balance", {
-          description: `You don't have enough ${tokenFrom.symbol} in your wallet`,
-        });
+        toast.error(
+          <div className="flex flex-col bg-red-100 w-full p-4 rounded-lg">
+            <span className="font-semibold">Insufficient Balance</span>
+            <span>You don't have enough {tokenFrom.symbol} in your wallet</span>
+          </div>,
+          {
+            style: {
+              padding: 0,
+              margin: 0,
+            },
+          }
+        );
         return;
       }
 
@@ -104,9 +143,18 @@ export const useSwapOperations = (rpcUrl: string) => {
         console.error("Failed to calculate output amount:", err);
         setAmountTo("0");
         setQuoteResponse(null);
-        toast.error("Quote Calculation Failed", {
-          description: errorMessage,
-        });
+        toast.error(
+          <div className="flex flex-col bg-red-100 w-full p-4 rounded-lg">
+            <span className="font-semibold">Quote Calculation Failed</span>
+            <span className="break-words text-wrap">{errorMessage}</span>
+          </div>,
+          {
+            style: {
+              padding: 0,
+              margin: 0,
+            },
+          }
+        );
       } finally {
         setIsCalculating(false);
       }
@@ -122,6 +170,46 @@ export const useSwapOperations = (rpcUrl: string) => {
       setIsCalculating,
     ]
   );
+
+  // Add this new function to handle manual refresh
+  const handleRefreshQuote = useCallback(() => {
+    if (!amountFrom || !tokenFrom || !tokenTo) return;
+
+    // Clear existing timer if any
+    if (refreshTimerRef.current) {
+      clearTimeout(refreshTimerRef.current);
+    }
+
+    // Trigger immediate quote calculation
+    calculateQuote(amountFrom);
+
+    // Start new refresh timer
+    refreshTimerRef.current = setTimeout(() => {
+      handleRefreshQuote();
+    }, 15000);
+  }, [amountFrom, tokenFrom, tokenTo, calculateQuote]);
+
+  // Add auto-refresh effect
+  useEffect(() => {
+    if (amountFrom && tokenFrom && tokenTo && !isCalculating && !isSwapping) {
+      refreshTimerRef.current = setTimeout(() => {
+        handleRefreshQuote();
+      }, 15000);
+    }
+
+    return () => {
+      if (refreshTimerRef.current) {
+        clearTimeout(refreshTimerRef.current);
+      }
+    };
+  }, [
+    amountFrom,
+    tokenFrom,
+    tokenTo,
+    isCalculating,
+    isSwapping,
+    handleRefreshQuote,
+  ]);
 
   // Debounced quote calculation
   const debouncedCalculateQuote = useCallback(
@@ -168,17 +256,38 @@ export const useSwapOperations = (rpcUrl: string) => {
   // Handle swap execution
   const handleSwap = useCallback(async () => {
     if (!tokenFrom || !tokenTo || !amountFrom || !amountTo) {
-      toast.error("Invalid Swap", {
-        description:
-          "Please ensure you have selected tokens and entered valid amounts",
-      });
+      toast.error(
+        <div className="flex flex-col bg-red-100 w-full p-4 rounded-lg">
+          <span className="font-semibold">Invalid Swap</span>
+          <span>
+            Please ensure you have selected tokens and entered valid amounts
+          </span>
+        </div>,
+        {
+          style: {
+            padding: 0,
+            margin: 0,
+          },
+        }
+      );
       return;
     }
 
     setIsSwapping(true);
-    const loadingToast = toast.loading("Processing Transaction", {
-      description: "Please wait while your transaction is being processed",
-    });
+    const loadingToast = toast.loading(
+      <div className="flex flex-col p-4">
+        <span className="font-semibold">Processing Transaction</span>
+        <span className="text-xs text-black/50">
+          Please wait while your transaction is being processed
+        </span>
+      </div>,
+      {
+        style: {
+          padding: 0,
+          margin: 0,
+        },
+      }
+    );
 
     try {
       const quote = await getQuote(
@@ -204,10 +313,11 @@ export const useSwapOperations = (rpcUrl: string) => {
       setError(null);
 
       toast.dismiss(loadingToast);
-      toast.success("Swap Successful!", {
-        description: (
-          <div className="break-all flex flex-col bg-green-100">
-            <span className="break-words">Transaction ID:</span>{" "}
+      toast.success(
+        <div className="flex flex-col bg-green-100 w-full p-4  rounded-lg">
+          <span className="font-semibold">Swap Successful!</span>
+          <span className="text-xs text-black/50">
+            <span className="break-words">Transaction ID:</span>
             <a
               href={`https://solana.fm/tx/${txid}`}
               target="_blank"
@@ -217,9 +327,15 @@ export const useSwapOperations = (rpcUrl: string) => {
               {txid}{" "}
               <SquareArrowOutUpRightIcon className="h-3 w-3 inline align-text-bottom" />
             </a>
-          </div>
-        ),
-      });
+          </span>
+        </div>,
+        {
+          style: {
+            padding: 0,
+            margin: 0,
+          },
+        }
+      );
 
       await Promise.all([refetchFromBalance(), refetchToBalance()]);
     } catch (err) {
@@ -233,13 +349,31 @@ export const useSwapOperations = (rpcUrl: string) => {
         errorMessage.toLowerCase().includes("user rejected") ||
         errorMessage.toLowerCase().includes("cancelled")
       ) {
-        toast.error("Transaction Cancelled", {
-          description: "You cancelled the transaction",
-        });
+        toast.error(
+          <div className="flex flex-col bg-red-100 w-full p-4 rounded-lg">
+            <span className="font-semibold">Transaction Cancelled</span>
+            <span>You cancelled the transaction</span>
+          </div>,
+          {
+            style: {
+              padding: 0,
+              margin: 0,
+            },
+          }
+        );
       } else {
-        toast.error("Transaction Failed", {
-          description: errorMessage,
-        });
+        toast.error(
+          <div className="flex flex-col bg-red-100 w-full p-4 rounded-lg">
+            <span className="font-semibold">Transaction Failed</span>
+            <span className="break-words text-wrap">{errorMessage}</span>
+          </div>,
+          {
+            style: {
+              padding: 0,
+              margin: 0,
+            },
+          }
+        );
       }
 
       console.error("Swap failed:", err);
@@ -273,6 +407,7 @@ export const useSwapOperations = (rpcUrl: string) => {
   return {
     calculateMaximumInput,
     handleSwap,
+    handleRefreshQuote,
     fromBalance,
     toBalance,
   };
