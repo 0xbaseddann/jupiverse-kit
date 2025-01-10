@@ -2,27 +2,32 @@ name: Generate Contributors Images
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
   update-contributors:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # This is the important line
+      pull-requests: write # Optional, if you want it to create PRs
     steps:
       - uses: actions/checkout@v3
-      
+        with:
+          fetch-depth: 0
+
       - name: Generate Contributors Images
         uses: jaywcjlove/github-action-contributors@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           avatarSize: 42
-          
+
       - name: Commit and Push Changes
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add CONTRIBUTORS.svg
-          git commit -m "chore: update contributors image" || echo "No changes to commit"
-          git push origin HEAD:main || echo "No changes to push"
+          git commit -m "docs: update contributors [skip ci]" || echo "No changes to commit"
+          git push

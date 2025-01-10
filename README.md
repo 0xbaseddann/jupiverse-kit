@@ -203,13 +203,15 @@ function SwapPage() {
 - React && React DOM 16.8.0 or later
 - @solana/web3.js 1.0.0 or later
 
-## Contributors
+## Contributions
 
 Contributions are welcome! Please feel free to submit a pull request.
 
-<div align="center">
-  <img src="CONTRIBUTORS.svg" alt="Contributors" />
-</div>
+### Thanks to all our contributors
+
+<a href="https://github.com/dannweeeee/jupiverse-kit/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=dannweeeee/jupiverse-kit" />
+</a>
 
 ## License
 
