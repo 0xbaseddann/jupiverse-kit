@@ -12,7 +12,6 @@ import { useTheme } from "next-themes";
 const Hero = () => {
   const [copied, setCopied] = useState(false);
   const { theme } = useTheme();
-  console.log("HERO THEME", theme);
 
   const installCommands = {
     npm: "npm i jupiverse-kit",

@@ -20,7 +20,6 @@ import { useTheme } from "next-themes";
 
 const Navbar = () => {
   const { theme } = useTheme();
-  console.log("NAVBAR THEME", theme);
 
   return (
     <motion.nav

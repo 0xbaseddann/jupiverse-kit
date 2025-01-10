@@ -6,7 +6,6 @@ import "jupiverse-kit/dist/index.css";
 
 import Navbar from "@/components/shared/navbar";
 import NProgressBar from "@/components/ui/nprogressbar";
-import { UniverseBackground } from "@/components/ui/universe-background";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { WalletProvider } from "@/components/providers/wallet-provider";
 
@@ -38,7 +37,7 @@ export default function RootLayout({
       <body className={`${spaceGrotesk.className}`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
+          defaultTheme="dark"
           enableSystem
           storageKey="theme"
           disableTransitionOnChange
