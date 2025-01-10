@@ -11,6 +11,7 @@ import { WalletProvider } from "@/components/providers/wallet-provider";
 
 import { Toaster } from "sonner";
 import { AuroraBackground } from "@/components/ui/aurora-background";
+import Footer from "@/components/shared/footer";
 
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
 
@@ -48,8 +49,9 @@ export default function RootLayout({
                 <AuroraBackground>
                   <Navbar />
                   {children}
+                  <Footer />
                 </AuroraBackground>
-                <Toaster />
+                <Toaster position="bottom-left" />
               </main>
             </NProgressBar>
           </WalletProvider>
