@@ -111,28 +111,28 @@ const Hero = () => {
         >
           <div className="relative w-full max-w-[650px] mx-auto bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-6 sm:p-8 shadow-2xl border border-gray-300 dark:border-gray-700">
             <Tabs defaultValue="npm" className="w-full">
-              <TabsList className="grid w-full grid-cols-4 mb-6">
+              <TabsList className="grid w-full grid-cols-4 mb-6 gap-2">
                 <TabsTrigger
                   value="npm"
-                  className="text-xs sm:text-sm text-gray-800 dark:text-black data-[state=active]:bg-trifid dark:data-[state=active]:bg-trifid"
+                  className="text-xs sm:text-sm text-gray-800 dark:text-black data-[state=active]:bg-trifid dark:data-[state=active]:bg-trifid hover:bg-gray-200 dark:hover:bg-gray-200"
                 >
                   npm
                 </TabsTrigger>
                 <TabsTrigger
                   value="pnpm"
-                  className="text-xs sm:text-sm text-gray-800 dark:text-black data-[state=active]:bg-trifid dark:data-[state=active]:bg-trifid"
+                  className="text-xs sm:text-sm text-gray-800 dark:text-black data-[state=active]:bg-trifid dark:data-[state=active]:bg-trifid hover:bg-gray-200 dark:hover:bg-gray-200"
                 >
                   pnpm
                 </TabsTrigger>
                 <TabsTrigger
                   value="yarn"
-                  className="text-xs sm:text-sm text-gray-800 dark:text-black data-[state=active]:bg-trifid dark:data-[state=active]:bg-trifid"
+                  className="text-xs sm:text-sm text-gray-800 dark:text-black data-[state=active]:bg-trifid dark:data-[state=active]:bg-trifid hover:bg-gray-200 dark:hover:bg-gray-200"
                 >
                   yarn
                 </TabsTrigger>
                 <TabsTrigger
                   value="bun"
-                  className="text-xs sm:text-sm text-gray-800 dark:text-black data-[state=active]:bg-trifid dark:data-[state=active]:bg-trifid"
+                  className="text-xs sm:text-sm text-gray-800 dark:text-black data-[state=active]:bg-trifid dark:data-[state=active]:bg-trifid hover:bg-gray-200 dark:hover:bg-gray-200"
                 >
                   bun
                 </TabsTrigger>

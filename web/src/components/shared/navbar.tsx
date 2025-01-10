@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { navItems } from "@/lib/constants";
 import Link from "next/link";
-import { Menu } from "lucide-react";
+import { Menu, WalletIcon } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -29,7 +29,7 @@ const Navbar = () => {
       className="fixed w-full top-0 z-50 backdrop-blur-lg shadow-lg 
         bg-white/70 text-black dark:bg-black/70 dark:text-white"
     >
-      <div className="container mx-auto px-4 h-20 flex items-center justify-between">
+      <div className="container mx-auto px-4 h-20 flex items-center justify-between ">
         {/* Logo */}
         <motion.div variants={itemVariants} className="flex-1">
           <Link
@@ -41,9 +41,11 @@ const Navbar = () => {
               alt="Jupiverse Kit"
               width={35}
               height={35}
-              className="invert brightness-0 filter-none"
+              className="filter dark:invert"
             />
-            Jupiverse Kit
+            <span className="bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text">
+              Jupiverse Kit
+            </span>
           </Link>
         </motion.div>
 
@@ -68,7 +70,15 @@ const Navbar = () => {
           variants={itemVariants}
           className="hidden md:flex flex-1 justify-end items-center gap-4"
         >
-          <UnifiedWalletButton />
+          <UnifiedWalletButton
+            buttonClassName="font-sans font-semibold rounded-3xl px-4 py-3 text-sm flex justify-center items-center text-center gap-2 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-white dark:text-white cursor-pointer"
+            overrideContent={
+              <>
+                <WalletIcon className="h-4 w-4 opacity-70" />
+                Connect Wallet
+              </>
+            }
+          />
           <ThemeToggle />
         </motion.div>
 
