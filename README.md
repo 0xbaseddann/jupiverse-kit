@@ -203,20 +203,13 @@ function SwapPage() {
 - React && React DOM 16.8.0 or later
 - @solana/web3.js 1.0.0 or later
 
-## Contributors ✨
+## Contributors
 
 Contributions are welcome! Please feel free to submit a pull request.
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification.
+<div align="center">
+  <img src="CONTRIBUTORS.svg" alt="Contributors" />
+</div>
 
 ## License
 
