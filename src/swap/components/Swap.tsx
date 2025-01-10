@@ -10,7 +10,7 @@ import { WalletIcon } from "lucide-react";
 import { useTokens } from "../hooks/useTokens";
 import { useSwapStore } from "../store/useSwapStore";
 import { useSwapOperations } from "../hooks/useSwapOperations";
-import { formatBalance } from "../helpers";
+import { formatBalance } from "../helpers/formatBalance";
 import { UnifiedWalletButton } from "@jup-ag/wallet-adapter";
 
 interface SwapProps {
