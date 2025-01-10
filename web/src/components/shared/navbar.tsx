@@ -90,25 +90,27 @@ const Navbar = () => {
               <Button
                 variant="ghost"
                 size="icon"
-                className="hover:bg-white/20 text-black dark:text-white"
+                className="hover:bg-gray-200 dark:hover:bg-gray-600 text-black dark:text-white"
               >
                 <Menu className="h-7 w-7" />
               </Button>
             </SheetTrigger>
             <SheetContent
-              side="right"
-              className="border-l border-gray-300 bg-white/80 dark:border-gray-700 backdrop-blur-lg [&>button]:flex [&>button]:items-center [&>button]:justify-center"
+              side="bottom"
+              className="border-l border-gray-300 bg-white dark:bg-black dark:border-gray-700 backdrop-blur-lg [&>button]:flex [&>button]:items-center [&>button]:justify-center"
             >
-              <SheetHeader className="border-b pb-4 border-gray-300 darl:border-gray-700">
+              <SheetHeader className="border-b pb-4 border-gray-300 dark:border-gray-700">
                 <SheetTitle className="flex items-center gap-3">
                   <Image
                     src="/logo/cat.svg"
                     alt="Jupiverse Kit"
                     width={28}
                     height={28}
-                    className="invert brightness-0 filter-none"
+                    className="filter dark:invert"
                   />
-                  Jupiverse Kit
+                  <span className="bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text">
+                    Jupiverse Kit
+                  </span>
                 </SheetTitle>
               </SheetHeader>
               <div className="flex flex-col gap-8 mt-10">
@@ -116,13 +118,22 @@ const Navbar = () => {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="text-xl transition-colors flex items-center gap-3 text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white"
+                    className="text-xl transition-colors flex items-center gap-3 text-black hover:text-gray-500 dark:text-white dark:hover:text-gray-300"
                   >
                     {item.name}
                   </Link>
                 ))}
                 <div className="pt-6 border-t w-full flex justify-center border-gray-300 dark:border-gray-700">
-                  <UnifiedWalletButton />
+                  <UnifiedWalletButton
+                    buttonClassName="font-sans font-semibold rounded-3xl px-4 py-3 text-sm flex justify-center items-center text-center gap-2 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-white dark:text-white cursor-pointer"
+                    currentUserClassName="font-sans font-semibold min-w-[90px] min-h-[50px] rounded-full px-5 py-3 text-sm flex justify-center items-center text-center gap-2 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-600 transition-colors text-white dark:text-white cursor-pointer"
+                    overrideContent={
+                      <>
+                        <WalletIcon className="h-4 w-4 opacity-70" />
+                        Connect Wallet
+                      </>
+                    }
+                  />
                 </div>
               </div>
               <div className="absolute bottom-6 right-6">
