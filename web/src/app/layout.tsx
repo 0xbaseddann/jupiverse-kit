@@ -11,6 +11,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import { WalletProvider } from "@/components/providers/wallet-provider";
 
 import { Toaster } from "sonner";
+import { AuroraBackground } from "@/components/ui/aurora-background";
 
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
 
@@ -18,12 +19,13 @@ export const metadata: Metadata = {
   title: "Jupiverse Kit",
   description:
     "Jupiverse Kit is the ultimate ready-to-use React components library powered by Jupiter's APIs for building onchain applications on Solana effortlessly.",
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: false,
-  },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({
@@ -36,16 +38,18 @@ export default function RootLayout({
       <body className={`${spaceGrotesk.className}`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem
+          storageKey="theme"
           disableTransitionOnChange
         >
           <WalletProvider>
-            <UniverseBackground />
             <NProgressBar>
               <main className="min-h-screen">
-                <Navbar />
-                {children}
+                <AuroraBackground>
+                  <Navbar />
+                  {children}
+                </AuroraBackground>
                 <Toaster />
               </main>
             </NProgressBar>

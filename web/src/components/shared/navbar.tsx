@@ -16,28 +16,33 @@ import { itemVariants, navVariants } from "@/utils/motion";
 import Image from "next/image";
 import { ThemeToggle } from "./theme-toggle";
 import { UnifiedWalletButton } from "@jup-ag/wallet-adapter";
+import { useTheme } from "next-themes";
 
 const Navbar = () => {
+  const { theme } = useTheme();
+  console.log("NAVBAR THEME", theme);
+
   return (
     <motion.nav
       initial="hidden"
       animate="visible"
       variants={navVariants}
-      className="fixed w-full top-0 z-50 backdrop-blur-sm"
+      className="fixed w-full top-0 z-50 backdrop-blur-lg shadow-lg 
+        bg-white/70 text-black dark:bg-black/70 dark:text-white"
     >
-      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+      <div className="container mx-auto px-4 h-20 flex items-center justify-between">
         {/* Logo */}
         <motion.div variants={itemVariants} className="flex-1">
           <Link
             href="/"
-            className="text-xl font-bold text-white flex items-center gap-1"
+            className="text-2xl font-extrabold flex items-center gap-2"
           >
             <Image
               src="/logo/cat.svg"
               alt="Jupiverse Kit"
-              width={30}
-              height={30}
-              className="invert brightness-0"
+              width={35}
+              height={35}
+              className="invert brightness-0 filter-none"
             />
             Jupiverse Kit
           </Link>
@@ -46,13 +51,13 @@ const Navbar = () => {
         {/* Navigation Items - Desktop */}
         <motion.div
           variants={itemVariants}
-          className="hidden md:flex flex-1 justify-center gap-8"
+          className="hidden md:flex flex-1 justify-center gap-10"
         >
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="hover:text-gray-400 transition-colors text-md text-white"
+              className="hover:text-gray-500 transition-colors text-lg font-medium text-black dark:text-white"
             >
               {item.name}
             </Link>
@@ -62,7 +67,7 @@ const Navbar = () => {
         {/* Connect Wallet Button and Theme Toggle - Desktop */}
         <motion.div
           variants={itemVariants}
-          className="hidden md:flex flex-1 justify-end items-center gap-2"
+          className="hidden md:flex flex-1 justify-end items-center gap-4"
         >
           <UnifiedWalletButton />
           <ThemeToggle />
@@ -75,42 +80,42 @@ const Navbar = () => {
               <Button
                 variant="ghost"
                 size="icon"
-                className="text-white hover:bg-white/10"
+                className="hover:bg-white/20 text-black dark:text-white"
               >
-                <Menu className="h-6 w-6" />
+                <Menu className="h-7 w-7" />
               </Button>
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="border-l border-gray-800 bg-black/95 backdrop-blur-md [&>button]:text-white [&>button]:flex [&>button]:items-center [&>button]:justify-center"
+              className="border-l border-gray-300 bg-white/80 dark:border-gray-700 backdrop-blur-lg [&>button]:flex [&>button]:items-center [&>button]:justify-center"
             >
-              <SheetHeader className="border-b border-gray-800 pb-4">
-                <SheetTitle className="text-white flex items-center gap-2">
+              <SheetHeader className="border-b pb-4 border-gray-300 darl:border-gray-700">
+                <SheetTitle className="flex items-center gap-3">
                   <Image
                     src="/logo/cat.svg"
                     alt="Jupiverse Kit"
-                    width={24}
-                    height={24}
-                    className="invert brightness-0"
+                    width={28}
+                    height={28}
+                    className="invert brightness-0 filter-none"
                   />
                   Jupiverse Kit
                 </SheetTitle>
               </SheetHeader>
-              <div className="flex flex-col gap-6 mt-8">
+              <div className="flex flex-col gap-8 mt-10">
                 {navItems.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="text-lg text-gray-300 hover:text-white transition-colors flex items-center gap-2"
+                    className="text-xl transition-colors flex items-center gap-3 text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white"
                   >
                     {item.name}
                   </Link>
                 ))}
-                <div className="pt-4 border-t border-gray-800 w-full flex justify-center">
+                <div className="pt-6 border-t w-full flex justify-center border-gray-300 dark:border-gray-700">
                   <UnifiedWalletButton />
                 </div>
               </div>
-              <div className="absolute bottom-4 right-4">
+              <div className="absolute bottom-6 right-6">
                 <ThemeToggle />
               </div>
             </SheetContent>
