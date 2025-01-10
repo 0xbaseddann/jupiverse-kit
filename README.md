@@ -2,14 +2,17 @@
 
 Jupiverse Kit is the ultimate ready-to-use React components library powered by Jupiter's APIs for building onchain applications on Solana effortlessly.
 
-An open source initiative built by [@dannonchain](https://x.com/dannonchain)
+The purpose of `jupiverse-kit` is to simplify and unify Jupiter's powerful open-source packages into a single cohesive library, offering a suite of reusable components and hooks that can be seamlessly integrated into your existing projects.
+
+This is an open source initiative built by [@dannonchain](https://x.com/dannonchain)
 
 ## Features
 
-- 👛 Wallet Component - Easy wallet connection management
-- 🔄 Swap Component - A fully functional token swap interface
-- 🔔 Toast Component - Beautiful notifications system
-- 🎣 Custom Hooks - Utility hooks for token balances, swaps, and more
+- 👛 Unified Wallet Provider - Easy wallet connection management powered by [Jupiter's Wallet Adapter](https://www.npmjs.com/package/@jup-ag/wallet-adapter)
+- 🔄 Swap Component - A fully customisable plug-and-play <Swap /> component
+- 🎣 Custom Hooks - Utility hooks built around Jupiter's APIs that are easy to use in your components
+
+... many more features coming soon! 🚀
 
 ## Installation
 
@@ -120,16 +123,56 @@ module.exports = {
 
 ## Usage
 
-### Wallet Provider
+### Jupiverse Kit Provider
 
-Wrap your application with the WalletProvider:
+Wrap your application with the Jupiverse Kit Provider:
+
+1. Create `providers/wallet-provider.tsx` in your project
+
+````tsx
+import { WalletProvider } from "jupiverse-kit";
+"use client";
+
+import { JupiverseKitProvider } from "jupiverse-kit";
+import { useTheme } from "next-themes";
+
+import { Connection } from "@solana/web3.js";
+import { useWallet } from "@solana/wallet-adapter-react";
+
+export function WalletProvider({ children }: { children: React.ReactNode }) {
+  const connection = new Connection(process.env.NEXT_PUBLIC_RPC_URL as string);
+  const wallet = useWallet();
+  const { theme } = useTheme();
+
+  return (
+    <JupiverseKitProvider
+      endpoint={RPC_URL as string}
+      theme={theme as "light" | "dark" | "jupiter"}
+      autoConnect={true}
+      lang="en"
+      env="mainnet-beta"
+      walletConnectProjectId={WALLET_CONNECT_PROJECT_ID}
+      metadata={{
+        name: "Jupiverse Kit Test",
+        description: "Jupiverse Kit Test",
+        url: "https://jupiversekit.vercel.app",
+        iconUrls: ["https://jupiversekit.vercel.app/favicon.ico"],
+      }}
+    >
+      {children}
+    </JupiverseKitProvider>
+  );
+}
+```
+
+2. Wrap your application with the WalletProvider in your App:
 
 ```tsx
-import { WalletProvider } from "jupiverse-kit";
+import { WalletProvider } from "@/providers/wallet-provider";
 
 function App() {
   return (
-    <WalletProvider rpcUrl="YOUR_RPC_URL">
+    <WalletProvider>
       {/* Your app content */}
     </WalletProvider>
   );
