@@ -210,7 +210,7 @@ Contributions are welcome! Please feel free to submit a pull request.
 ### Thanks to all our contributors
 
 <a href="https://github.com/dannweeeee/jupiverse-kit/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=dannweeeee/jupiverse-kit" />
+  <img src="CONTRIBUTORS.svg" alt="Contributors" />
 </a>
 
 ## License
