@@ -24,6 +24,7 @@
   "author": "Dann Wee",
   "license": "ISC",
   "dependencies": {
+    "@jup-ag/terminal": "^3.4.1",
     "@jup-ag/wallet-adapter": "^0.2.2",
     "@radix-ui/colors": "^3.0.0",
     "@radix-ui/react-dialog": "^1.1.4",
