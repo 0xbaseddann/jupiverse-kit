@@ -24,6 +24,10 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           avatarSize: 42
 
+      - name: Make Avatars Circular
+        run: |
+          sed -i 's/<image/<image style="border-radius:50%"/g' CONTRIBUTORS.svg
+
       - name: Commit and Push Changes
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
