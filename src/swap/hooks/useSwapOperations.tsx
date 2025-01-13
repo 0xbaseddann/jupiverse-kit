@@ -1,6 +1,5 @@
-import * as React from "react";
-import { useCallback, useEffect, useRef } from "react";
-import { useSwapStore } from "../store/useSwapStore";
+import React, { useCallback, useEffect, useRef } from "react";
+import { useSwapStore, useSwapSelector } from "../store/useSwapStore";
 import { useSwap } from "./useSwap";
 import { useTokenBalance } from "./useTokenBalance";
 import { SquareArrowOutUpRightIcon } from "lucide-react";
@@ -13,14 +12,17 @@ interface SwapOperationsConfig {
 }
 
 export const useSwapOperations = (config: SwapOperationsConfig) => {
+  // State selectors
+  const tokenFrom = useSwapSelector((state) => state.tokenFrom);
+  const tokenTo = useSwapSelector((state) => state.tokenTo);
+  const amountFrom = useSwapSelector((state) => state.amountFrom);
+  const amountTo = useSwapSelector((state) => state.amountTo);
+  const slippage = useSwapSelector((state) => state.slippage);
+  const isCalculating = useSwapSelector((state) => state.isCalculating);
+  const isSwapping = useSwapSelector((state) => state.isSwapping);
+
+  // Actions
   const {
-    tokenFrom,
-    tokenTo,
-    amountFrom,
-    amountTo,
-    slippage,
-    isCalculating,
-    isSwapping,
     setAmountFrom,
     setAmountTo,
     setQuoteResponse,

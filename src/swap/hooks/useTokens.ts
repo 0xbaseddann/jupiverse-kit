@@ -1,16 +1,5 @@
 import { useEffect, useState } from "react";
-
-export interface Token {
-  address: string;
-  name: string;
-  symbol: string;
-  decimals: number;
-  logoURI: string;
-  tags: string[];
-  daily_volume: number;
-  freeze_authority: string | null;
-  mint_authority: string | null;
-}
+import { Token } from "../utils/interfaces";
 
 export const useTokens = () => {
   const [tokens, setTokens] = useState<Token[]>([]);

@@ -6,8 +6,7 @@ import {
   PublicKey,
   VersionedTransaction,
 } from "@solana/web3.js";
-import { Token } from "./useTokens";
-import { QuoteResponse, SwapResponse } from "../utils/interfaces";
+import { Token, QuoteResponse, SwapResponse } from "../utils/interfaces";
 
 // Minimum SOL to keep for gas fees (0.01 SOL)
 const MIN_SOL_FOR_GAS = 0.01 * LAMPORTS_PER_SOL;
@@ -51,7 +50,6 @@ export const useSwap = ({
           (amount * Math.pow(10, inputToken.decimals)).toString()
         );
         url.searchParams.append("slippageBps", slippageBps.toString());
-        // Add this line
         url.searchParams.append("restrictIntermediateTokens", "true");
 
         // Add platform fee if provided

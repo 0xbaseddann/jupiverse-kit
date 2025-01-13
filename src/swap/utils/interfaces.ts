@@ -1,4 +1,14 @@
-import { Token } from "../hooks/useTokens";
+export interface Token {
+  address: string;
+  name: string;
+  symbol: string;
+  decimals: number;
+  logoURI: string;
+  tags: string[];
+  daily_volume: number;
+  freeze_authority: string | null;
+  mint_authority: string | null;
+}
 
 export interface QuoteResponse {
   inputMint: string;

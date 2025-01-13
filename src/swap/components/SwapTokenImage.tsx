@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Token } from "../hooks/useTokens";
+import { Token } from "../utils/interfaces";
 
 import { Coins } from "lucide-react";
 

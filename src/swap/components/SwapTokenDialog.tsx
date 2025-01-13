@@ -4,7 +4,9 @@ import * as Dialog from "@radix-ui/react-dialog";
 
 import SwapTokenImage from "./SwapTokenImage";
 
-import { useTokens, Token } from "../hooks/useTokens";
+import { useTokens } from "../hooks/useTokens";
+
+import { Token } from "../utils/interfaces";
 
 import { Search } from "lucide-react";
 

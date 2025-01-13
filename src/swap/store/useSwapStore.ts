@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { SwapState, SwapActions } from "../utils/interfaces";
 
+// Define the initial state of the swap store
 const initialState: SwapState = {
   tokenFrom: null,
   tokenTo: null,
@@ -89,6 +90,6 @@ export const useSwapStore = create<SwapState & SwapActions>()(
   )
 );
 
-// Create a selector hook for better performance
+// Selector hook for better performance
 export const useSwapSelector = <T>(selector: (state: SwapState) => T) =>
   useSwapStore(selector);

@@ -2,7 +2,7 @@ import React from "react";
 
 import SwapTokenImage from "./SwapTokenImage";
 
-import { Token } from "../hooks/useTokens";
+import { Token } from "../utils/interfaces";
 
 import { ChevronDown, Coins } from "lucide-react";
 
