@@ -1,18 +1,17 @@
 import React, { useEffect } from "react";
 import { ReactComponent as JupiterBrightLogo } from "../../assets/powered-by-jupiter/poweredbyjupiter-bright.svg";
 import { ReactComponent as JupiterDarkLogo } from "../../assets/powered-by-jupiter/poweredbyjupiter-dark.svg";
-import { ArrowDown, Loader2 } from "lucide-react";
+import { ArrowDown, Loader2, WalletIcon } from "lucide-react";
 import { useWallet } from "@solana/wallet-adapter-react";
+import { UnifiedWalletButton } from "@jup-ag/wallet-adapter";
+import SwapReset from "./SwapReset";
 import SwapSettings from "./SwapSettings";
 import SwapTokenButton from "./SwapTokenButton";
 import SwapTokenDialog from "./SwapTokenDialog";
-import { WalletIcon } from "lucide-react";
 import { useTokens } from "../hooks/useTokens";
-import { useSwapStore } from "../store/useSwapStore";
 import { useSwapOperations } from "../hooks/useSwapOperations";
+import { useSwapStore } from "../store/useSwapStore";
 import { formatBalance } from "../helpers/formatBalance";
-import { UnifiedWalletButton } from "@jup-ag/wallet-adapter";
-import SwapReset from "./SwapReset";
 
 interface SwapProps {
   rpcUrl: string;
