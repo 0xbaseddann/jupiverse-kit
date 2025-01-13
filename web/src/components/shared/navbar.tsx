@@ -37,11 +37,10 @@ const Navbar = () => {
             className="text-2xl font-extrabold flex items-center gap-2"
           >
             <Image
-              src="/logo/cat.svg"
+              src="/logo/space-cat-logo-circle.png"
               alt="Jupiverse Kit"
               width={35}
               height={35}
-              className="filter dark:invert"
             />
             <span className="bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text">
               Jupiverse Kit
@@ -102,7 +101,7 @@ const Navbar = () => {
               <SheetHeader className="border-b pb-4 border-gray-300 dark:border-gray-700">
                 <SheetTitle className="flex items-center gap-3">
                   <Image
-                    src="/logo/cat.svg"
+                    src="/logo/space-cat-logo-circle.png"
                     alt="Jupiverse Kit"
                     width={28}
                     height={28}
