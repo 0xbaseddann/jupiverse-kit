@@ -19,6 +19,26 @@ export const metadata: Metadata = {
   title: "Jupiverse Kit",
   description:
     "Jupiverse Kit is the ultimate ready-to-use React components library powered by Jupiter's APIs for building onchain applications on Solana effortlessly.",
+  openGraph: {
+    title: "Jupiverse Kit",
+    description:
+      "Ready-to-use React components library powered by Jupiter's APIs",
+    images: [
+      {
+        url: "/banner/jupiverse-kit-banner-dark.png",
+        width: 1200,
+        height: 630,
+        alt: "Jupiverse Kit",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jupiverse Kit",
+    description:
+      "Ready-to-use React components library powered by Jupiter's APIs",
+    images: ["/banner/jupiverse-kit-banner-dark.png"],
+  },
 };
 
 export const viewport = {
