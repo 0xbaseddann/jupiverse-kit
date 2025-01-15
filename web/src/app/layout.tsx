@@ -25,7 +25,7 @@ export const metadata: Metadata = {
       "Ready-to-use React components library powered by Jupiter's APIs",
     images: [
       {
-        url: "/banner/jupiverse-kit-banner-dark.png",
+        url: "https://github.com/dannweeeee/jupiverse-kit/blob/main/web/public/banner/jupiverse-kit-banner-dark.png?raw=true",
         width: 1200,
         height: 630,
         alt: "Jupiverse Kit",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     title: "Jupiverse Kit",
     description:
       "Ready-to-use React components library powered by Jupiter's APIs",
-    images: ["/banner/jupiverse-kit-banner-dark.png"],
+    images: ["https://github.com/dannweeeee/jupiverse-kit/blob/main/web/public/banner/jupiverse-kit-banner-dark.png?raw=true"],
   },
 };
 
