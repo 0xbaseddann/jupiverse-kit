@@ -31,6 +31,7 @@ export const metadata: Metadata = {
         alt: "Jupiverse Kit",
       },
     ],
+    type: "website",
   },
   twitter: {
     card: "summary_large_image",
@@ -60,6 +61,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta property="og:type" content="website" />
+      </head>
       <body className={`${spaceGrotesk.className}`}>
         <ThemeProvider
           attribute="class"
