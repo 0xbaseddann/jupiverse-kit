@@ -20,16 +20,12 @@ export const useTokenBalance = (token: Token | null) => {
 
     try {
       setLoading(true);
-      console.log("Fetching balance for token:", token.symbol);
 
       if (token.symbol === "SOL") {
         const balance = await connection.getBalance(publicKey, "finalized");
-        console.log("SOL balance in lamports:", balance);
         const solBalance = balance / Math.pow(10, 9);
-        console.log("SOL balance:", solBalance);
         setBalance(solBalance);
       } else {
-        console.log("Fetching SPL token balance for:", token.address);
         const tokenAccount = await connection.getParsedTokenAccountsByOwner(
           publicKey,
           {
@@ -42,9 +38,7 @@ export const useTokenBalance = (token: Token | null) => {
         if (tokenAccount.value.length > 0) {
           const tokenAmount =
             tokenAccount.value[0].account.data.parsed.info.tokenAmount;
-          console.log("Token amount data:", tokenAmount);
           const balance = tokenAmount.uiAmount;
-          console.log("Final token balance:", balance);
           setBalance(balance);
         } else {
           setBalance(0);
