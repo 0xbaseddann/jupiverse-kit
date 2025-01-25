@@ -1,8 +1,9 @@
 # Changelog
 
-## [1.2.1] - 2025-01-10
+## [1.2.2] - 2025-01-25
 
 ### Release Notes
 
 - release: initial release of Jupiverse Kit
-- feat: added provider and swap component
+- feat: added provider and swap components
+- fix: removed console logs from hooks
