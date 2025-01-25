@@ -4,10 +4,13 @@ import React, { useEffect, useState } from "react";
 import CodeEditor from "@uiw/react-textarea-code-editor";
 import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
+import { Copy, Check } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const ProviderPage = () => {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -16,24 +19,24 @@ const ProviderPage = () => {
   if (!mounted) return null;
 
   const codeSnippet = `
+"use client";
+
 import { JupiverseKitProvider } from "jupiverse-kit";
-import { useTheme } from "next-themes";
 import { Connection } from "@solana/web3.js";
 import { useWallet } from "@solana/wallet-adapter-react";
 
 export function WalletProvider({ children }) {
-  const connection = new Connection(process.env.NEXT_PUBLIC_RPC_URL);
+  const connection = new Connection(process.env.RPC_URL);
   const wallet = useWallet();
-  const { theme } = useTheme();
 
   return (
     <JupiverseKitProvider
-      endpoint={process.env.NEXT_PUBLIC_RPC_URL}
-      theme={theme}
+      endpoint={process.env.RPC_URL}
+      theme={jupiter}
       autoConnect={true}
       lang="en"
       env="mainnet-beta"
-      walletConnectProjectId={process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID}
+      walletConnectProjectId={process.env.WALLET_CONNECT_PROJECT_ID}
       metadata={{
         name: "Jupiverse Kit",
         description: "Jupiverse Kit",
@@ -52,6 +55,12 @@ export function WalletProvider({ children }) {
       ? resolvedTheme
       : "light";
 
+  const handleCopy = () => {
+    navigator.clipboard.writeText(codeSnippet);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <motion.div
       className="min-h-screen w-full flex flex-col items-center justify-center p-4"
@@ -68,11 +77,21 @@ export function WalletProvider({ children }) {
         wallet-provider.tsx
       </motion.h1>
       <motion.div
-        className="w-full max-w-full md:max-w-2xl shadow-lg rounded-lg overflow-hidden"
+        className="w-full max-w-full md:max-w-2xl shadow-lg rounded-lg overflow-hidden relative"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, ease: "easeInOut" }}
       >
+        <Button
+          onClick={handleCopy}
+          className="absolute top-2 right-3 bg-gray-200 dark:bg-gray-700 text-black dark:text-white rounded z-10 flex items-center hover:bg-gray-300 dark:hover:bg-gray-600 p-3"
+        >
+          {copied ? (
+            <Check className="h-1 w-1" />
+          ) : (
+            <Copy className="h-1 w-1" />
+          )}
+        </Button>
         <CodeEditor
           value={codeSnippet}
           language="jsx"
