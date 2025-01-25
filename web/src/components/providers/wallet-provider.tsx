@@ -20,8 +20,8 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
       env="mainnet-beta"
       walletConnectProjectId={process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID}
       metadata={{
-        name: "Jupiverse Kit Test",
-        description: "Jupiverse Kit Test",
+        name: "Jupiverse Kit",
+        description: "Jupiverse Kit",
         url: "https://jupiversekit.vercel.app",
         iconUrls: ["https://jupiversekit.vercel.app/favicon.ico"],
       }}

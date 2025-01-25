@@ -16,11 +16,8 @@ import { itemVariants, navVariants } from "@/utils/motion";
 import Image from "next/image";
 import { ThemeToggle } from "./theme-toggle";
 import { UnifiedWalletButton } from "@jup-ag/wallet-adapter";
-import { useTheme } from "next-themes";
 
 const Navbar = () => {
-  const { theme } = useTheme();
-
   return (
     <motion.nav
       initial="hidden"
@@ -57,7 +54,7 @@ const Navbar = () => {
             <Link
               key={item.href}
               href={item.href}
-              className="hover:text-gray-500 transition-colors text-lg font-medium text-black dark:text-white"
+              className="hover:text-gray-500 transition-colors text-sm font-medium text-black dark:text-white whitespace-nowrap"
             >
               {item.name}
             </Link>
@@ -69,16 +66,6 @@ const Navbar = () => {
           variants={itemVariants}
           className="hidden md:flex flex-1 justify-end items-center gap-4"
         >
-          <UnifiedWalletButton
-            buttonClassName="font-sans font-semibold rounded-3xl px-4 py-3 text-sm flex justify-center items-center text-center gap-2 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-white dark:text-white cursor-pointer"
-            currentUserClassName="font-sans font-semibold min-w-[90px] min-h-[50px] rounded-full px-5 py-3 text-sm flex justify-center items-center text-center gap-2 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-600 transition-colors text-white dark:text-white cursor-pointer"
-            overrideContent={
-              <>
-                <WalletIcon className="h-4 w-4 opacity-70" />
-                Connect Wallet
-              </>
-            }
-          />
           <ThemeToggle />
         </motion.div>
 
@@ -105,7 +92,7 @@ const Navbar = () => {
                     alt="Jupiverse Kit"
                     width={28}
                     height={28}
-                    className="filter dark:invert"
+                    className="filter"
                   />
                   <span className="bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text">
                     Jupiverse Kit
@@ -117,23 +104,11 @@ const Navbar = () => {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="text-xl transition-colors flex items-center gap-3 text-black hover:text-gray-500 dark:text-white dark:hover:text-gray-300"
+                    className="text-xl transition-colors flex items-center gap-3 text-black hover:text-gray-500 dark:text-white dark:hover:text-gray-300 whitespace-nowrap"
                   >
                     {item.name}
                   </Link>
                 ))}
-                <div className="pt-6 border-t w-full flex justify-center border-gray-300 dark:border-gray-700">
-                  <UnifiedWalletButton
-                    buttonClassName="font-sans font-semibold rounded-3xl px-4 py-3 text-sm flex justify-center items-center text-center gap-2 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-white dark:bg-gray-800  dark:text-white cursor-pointer"
-                    currentUserClassName="font-sans font-semibold min-w-[90px] min-h-[50px] rounded-full px-5 py-3 text-sm flex justify-center items-center text-center gap-2 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-600 transition-colors text-white dark:text-white cursor-pointer"
-                    overrideContent={
-                      <>
-                        <WalletIcon className="h-4 w-4 opacity-70" />
-                        Connect Wallet
-                      </>
-                    }
-                  />
-                </div>
               </div>
               <div className="absolute bottom-6 right-6">
                 <ThemeToggle />

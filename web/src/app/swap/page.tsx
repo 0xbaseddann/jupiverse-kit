@@ -1,10 +1,17 @@
-import React from "react";
+"use client";
 
+import React from "react";
+import { motion } from "framer-motion";
 import { Swap } from "jupiverse-kit";
 
-const Page = () => {
+const SwapPage = () => {
   return (
-    <div className="min-h-screen w-full flex items-center justify-center">
+    <motion.div
+      className="min-h-screen w-full flex items-center justify-center"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1.2, ease: "easeInOut" }}
+    >
       <Swap
         rpcUrl={
           process.env.NEXT_PUBLIC_RPC_URL ||
@@ -13,8 +20,8 @@ const Page = () => {
         referralKey={process.env.NEXT_PUBLIC_REFERRAL_KEY as string}
         platformFeeBps={20}
       />
-    </div>
+    </motion.div>
   );
 };
 
-export default Page;
+export default SwapPage;

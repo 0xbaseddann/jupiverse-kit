@@ -1,1 +1,5 @@
-export const navItems = [{ name: "<Swap />", href: "/swap" }];
+export const navItems = [
+  { name: "<JupiverseKitProvider />", href: "/provider" },
+  { name: "<Swap />", href: "/swap" },
+  { name: "<UnifiedWalletButton />", href: "/wallet" },
+];
