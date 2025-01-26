@@ -15,3 +15,9 @@
 - feat: added api key to swap component
 - feat: updated components to use new jupiter apis
 - fix: removed unused dependencies
+
+## [1.2.4] - 2025-01-26
+
+### Release Notes
+
+- fix: updated swap component to use updated interface

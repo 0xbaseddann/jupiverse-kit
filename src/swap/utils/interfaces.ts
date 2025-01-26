@@ -15,6 +15,7 @@ export interface QuoteResponse {
   outputMint: string;
   amount: string;
   swapMode: "ExactIn" | "ExactOut";
+  outAmount: string;
   slippageBps: number;
   otherAmountThreshold: string;
   routes: any[];

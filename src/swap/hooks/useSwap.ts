@@ -190,7 +190,7 @@ export const useSwap = ({
 
         // Convert amount from base units to decimal
         const outputAmount = (
-          parseInt(quote.otherAmountThreshold) /
+          parseInt(quote.outAmount) /
           Math.pow(10, outputToken.decimals)
         ).toString();
 

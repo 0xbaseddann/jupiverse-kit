@@ -1,6 +1,6 @@
 # Jupiverse Kit
 
-Jupiverse Kit is the ultimate ready-to-use React components library powered by Jupiter's APIs for building onchain applications on Solana effortlessly.
+[Jupiverse Kit](https://www.npmjs.com/package/jupiverse-kit) is the ultimate ready-to-use React components library powered by Jupiter's APIs for building onchain applications on Solana effortlessly.
 
 The purpose of `jupiverse-kit` is to simplify and unify Jupiter's powerful open-source packages into a single cohesive library, offering a suite of reusable components and hooks that can be seamlessly integrated into your existing projects.
 

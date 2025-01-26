@@ -133,7 +133,7 @@ export const useSwapOperations = (config: SwapOperationsConfig) => {
         if (quote) {
           setQuoteResponse(quote);
           const outputAmount = (
-            parseInt(quote.otherAmountThreshold) /
+            parseInt(quote.outAmount) /
             Math.pow(10, tokenTo.decimals)
           ).toString();
           setAmountTo(outputAmount);
