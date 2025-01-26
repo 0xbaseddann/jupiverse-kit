@@ -16,12 +16,14 @@ interface UseSwapProps {
   rpcUrl: string;
   referralKey?: string;
   platformFeeBps?: number;
+  apiKey?: string;
 }
 
 export const useSwap = ({
   rpcUrl,
   referralKey,
   platformFeeBps,
+  apiKey,
 }: UseSwapProps) => {
   const { publicKey, signTransaction } = useWallet();
   const [loading, setLoading] = useState(false);
@@ -42,7 +44,7 @@ export const useSwap = ({
         setLoading(true);
         setError(null);
 
-        const url = new URL("https://quote-api.jup.ag/v6/quote");
+        const url = new URL("https://api.jup.ag/swap/v1/quote");
         url.searchParams.append("inputMint", inputToken.address);
         url.searchParams.append("outputMint", outputToken.address);
         url.searchParams.append(
@@ -103,11 +105,17 @@ export const useSwap = ({
           feeAccount = feeAccountAddress.toString();
         }
 
-        const swapResponse = await fetch("https://quote-api.jup.ag/v6/swap", {
+        const headers: Record<string, string> = {
+          "Content-Type": "application/json",
+        };
+        
+        if (apiKey) {
+          headers["x-api-key"] = apiKey;
+        }
+
+        const swapResponse = await fetch("https://api.jup.ag/swap/v1/swap", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers,
           body: JSON.stringify({
             quoteResponse,
             userPublicKey: publicKey.toString(),

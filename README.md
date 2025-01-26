@@ -191,7 +191,12 @@ import { Swap } from "jupiverse-kit";
 
 function SwapPage() {
   return (
-    <Swap rpcUrl={"YOUR_RPC_URL" || "https://api.mainnet-beta.solana.com"} />
+    <Swap
+      rpcUrl={"YOUR_RPC_URL" || "https://api.mainnet-beta.solana.com"}
+      referralKey={"YOUR_REFERRAL_KEY"}
+      platformFeeBps={85}
+      apiKey={"YOUR_API_KEY"}
+    />
   );
 }
 ```

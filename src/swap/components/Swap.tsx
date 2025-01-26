@@ -17,9 +17,10 @@ interface SwapProps {
   rpcUrl: string;
   referralKey?: string;
   platformFeeBps?: number;
+  apiKey?: string;
 }
 
-const Swap = ({ rpcUrl, referralKey, platformFeeBps = 0 }: SwapProps) => {
+const Swap = ({ rpcUrl, referralKey, platformFeeBps = 0, apiKey }: SwapProps) => {
   const { tokens } = useTokens();
   const { connected } = useWallet();
   const {
@@ -47,7 +48,7 @@ const Swap = ({ rpcUrl, referralKey, platformFeeBps = 0 }: SwapProps) => {
     handleRefreshQuote,
     fromBalance,
     toBalance,
-  } = useSwapOperations({ rpcUrl, referralKey, platformFeeBps });
+  } = useSwapOperations({ rpcUrl, referralKey, platformFeeBps, apiKey });
 
   // Initialize default tokens only if no tokens are selected or persisted
   useEffect(() => {

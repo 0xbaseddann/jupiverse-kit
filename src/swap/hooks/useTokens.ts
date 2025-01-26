@@ -11,7 +11,7 @@ export const useTokens = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          "https://tokens.jup.ag/tokens?tags=verified"
+          "	https://api.jup.ag/tokens/v1/tagged/verified"
         );
         if (!response.ok) {
           throw new Error("Failed to fetch tokens");

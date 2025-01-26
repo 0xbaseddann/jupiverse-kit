@@ -9,6 +9,7 @@ interface SwapOperationsConfig {
   rpcUrl: string;
   referralKey?: string;
   platformFeeBps?: number;
+  apiKey?: string;
 }
 
 export const useSwapOperations = (config: SwapOperationsConfig) => {
