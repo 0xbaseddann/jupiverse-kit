@@ -4,8 +4,6 @@ Jupiverse Kit is the ultimate ready-to-use React components library powered by J
 
 The purpose of `jupiverse-kit` is to simplify and unify Jupiter's powerful open-source packages into a single cohesive library, offering a suite of reusable components and hooks that can be seamlessly integrated into your existing projects.
 
-This is an open source initiative built by [@dannweeeee](https://x.com/dannweeeee)
-
 ## Features
 
 - 👛 Unified Wallet Provider - Easy wallet connection management powered by [Jupiter's Wallet Adapter](https://www.npmjs.com/package/@jup-ag/wallet-adapter)

@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { Book, Github, Newspaper, Pencil } from "lucide-react";
+import { Book, Github, Newspaper, Pencil, Twitter } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -33,6 +33,37 @@ const Footer = () => {
               className="w-5 h-5"
               style={{ fill: "url(#gradient)", stroke: "url(#gradient)" }}
             />
+          </Link>
+          <Link
+            href="https://x.com/jupiversekit"
+            className="hover:text-gray-500 transition-transform transform hover:scale-110 text-sm font-light text-black dark:text-white flex items-center"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Twitter
+              className="w-5 h-5"
+              style={{ fill: "url(#gradient)", stroke: "url(#gradient)" }}
+            />
+            <svg width="0" height="0">
+              <defs>
+                <linearGradient
+                  id="gradient"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
+                  <stop
+                    offset="0%"
+                    style={{ stopColor: "#A4D756", stopOpacity: 1 }}
+                  />
+                  <stop
+                    offset="100%"
+                    style={{ stopColor: "#00B6E7", stopOpacity: 1 }}
+                  />
+                </linearGradient>
+              </defs>
+            </svg>
           </Link>
           <Link
             href="https://github.com/dannweeeee/jupiverse-kit"
