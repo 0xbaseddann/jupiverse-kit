@@ -65,7 +65,7 @@ const Hero = () => {
           }}
           className="text-center mt-8 sm:mt-12 text-lg sm:text-xl md:text-2xl lg:text-[24px] md:max-w-prose mx-auto font-medium text-muted-foreground dark:text-cloud px-6 sm:px-0"
         >
-          The ultimate ready-to-use React components library
+          The ultimate ready-to-use React components library&nbsp;
           <br className="hidden sm:block" />
           for building onchain applications on Solana effortlessly.
         </motion.p>
