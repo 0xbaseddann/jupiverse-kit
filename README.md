@@ -205,6 +205,7 @@ function SwapPage() {
 
 - React && React DOM 16.8.0 or later
 - @solana/web3.js 1.0.0 or later
+- Node 20.18.0 or later
 
 ## Contributions
 
