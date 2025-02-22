@@ -42,5 +42,14 @@ export * from "./provider/utils/types";
 //// TERMINAL ////
 //////////////////
 
+// Terminal Components
 export { Terminal } from "./terminal/components/Terminal";
-export type { TerminalProps } from "./terminal/components/Terminal";
+
+// Terminal Hooks
+export { useJupiterTerminal } from "./terminal/hooks/useJupiterTerminal";
+export { useMount } from "./terminal/hooks/useMount";
+export { useScriptLoader } from "./terminal/hooks/useScriptLoader";
+export { useInitTerminal } from "./terminal/hooks/useInitTerminal";
+
+// Terminal Utils
+export type { TerminalProps } from "./terminal/utils/interfaces";

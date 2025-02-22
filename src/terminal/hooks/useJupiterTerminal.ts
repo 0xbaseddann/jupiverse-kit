@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { TerminalProps } from "../components/Terminal";
+import { TerminalProps } from "../utils/interfaces";
 import { useScriptLoader } from "./useScriptLoader";
 import { useMount } from "./useMount";
 import { useInitTerminal } from "./useInitTerminal";

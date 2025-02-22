@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { TerminalProps } from "../components/Terminal";
+import { TerminalProps } from "../utils/interfaces";
 
 export const useInitTerminal = ({
   displayMode,
