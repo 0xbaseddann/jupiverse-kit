@@ -37,3 +37,10 @@ export { useAllWallets } from "./provider/hooks/useAllWallets";
 // Provider Utils
 export * from "./provider/utils/interfaces";
 export * from "./provider/utils/types";
+
+//////////////////
+//// TERMINAL ////
+//////////////////
+
+export { Terminal } from "./terminal/components/Terminal";
+export type { TerminalProps } from "./terminal/components/Terminal";
