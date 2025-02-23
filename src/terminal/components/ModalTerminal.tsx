@@ -37,7 +37,7 @@ export const ModalTerminal: React.FC<ModalTerminalProps> = ({
     refetchIntervalForTokenAccounts,
     onSuccess,
     onSwapError,
-    skipInit: true, // Skip auto-initialization
+    skipInit: true,
   });
 
   return (

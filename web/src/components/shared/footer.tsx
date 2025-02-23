@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { Book, Github, Newspaper, Pencil, Twitter } from "lucide-react";
+import { Github, Twitter } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -11,32 +11,14 @@ const Footer = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="fixed bottom-0 w-full z-50 backdrop-blur-lg shadow-md bg-white/30 text-black dark:bg-black/30 dark:text-white"
+      className="fixed bottom-0 w-full z-0 backdrop-blur-lg shadow-md bg-transparent text-black  dark:text-white pb-3"
     >
-      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        {/* Copyright and Name */}
-        <div className="flex items-center gap-2 text-sm font-light">
-          <span className="text-gray-700 dark:text-gray-300">
-            © {new Date().getFullYear()} Jupiverse Kit
-          </span>
-        </div>
-
+      <div className="container mx-auto px-4 h-16 flex flex-col items-center justify-center">
         {/* Navigation Links */}
-        <div className="flex gap-4">
-          <Link
-            href="https://paragraph.xyz/@dannweeeee"
-            className="hover:text-gray-500 transition-transform transform hover:scale-110 text-sm font-light text-black dark:text-white flex items-center"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Pencil
-              className="w-5 h-5"
-              style={{ fill: "url(#gradient)", stroke: "url(#gradient)" }}
-            />
-          </Link>
+        <div className="flex gap-4 mb-2">
           <Link
             href="https://x.com/jupiversekit"
-            className="hover:text-gray-500 transition-transform transform hover:scale-110 text-sm font-light text-black dark:text-white flex items-center"
+            className="hover:text-gray-500 transition-transform transform hover:scale-110 text-sm font-light text-black dark:text-white flex items-center cursor-pointer"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -67,7 +49,7 @@ const Footer = () => {
           </Link>
           <Link
             href="https://github.com/dannweeeee/jupiverse-kit"
-            className="hover:text-gray-500 transition-transform transform hover:scale-110 text-sm font-light text-black dark:text-white flex items-center"
+            className="hover:text-gray-500 transition-transform transform hover:scale-110 text-sm font-light text-black dark:text-white flex items-center cursor-pointer"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -98,7 +80,7 @@ const Footer = () => {
           </Link>
           <Link
             href="https://jup.ag"
-            className="hover:text-gray-500 transition-transform transform hover:scale-110 text-sm font-light text-black dark:text-white flex items-center"
+            className="hover:text-gray-500 transition-transform transform hover:scale-110 text-sm font-light text-black dark:text-white flex items-center cursor-pointer"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -117,6 +99,13 @@ const Footer = () => {
               className="hidden dark:block"
             />
           </Link>
+        </div>
+
+        {/* Copyright and Name */}
+        <div className="flex items-center gap-2 text-sm font-light">
+          <span className="text-gray-700 dark:text-gray-300">
+            © {new Date().getFullYear()} Jupiverse Kit
+          </span>
         </div>
       </div>
     </motion.footer>

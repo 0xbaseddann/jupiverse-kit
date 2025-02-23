@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { navItems } from "@/lib/constants";
 import Link from "next/link";
-import { Menu, WalletIcon } from "lucide-react";
+import { Github, Menu, Twitter, WalletIcon } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -23,7 +23,7 @@ const Navbar = () => {
       initial="hidden"
       animate="visible"
       variants={navVariants}
-      className="fixed w-full top-0 z-50 backdrop-blur-lg shadow-lg 
+      className="fixed w-full top-0 z-0 backdrop-blur-lg shadow-lg 
         bg-white/70 text-black dark:bg-black/70 dark:text-white"
     >
       <div className="container mx-auto px-4 h-20 flex items-center justify-between ">
@@ -54,14 +54,14 @@ const Navbar = () => {
             <Link
               key={item.href}
               href={item.href}
-              className="hover:text-gray-500 transition-colors text-sm font-medium text-black dark:text-white whitespace-nowrap"
+              className="hover:text-gray-500 transition-colors text-sm font-medium text-black dark:text-white whitespace-nowrap cursor-pointer"
             >
               {item.name}
             </Link>
           ))}
         </motion.div>
 
-        {/* Connect Wallet Button and Theme Toggle - Desktop */}
+        {/* Theme Toggle - Desktop */}
         <motion.div
           variants={itemVariants}
           className="hidden md:flex flex-1 justify-end items-center gap-4"
@@ -83,7 +83,7 @@ const Navbar = () => {
             </SheetTrigger>
             <SheetContent
               side="bottom"
-              className="border-l border-gray-300 bg-white dark:bg-black dark:border-gray-700 backdrop-blur-lg [&>button]:flex [&>button]:items-center [&>button]:justify-center"
+              className="border-l border-gray-300 bg-white dark:bg-black dark:border-gray-700 backdrop-blur-lg [&>button]:flex [&>button]:items-center [&>button]:justify-center z-[9999]"
             >
               <SheetHeader className="border-b pb-4 border-gray-300 dark:border-gray-700">
                 <SheetTitle className="flex items-center gap-3">
@@ -104,7 +104,7 @@ const Navbar = () => {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="text-xl transition-colors flex items-center gap-3 text-black hover:text-gray-500 dark:text-white dark:hover:text-gray-300 whitespace-nowrap"
+                    className="text-xl transition-colors flex items-center gap-3 text-black hover:text-gray-500 dark:text-white dark:hover:text-gray-300 whitespace-nowrap cursor-pointer"
                   >
                     {item.name}
                   </Link>

@@ -75,11 +75,10 @@ export default function RootLayout({
           <WalletProvider>
             <NProgressBar>
               <main className="min-h-screen">
-                <AuroraBackground>
-                  <Navbar />
-                  {children}
-                  <Footer />
-                </AuroraBackground>
+                <AuroraBackground />
+                <Navbar />
+                {children}
+                <Footer />
                 <Toaster position="bottom-left" />
               </main>
             </NProgressBar>

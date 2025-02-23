@@ -45,7 +45,7 @@ const Hero = () => {
           }}
           className="font-extrabold text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-center !leading-tight text-primary-foreground dark:text-primary-dark-foreground"
         >
-          <Highlight className="bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text rounded-xl">
+          <Highlight className="bg-gradient-to-r from-green-400 to-blue-500 text-transparent text-5xl bg-clip-text rounded-xl">
             Jupiverse Kit
           </Highlight>
         </motion.h1>
@@ -63,7 +63,7 @@ const Hero = () => {
             ease: [0.4, 0.0, 0.2, 1],
             delay: 0.2,
           }}
-          className="text-center mt-8 sm:mt-12 text-lg sm:text-xl md:text-2xl lg:text-[24px] md:max-w-prose mx-auto font-medium text-muted-foreground dark:text-cloud px-6 sm:px-0"
+          className="text-center mt-3  text-sm sm:text-base md:text-lg lg:text-xl md:max-w-prose mx-auto font-medium text-muted-foreground dark:text-cloud px-6 sm:px-0"
         >
           The ultimate ready-to-use React components library&nbsp;
           <br className="hidden sm:block" />
@@ -97,44 +97,44 @@ const Hero = () => {
         <motion.div
           initial={{
             opacity: 0,
-            y: 20,
+            y: 10,
           }}
           animate={{
             opacity: 1,
-            y: [20, -5, 0],
+            y: [10, -2, 0],
           }}
           transition={{
-            duration: 0.5,
+            duration: 0.4,
             ease: [0.4, 0.0, 0.2, 1],
-            delay: 0.6,
+            delay: 0.4,
           }}
-          className="mt-10 sm:mt-16 flex flex-col items-center justify-center w-full"
+          className="mt-6 sm:mt-10 flex flex-col items-center justify-center w-full"
         >
-          <div className="relative w-full max-w-[650px] mx-auto bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-6 sm:p-8 shadow-2xl border border-gray-300 dark:border-gray-700">
+          <div className="relative w-full max-w-[500px] mx-auto bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-800 dark:to-gray-900 rounded-xl p-4 sm:p-6 shadow-lg border border-gray-300 dark:border-gray-700">
             <Tabs defaultValue="npm" className="w-full">
-              <div className="flex w-full justify-between mb-2">
-                <TabsList className="flex gap-2">
+              <div className="flex w-full justify-between mb-1">
+                <TabsList className="flex gap-1">
                   <TabsTrigger
                     value="npm"
-                    className="text-xs sm:text-sm text-gray-800 dark:text-gray-200 data-[state=active]:bg-trifid dark:data-[state=active]:bg-trifid dark:data-[state=active]:text-black hover:bg-gray-200 dark:hover:bg-gray-700"
+                    className="text-xs text-gray-800 dark:text-gray-200 data-[state=active]:bg-trifid dark:data-[state=active]:bg-trifid dark:data-[state=active]:text-black hover:bg-gray-200 dark:hover:bg-gray-700"
                   >
                     npm
                   </TabsTrigger>
                   <TabsTrigger
                     value="pnpm"
-                    className="text-xs sm:text-sm text-gray-800 dark:text-gray-200 data-[state=active]:bg-trifid dark:data-[state=active]:bg-trifid dark:data-[state=active]:text-black hover:bg-gray-200 dark:hover:bg-gray-700"
+                    className="text-xs text-gray-800 dark:text-gray-200 data-[state=active]:bg-trifid dark:data-[state=active]:bg-trifid dark:data-[state=active]:text-black hover:bg-gray-200 dark:hover:bg-gray-700"
                   >
                     pnpm
                   </TabsTrigger>
                   <TabsTrigger
                     value="yarn"
-                    className="text-xs sm:text-sm text-gray-800 dark:text-gray-200 data-[state=active]:bg-trifid dark:data-[state=active]:bg-trifid dark:data-[state=active]:text-black hover:bg-gray-200 dark:hover:bg-gray-700"
+                    className="text-xs text-gray-800 dark:text-gray-200 data-[state=active]:bg-trifid dark:data-[state=active]:bg-trifid dark:data-[state=active]:text-black hover:bg-gray-200 dark:hover:bg-gray-700"
                   >
                     yarn
                   </TabsTrigger>
                   <TabsTrigger
                     value="bun"
-                    className="text-xs sm:text-sm text-gray-800 dark:text-gray-200 data-[state=active]:bg-trifid dark:data-[state=active]:bg-trifid dark:data-[state=active]:text-black hover:bg-gray-200 dark:hover:bg-gray-700"
+                    className="text-xs text-gray-800 dark:text-gray-200 data-[state=active]:bg-trifid dark:data-[state=active]:bg-trifid dark:data-[state=active]:text-black hover:bg-gray-200 dark:hover:bg-gray-700"
                   >
                     bun
                   </TabsTrigger>
@@ -142,28 +142,20 @@ const Hero = () => {
                 <Button
                   size="sm"
                   onClick={() => handleCopy(installCommands.npm)}
-                  className="bg-trifid text-black hover:bg-trifid/70 flex items-center gap-2 sm:gap-3 text-sm sm:text-base"
+                  className="bg-trifid text-black hover:bg-trifid/70 flex items-center gap-1 text-xs"
                 >
-                  {copied ? (
-                    <>
-                      <Check size={16} className="sm:w-5 sm:h-5" />
-                    </>
-                  ) : (
-                    <>
-                      <Clipboard size={16} className="sm:w-5 sm:h-5" />
-                    </>
-                  )}
+                  {copied ? <Check size={14} /> : <Clipboard size={14} />}
                 </Button>
               </div>
-              <Separator className="mb-6 opacity-15 dark:opacity-30 dark:bg-white" />
-              <div className="relative min-h-[40px]">
+              <Separator className="mb-4 opacity-15 dark:opacity-30 dark:bg-white" />
+              <div className="relative min-h-[30px]">
                 {Object.entries(installCommands).map(([pkg, command]) => (
                   <TabsContent
                     key={pkg}
                     value={pkg}
                     className="flex justify-center items-center absolute inset-0"
                   >
-                    <pre className="text-emerald-600 dark:text-emerald-400 font-mono text-md sm:text-xl">
+                    <pre className="text-emerald-600 dark:text-emerald-400 font-mono text-sm">
                       <code>{command}</code>
                     </pre>
                   </TabsContent>

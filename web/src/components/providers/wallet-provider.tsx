@@ -3,9 +3,6 @@
 import { JupiverseKitProvider } from "jupiverse-kit";
 import { useTheme } from "next-themes";
 
-import { Connection } from "@solana/web3.js";
-import { useWallet } from "@solana/wallet-adapter-react";
-
 export function WalletProvider({ children }: { children: React.ReactNode }) {
   const { theme } = useTheme();
 
