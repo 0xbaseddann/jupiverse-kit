@@ -1,6 +1,6 @@
 # Contributing to Jupiverse Kit
 
-🌟 Thank you for your interest in contributing to Jupiverse Kit! Your contributions help make building Solana dApps easier for everyone.
+🌟 Thank you for your interest in contributing to Jupiverse Kit! Your contributions will help make building dApps on Solana easier for everyone.
 
 This document outlines guidelines for contributing to Jupiverse Kit. These are meant to be helpful suggestions rather than strict rules - use your best judgment and feel free to propose changes to these guidelines.
 

@@ -21,3 +21,14 @@
 ### Release Notes
 
 - fix: updated swap component to use updated interface
+
+## [1.2.5] - 2025-02-23
+
+### Release Notes
+
+- feat: added Jupiter Terminal components 
+    - `<ModalTerminal />`
+    - `<IntegratedTerminal />`
+    - `<WidgetTerminal />`
+- refactor: removed hooks exports and utils exports
+- refactor: removed uneccessary interfaces from

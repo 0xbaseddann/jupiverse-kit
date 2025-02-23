@@ -9,7 +9,7 @@ The purpose of `jupiverse-kit` is to simplify and unify Jupiter's powerful open-
 - 🏄🏻‍♂️ **Jupiverse Kit Provider** - Wrap your application in the `<JupiverseKitProvider />` to fully leverage the power of Solana, along with Jupiter’s APIs and packages.
 - 👛 **Unified Wallet Kit** - Access every wallet on Solana all in one place with the `<UnifiedWalletButton />`.
 - 🦍 **Swap Component** - A fully customisable plug-and-play `<Swap />` component leveraging Jupiter's V1 APIs.
-- 🦋 **Terminal** - Lightweight Jupiter Terminal swap components with multiple display modes, consisting of `<IntegratedTerminal />`, `<WidgetTerminal />`, and `<ModalTerminal />`.
+- 🦋 **Terminal Components** - Lightweight Jupiter Terminal swap components with multiple display modes, consisting of `<IntegratedTerminal />`, `<WidgetTerminal />`, and `<ModalTerminal />`.
 
 ## Installation
 
@@ -35,7 +35,7 @@ import "jupiverse-kit/dist/styles.css";
 
 ## Usage
 
-Refer to the [web](https://github.com/dannweeeee/jupiverse-kit/tree/main/web) example to get started. *Documentation for Jupiverse Kit coming soon.*
+Refer to the [web](https://github.com/dannweeeee/jupiverse-kit/tree/main/web) example to get started. _Documentation for Jupiverse Kit coming soon._
 
 ## Requirements
 
