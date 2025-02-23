@@ -1,7 +1,6 @@
-import React, { Suspense, useEffect } from "react";
+import React from "react";
 import { useJupiterTerminal } from "../hooks/useJupiterTerminal";
 import { TerminalProps } from "../utils/interfaces";
-import { getTerminalPlaceholder } from "../helpers/getTerminalPlaceholder";
 
 interface ModalTerminalProps {
   rpcUrl?: string;
@@ -12,6 +11,8 @@ interface ModalTerminalProps {
   defaultExplorer?: TerminalProps["defaultExplorer"];
   onSuccess?: TerminalProps["onSuccess"];
   onSwapError?: TerminalProps["onSwapError"];
+  buttonText?: string;
+  buttonClassName?: string;
 }
 
 export const ModalTerminal: React.FC<ModalTerminalProps> = ({
@@ -23,8 +24,10 @@ export const ModalTerminal: React.FC<ModalTerminalProps> = ({
   refetchIntervalForTokenAccounts,
   onSuccess,
   onSwapError,
+  buttonText = "Launch Modal Terminal",
+  buttonClassName = "p-4 hover:bg-white/10 rounded-xl cursor-pointer flex flex-col items-center justify-center text-white",
 }) => {
-  const { isMounted } = useJupiterTerminal({
+  useJupiterTerminal({
     displayMode: "modal",
     endpoint: rpcUrl,
     formProps,
@@ -36,11 +39,27 @@ export const ModalTerminal: React.FC<ModalTerminalProps> = ({
     onSwapError,
   });
 
-  const placeholder = getTerminalPlaceholder("modal");
-
-  if (!isMounted) {
-    return placeholder;
-  }
-
-  return <Suspense fallback={placeholder}>{placeholder}</Suspense>;
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        if (window.Jupiter) {
+          window.Jupiter.init({
+            displayMode: "modal",
+            endpoint: rpcUrl,
+            formProps,
+            strictTokenList,
+            defaultExplorer,
+            enableWalletPassthrough: simulateWalletpassthrough,
+            refetchIntervalForTokenAccounts,
+            onSuccess,
+            onSwapError,
+          });
+        }
+      }}
+      className={buttonClassName}
+    >
+      <span className="text-xs">{buttonText}</span>
+    </button>
+  );
 };
