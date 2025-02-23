@@ -40,7 +40,7 @@ const TerminalPage = () => {
     >
       <div className="max-w-4xl mx-auto flex items-center justify-center h-full w-full pt-24">
         <Tabs defaultValue="integrated" className="h-full w-full">
-          <TabsList className="w-full flex justify-center mb-6 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+          <TabsList className="w-full flex justify-center mb-6 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 gap-1">
             <TabsTrigger
               value="integrated"
               className="flex-1 text-black hover:bg-gray-200 transition-colors"
