@@ -16,6 +16,8 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import cn from "clsx";
+import { toast } from "sonner";
+import { TransactionError } from "@solana/web3.js";
 
 const TerminalPage = () => {
   const [position, setPosition] = useState<WidgetPosition>("bottom-right");
@@ -68,6 +70,12 @@ const TerminalPage = () => {
                 rpcUrl={process.env.NEXT_PUBLIC_RPC_URL}
                 onSuccess={({ txid, swapResult }) => {
                   console.log("Swap successful:", txid);
+                  toast.success("Swap successful: " + txid);
+                }}
+                onSwapError={({ error }) => {
+                  toast.error(
+                    `Error: ${error?.toString() || "An unknown error occurred"}`
+                  );
                 }}
                 containerStyles={{
                   zIndex: 100,
@@ -81,9 +89,9 @@ const TerminalPage = () => {
 
           <TabsContent
             value="widget"
-            className="flex justify-center flex-grow overflow-auto pt-6"
+            className="flex justify-center flex-grow overflow-auto"
           >
-            <div className="bg-black/10 dark:bg-white/10 rounded-2xl flex items-center justify-center w-full md:w-[384px] h-[216px] relative">
+            <div className="bg-black/10 dark:bg-white/10 rounded-2xl flex items-center justify-center w-full md:w-[384px] h-[216px] relative mt-6">
               <span className="text-xs text-black/50 dark:text-white/50 text-center w-[70%]">
                 Click on the arrows to see how the Jupiter Widget will appear on
                 your web browser.
@@ -151,20 +159,32 @@ const TerminalPage = () => {
               widgetSize="default"
               onSuccess={({ txid, swapResult }) => {
                 console.log("Swap successful:", txid);
+                toast.success("Swap successful: " + txid);
+              }}
+              onSwapError={({ error }) => {
+                toast.error(
+                  `Error: ${error?.toString() || "An unknown error occurred"}`
+                );
               }}
             />
           </TabsContent>
 
           <TabsContent
             value="modal"
-            className="flex items-center justify-center flex-grow overflow-auto pt-20"
+            className="flex items-center justify-center flex-grow overflow-auto"
           >
             <ModalTerminal
               rpcUrl={process.env.NEXT_PUBLIC_RPC_URL}
               buttonText="Launch Modal Terminal"
-              buttonClassName="flex items-center justify-center px-4 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 dark:bg-green-400 dark:hover:bg-green-600 dark:text-black focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition duration-300"
+              buttonClassName="bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 rounded-2xl flex items-center justify-center w-full sm:w-[300px] md:w-[384px] h-[150px] relative mt-6"
               onSuccess={({ txid, swapResult }) => {
                 console.log("Swap successful:", txid);
+                toast.success("Swap successful: " + txid);
+              }}
+              onSwapError={({ error }) => {
+                toast.error(
+                  `Error: ${error?.toString() || "An unknown error occurred"}`
+                );
               }}
             />
           </TabsContent>
