@@ -5,15 +5,15 @@ import { getTerminalPlaceholder } from "../helpers/getTerminalPlaceholder";
 
 interface IntegratedTerminalProps {
   rpcUrl?: string;
+  refetchIntervalForTokenAccounts?: number;
   formProps?: TerminalProps['formProps'];
+  simulateWalletpassthrough?: boolean;
+  strictTokenList?: boolean;
+  defaultExplorer?: TerminalProps['defaultExplorer'];
   containerClassName?: string;
   containerStyles?: React.CSSProperties;
   onSuccess?: TerminalProps['onSuccess'];
   onSwapError?: TerminalProps['onSwapError'];
-  strictTokenList?: boolean;
-  defaultExplorer?: TerminalProps['defaultExplorer'];
-  simulateWalletpassthrough?: boolean;
-  refetchIntervalForTokenAccounts?: number;
 }
 
 export const IntegratedTerminal: React.FC<IntegratedTerminalProps> = ({

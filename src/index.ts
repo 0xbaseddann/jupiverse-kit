@@ -45,6 +45,8 @@ export * from "./provider/utils/types";
 // Terminal Components
 export { IntegratedTerminal } from "./terminal/components/IntegratedTerminal";
 export { WidgetTerminal } from "./terminal/components/WidgetTerminal";
+export { ModalTerminal } from "./terminal/components/ModalTerminal";
+
 // Terminal Hooks
 export { useJupiterTerminal } from "./terminal/hooks/useJupiterTerminal";
 export { useMount } from "./terminal/hooks/useMount";

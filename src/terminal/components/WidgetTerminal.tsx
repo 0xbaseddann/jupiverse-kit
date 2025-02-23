@@ -6,15 +6,13 @@ import { WidgetPosition, WidgetSize } from "../utils/types";
 
 interface WidgetTerminalProps {
   rpcUrl?: string;
+  refetchIntervalForTokenAccounts?: number;
   formProps?: TerminalProps['formProps'];
   simulateWalletpassthrough?: boolean;
   strictTokenList?: boolean;
   defaultExplorer?: TerminalProps['defaultExplorer'];
-  refetchIntervalForTokenAccounts?: number;
   widgetPosition?: WidgetPosition;
   widgetSize?: WidgetSize;
-  containerClassName?: string;
-  containerStyles?: React.CSSProperties;
   onSuccess?: TerminalProps['onSuccess'];
   onSwapError?: TerminalProps['onSwapError'];
 }
@@ -28,8 +26,6 @@ export const WidgetTerminal: React.FC<WidgetTerminalProps> = ({
   refetchIntervalForTokenAccounts,
   widgetPosition = "bottom-right",
   widgetSize = "default",
-  containerClassName,
-  containerStyles,
   onSuccess,
   onSwapError,
 }) => {
@@ -37,8 +33,6 @@ export const WidgetTerminal: React.FC<WidgetTerminalProps> = ({
     displayMode: "widget",
     endpoint: rpcUrl,
     formProps,
-    containerClassName,
-    containerStyles,
     strictTokenList,
     defaultExplorer,
     enableWalletPassthrough: simulateWalletpassthrough,
@@ -53,7 +47,6 @@ export const WidgetTerminal: React.FC<WidgetTerminalProps> = ({
 
   const placeholder = getTerminalPlaceholder(
     "widget",
-    "widget-terminal"
   );
 
   if (!isMounted) {
