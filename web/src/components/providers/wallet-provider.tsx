@@ -7,8 +7,6 @@ import { Connection } from "@solana/web3.js";
 import { useWallet } from "@solana/wallet-adapter-react";
 
 export function WalletProvider({ children }: { children: React.ReactNode }) {
-  const connection = new Connection(process.env.NEXT_PUBLIC_RPC_URL as string);
-  const wallet = useWallet();
   const { theme } = useTheme();
 
   return (

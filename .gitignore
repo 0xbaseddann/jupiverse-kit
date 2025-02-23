@@ -1,6 +1,6 @@
-node_modules/
+.rollup.cache/
 dist/
-playground/
+node_modules/
 test/
 .env
 package-lock.json
