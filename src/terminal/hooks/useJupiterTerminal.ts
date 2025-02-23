@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { TerminalProps } from "../utils/interfaces";
 import { useScriptLoader } from "./useScriptLoader";
 import { useMount } from "./useMount";
@@ -6,8 +6,17 @@ import { useInitTerminal } from "./useInitTerminal";
 
 export const useJupiterTerminal = (props: TerminalProps) => {
   const isMounted = useMount();
+  const [scriptLoaded, setScriptLoaded] = useState(false);
   const initTerminal = useInitTerminal(props);
-  const { scriptElement } = useScriptLoader(isMounted, initTerminal);
+  
+  const handleScriptLoad = () => {
+    setScriptLoaded(true);
+    if (!props.skipInit) {
+      initTerminal();
+    }
+  };
+
+  const { scriptElement } = useScriptLoader(isMounted, handleScriptLoad);
   const isCleanedUp = useRef(false);
 
   // Cleanup effect
@@ -25,5 +34,5 @@ export const useJupiterTerminal = (props: TerminalProps) => {
     };
   }, [scriptElement]);
 
-  return { isMounted };
+  return { isMounted, scriptLoaded };
 };

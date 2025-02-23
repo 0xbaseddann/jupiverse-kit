@@ -25,9 +25,9 @@ export const ModalTerminal: React.FC<ModalTerminalProps> = ({
   onSuccess,
   onSwapError,
   buttonText = "Launch Modal Terminal",
-  buttonClassName = "p-4 hover:bg-white/10 rounded-xl cursor-pointer flex flex-col items-center justify-center text-white",
+  buttonClassName = "p-4 rounded-xl cursor-pointer flex flex-col items-center justify-center transition-colors duration-300 bg-gray-800 text-white hover:bg-gray-700 dark:bg-gray-200 dark:text-black dark:hover:bg-gray-300 font-sans font-semibold",
 }) => {
-  useJupiterTerminal({
+  const { scriptLoaded } = useJupiterTerminal({
     displayMode: "modal",
     endpoint: rpcUrl,
     formProps,
@@ -37,13 +37,14 @@ export const ModalTerminal: React.FC<ModalTerminalProps> = ({
     refetchIntervalForTokenAccounts,
     onSuccess,
     onSwapError,
+    skipInit: true, // Skip auto-initialization
   });
 
   return (
     <button
       type="button"
       onClick={() => {
-        if (window.Jupiter) {
+        if (scriptLoaded && window.Jupiter) {
           window.Jupiter.init({
             displayMode: "modal",
             endpoint: rpcUrl,

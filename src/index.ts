@@ -13,10 +13,6 @@ export { default as Swap } from "./swap/components/Swap";
 // Provider Component
 export { JupiverseKitProvider } from "./provider/components/JupiverseKitProvider";
 
-// Provider Utils
-export * from "./provider/utils/interfaces";
-export * from "./provider/utils/types";
-
 //////////////////
 //// TERMINAL ////
 //////////////////

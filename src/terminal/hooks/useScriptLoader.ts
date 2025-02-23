@@ -38,6 +38,9 @@ export const useScriptLoader = (
           initTerminal();
         }
       };
+      script.onerror = (error) => {
+        console.error("Failed to load Jupiter Terminal script:", error);
+      };
       document.head.appendChild(script);
       setScriptElement(script);
     };

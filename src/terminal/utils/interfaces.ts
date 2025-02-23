@@ -87,6 +87,8 @@ export interface TerminalProps {
   }) => void;
   /** Callback when there's changes to the form */
   onFormUpdate?: (form: IForm) => void;
+  /** Skip auto-initialization of terminal */
+  skipInit?: boolean;
 }
 
 export interface FormProps {
