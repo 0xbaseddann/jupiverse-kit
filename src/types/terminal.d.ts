@@ -1,28 +1,72 @@
-export interface JupiterTerminalOptions {
-  displayMode?: "modal" | "integrated" | "widget";
-  integratedTargetId?: string;
+import { CSSProperties } from 'react';
+import { Connection, TransactionError } from '@solana/web3.js';
+import { SwapResult } from '@jup-ag/react-hook';
+import { WalletContextState } from '@solana/wallet-adapter-react';
+import { QuoteResponse } from '../terminal/utils/types';
+
+export type WidgetPosition = 'bottom-left' | 'bottom-right' | 'top-left' | 'top-right';
+export type WidgetSize = 'sm' | 'default';
+export type DEFAULT_EXPLORER = 'Solana Explorer' | 'Solscan' | 'Solana Beach' | 'SolanaFM';
+
+export interface FormProps {
+  initialAmount?: string;
+  fixedAmount?: boolean;
+  initialInputMint?: string;
+  fixedInputMint?: boolean;
+  initialOutputMint?: string;
+  fixedOutputMint?: boolean;
+}
+
+export interface IForm {
+  fromMint: string;
+  toMint: string;
+  fromValue: string;
+  toValue: string;
+}
+
+export interface IInit {
+  localStoragePrefix?: string;
   endpoint?: string;
-  formProps?: {
-    fixedInputMint?: boolean;
-    fixedOutputMint?: boolean;
-    swapMode?: "ExactIn" | "ExactOut";
-    fixedAmount?: boolean;
-    initialAmount?: string;
-    initialSlippageBps?: number;
-  };
-  containerClassName?: string;
-  containerStyles?: React.CSSProperties;
+  connectionObj?: Connection;
+  formProps?: FormProps;
   strictTokenList?: boolean;
-  platformFeeAndAccounts?: any;
-  onSuccess?: (params: { txid: string; swapResult: any }) => void;
-  onSwapError?: (params: { error: Error }) => void;
+  defaultExplorer?: DEFAULT_EXPLORER;
+  autoConnect?: boolean;
+  refetchIntervalForTokenAccounts?: number;
+  displayMode?: 'modal' | 'integrated' | 'widget';
+  integratedTargetId?: string;
+  widgetStyle?: {
+    position?: WidgetPosition;
+    size?: WidgetSize;
+  };
+  containerStyles?: CSSProperties;
+  containerClassName?: string;
+  enableWalletPassthrough?: boolean;
+  passthroughWalletContextState?: WalletContextState;
+  onRequestConnectWallet?: () => void | Promise<void>;
+  onSwapError?: ({
+    error,
+    quoteResponseMeta,
+  }: {
+    error?: TransactionError;
+    quoteResponseMeta: QuoteResponse | null;
+  }) => void;
+  onSuccess?: ({
+    txid,
+    swapResult,
+    quoteResponseMeta,
+  }: {
+    txid: string;
+    swapResult: SwapResult;
+    quoteResponseMeta: QuoteResponse | null;
+  }) => void;
+  onFormUpdate?: (form: IForm) => void;
 }
 
 export interface JupiterTerminal {
-  init: (options: JupiterTerminalOptions) => void;
+  init: (props: IInit) => void;
   resume: () => void;
   close: () => void;
-  _instance?: any;
 }
 
 declare global {

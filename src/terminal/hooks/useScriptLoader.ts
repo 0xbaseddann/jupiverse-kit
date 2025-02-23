@@ -11,13 +11,19 @@ export const useScriptLoader = (
   useEffect(() => {
     if (!isMounted) return;
 
+    // Use a ref to track if init has been called
+    let hasInitialized = false;
+
     const loadScript = () => {
-      if (
-        document.querySelector(
-          'script[src="https://terminal.jup.ag/main-v3.js"]'
-        )
-      ) {
-        initTerminal();
+      const existingScript = document.querySelector(
+        'script[src="https://terminal.jup.ag/main-v3.js"]'
+      );
+
+      if (existingScript) {
+        if (!hasInitialized) {
+          hasInitialized = true;
+          initTerminal();
+        }
         return;
       }
 
@@ -25,12 +31,23 @@ export const useScriptLoader = (
       script.src = "https://terminal.jup.ag/main-v3.js";
       script.async = true;
       script.defer = true;
-      script.onload = initTerminal;
+      script.setAttribute("data-preload", "");
+      script.onload = () => {
+        if (!hasInitialized) {
+          hasInitialized = true;
+          initTerminal();
+        }
+      };
       document.head.appendChild(script);
       setScriptElement(script);
     };
 
-    setTimeout(loadScript, 0);
+    // Debounce the script loading
+    const timeoutId = setTimeout(loadScript, 1000);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
   }, [initTerminal, isMounted]);
 
   return { scriptElement };
