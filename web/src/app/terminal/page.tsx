@@ -176,7 +176,7 @@ const TerminalPage = () => {
             <ModalTerminal
               rpcUrl={process.env.NEXT_PUBLIC_RPC_URL}
               buttonText="Launch Modal Terminal"
-              buttonClassName="bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 rounded-2xl flex items-center justify-center w-full sm:w-[300px] md:w-[384px] h-[150px] relative mt-6"
+              buttonClassName="bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 rounded-3xl flex items-center justify-center w-full sm:w-[200px] md:w-[250px] h-[100px] relative mt-6"
               onSuccess={({ txid, swapResult }) => {
                 console.log("Swap successful:", txid);
                 toast.success("Swap successful: " + txid);
