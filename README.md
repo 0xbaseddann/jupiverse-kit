@@ -35,7 +35,7 @@ import "jupiverse-kit/dist/styles.css";
 
 ## Usage
 
-Refer to the [web](https://github.com/dannweeeee/jupiverse-kit/tree/main/web) example to get started. Documentation for Jupiverse Kit coming soon.
+Refer to the [web](https://github.com/dannweeeee/jupiverse-kit/tree/main/web) example to get started. *Documentation for Jupiverse Kit coming soon.*
 
 ## Requirements
 
