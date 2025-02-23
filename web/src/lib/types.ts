@@ -1,0 +1,1 @@
+export type WidgetPosition = "top-left" | "top-right" | "bottom-left" | "bottom-right";

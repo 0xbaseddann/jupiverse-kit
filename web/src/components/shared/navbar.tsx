@@ -26,7 +26,7 @@ const Navbar = () => {
       className="fixed w-full top-0 z-0 backdrop-blur-lg shadow-lg 
         bg-white/70 text-black dark:bg-black/70 dark:text-white"
     >
-      <div className="container mx-auto px-4 h-20 flex items-center justify-between ">
+      <div className="container mx-auto px-4 h-20 flex items-center justify-between">
         {/* Logo */}
         <motion.div variants={itemVariants} className="flex-1">
           <Link
@@ -45,10 +45,10 @@ const Navbar = () => {
           </Link>
         </motion.div>
 
-        {/* Navigation Items - Desktop */}
+        {/* Navigation Items */}
         <motion.div
           variants={itemVariants}
-          className="hidden md:flex flex-1 justify-center gap-10"
+          className="flex-1 justify-center gap-10 hidden md:flex"
         >
           {navItems.map((item) => (
             <Link
@@ -61,16 +61,16 @@ const Navbar = () => {
           ))}
         </motion.div>
 
-        {/* Theme Toggle - Desktop */}
+        {/* Theme Toggle */}
         <motion.div
           variants={itemVariants}
-          className="hidden md:flex flex-1 justify-end items-center gap-4"
+          className="flex-1 justify-end items-center gap-4 hidden md:flex"
         >
           <ThemeToggle />
         </motion.div>
 
         {/* Mobile Menu */}
-        <div className="md:hidden flex items-center">
+        <div className="flex items-center md:hidden">
           <Sheet>
             <SheetTrigger asChild>
               <Button
