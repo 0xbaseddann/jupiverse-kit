@@ -8,44 +8,6 @@ import {
 import { Connection, TransactionError } from "@solana/web3.js";
 import { SwapResult } from "@jup-ag/react-hook";
 
-export interface IntegratedTerminalProps {
-  formProps?: FormProps;
-  containerClassName?: string;
-  containerStyles?: React.CSSProperties;
-  endpoint?: string;
-  onSuccess?: (params: { txid: string; swapResult: any }) => void;
-  onSwapError?: (params: { error: Error }) => void;
-  strictTokenList?: boolean;
-  platformFeeAndAccounts?: any;
-}
-
-export interface WidgetTerminalProps {
-  // form configuration
-  formProps?: {
-    fixedInputMint?: boolean;
-    fixedOutputMint?: boolean;
-    swapMode?: "ExactIn" | "ExactOut";
-    fixedAmount?: boolean;
-    initialAmount?: string;
-    initialSlippageBps?: number;
-  };
-
-  // styling
-  containerClassName?: string;
-  containerStyles?: React.CSSProperties;
-
-  // endpoint config
-  endpoint?: string;
-
-  // callbacks
-  onSuccess?: (params: { txid: string; swapResult: any }) => void;
-  onSwapError?: (params: { error: Error }) => void;
-
-  // additional params
-  strictTokenList?: boolean;
-  platformFeeAndAccounts?: any;
-}
-
 export interface TerminalProps {
   ///////////////
   /** Settings */
