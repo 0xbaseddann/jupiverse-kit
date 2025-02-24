@@ -21,15 +21,9 @@ npm install jupiverse-kit
 
 ## Styling Setup
 
-On top of using your own CSS framework, the SDK also mainly uses Tailwind CSS for styling. Follow these steps to set up styling in your project:
+On top of using your own CSS framework, the SDK also mainly uses Tailwind CSS for styling. Follow this step to set up styling in your project:
 
-1. Install required dependencies:
-
-```bash
-npm install -D tailwindcss postcss autoprefixer tailwindcss-animate
-```
-
-2. Import the SDK's CSS in your app's entry point (e.g., app.tsx, index.tsx, or layout.tsx):
+1. Import the SDK's CSS in your app's entry point (e.g., app.tsx, index.tsx, or layout.tsx):
 
 ```tsx
 import "jupiverse-kit/dist/styles.css";

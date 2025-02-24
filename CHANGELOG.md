@@ -26,9 +26,15 @@
 
 ### Release Notes
 
-- feat: added Jupiter Terminal components 
+- feat: added Jupiter Terminal components
     - `<ModalTerminal />`
     - `<IntegratedTerminal />`
     - `<WidgetTerminal />`
 - refactor: removed hooks exports and utils exports
 - refactor: removed uneccessary interfaces from
+
+## [1.2.6 | 1.2.7 | 1.2.8] - 2025-02-24
+
+### Release Notes
+
+- fix: bug fixes and ui improvements in the terminal components
