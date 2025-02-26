@@ -10,9 +10,11 @@
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.4",
+    "@radix-ui/react-select": "^2.1.6",
     "@radix-ui/react-separator": "^1.1.1",
     "@radix-ui/react-slot": "^1.1.1",
     "@radix-ui/react-tabs": "^1.1.2",
+    "@types/react-syntax-highlighter": "^15.5.13",
     "@uiw/react-textarea-code-editor": "^3.1.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -26,6 +28,7 @@
     "next-themes": "^0.4.4",
     "react": "^18",
     "react-dom": "^18",
+    "react-syntax-highlighter": "^15.6.1",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "zustand": "^5.0.2"

@@ -1,124 +1,47 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { navItems } from "@/lib/constants";
-import Link from "next/link";
-import { Github, Menu, Twitter, WalletIcon } from "lucide-react";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-import { itemVariants, navVariants } from "@/utils/motion";
 import Image from "next/image";
+import Link from "next/link";
 import { ThemeToggle } from "./theme-toggle";
-import { UnifiedWalletButton } from "@jup-ag/wallet-adapter";
+import { motion } from "framer-motion";
 
-const Navbar = () => {
+export default function Navbar() {
   return (
-    <motion.nav
-      initial="hidden"
-      animate="visible"
-      variants={navVariants}
-      className="fixed w-full top-0 z-0 backdrop-blur-lg shadow-lg 
-        bg-white/70 text-black dark:bg-black/70 dark:text-white"
+    <motion.div 
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="flex justify-between items-center p-4 mx-6"
     >
-      <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-        {/* Logo */}
-        <motion.div variants={itemVariants} className="flex-1">
-          <Link
-            href="/"
-            className="text-2xl font-extrabold flex items-center gap-2"
+      <motion.div 
+        initial={{ x: -20, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.4 }}
+        className="flex items-center gap-3"
+      >
+        <Link href="/">
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
           >
             <Image
-              src="/logo/space-cat-logo-circle.png"
-              alt="Jupiverse Kit"
-              width={35}
-              height={35}
+              src="/logo/jup-kit-logo-2-no-bg.png"
+              alt="Jupiverse Logo"
+              width={36}
+              height={36}
+              className="rounded-xl"
             />
-            <span className="bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text">
-              Jupiverse Kit
-            </span>
-          </Link>
-        </motion.div>
+          </motion.div>
+        </Link>
+      </motion.div>
 
-        {/* Navigation Items */}
-        <motion.div
-          variants={itemVariants}
-          className="flex-1 justify-center gap-10 hidden md:flex"
-        >
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="hover:text-gray-500 transition-colors text-sm font-medium text-black dark:text-white whitespace-nowrap cursor-pointer"
-            >
-              {item.name}
-            </Link>
-          ))}
-        </motion.div>
-
-        {/* Theme Toggle */}
-        <motion.div
-          variants={itemVariants}
-          className="flex-1 justify-end items-center gap-4 hidden md:flex"
-        >
-          <ThemeToggle />
-        </motion.div>
-
-        {/* Mobile Menu */}
-        <div className="flex items-center md:hidden">
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="hover:bg-gray-200 dark:hover:bg-gray-600 text-black dark:text-white"
-              >
-                <Menu className="h-7 w-7" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent
-              side="bottom"
-              className="border-l border-gray-300 bg-white dark:bg-black dark:border-gray-700 backdrop-blur-lg [&>button]:flex [&>button]:items-center [&>button]:justify-center z-[9999]"
-            >
-              <SheetHeader className="border-b pb-4 border-gray-300 dark:border-gray-700">
-                <SheetTitle className="flex items-center gap-3">
-                  <Image
-                    src="/logo/space-cat-logo-circle.png"
-                    alt="Jupiverse Kit"
-                    width={28}
-                    height={28}
-                    className="filter"
-                  />
-                  <span className="bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text">
-                    Jupiverse Kit
-                  </span>
-                </SheetTitle>
-              </SheetHeader>
-              <div className="flex flex-col gap-8 mt-10">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="text-xl transition-colors flex items-center gap-3 text-black hover:text-gray-500 dark:text-white dark:hover:text-gray-300 whitespace-nowrap cursor-pointer"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-              <div className="absolute bottom-6 right-6">
-                <ThemeToggle />
-              </div>
-            </SheetContent>
-          </Sheet>
-        </div>
-      </div>
-    </motion.nav>
+      <motion.div
+        initial={{ x: 20, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ delay: 0.3, duration: 0.4 }}
+      >
+        <ThemeToggle />
+      </motion.div>
+    </motion.div>
   );
-};
-
-export default Navbar;
+}
