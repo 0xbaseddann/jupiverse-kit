@@ -64,13 +64,8 @@ export const codeSnippets: Record<string, any> = {
   JupiverseKitProvider: `"use client";
 
 import { JupiverseKitProvider } from "jupiverse-kit";
-import { Connection } from "@solana/web3.js";
-import { useWallet } from "@solana/wallet-adapter-react";
 
 export function WalletProvider({ children }) {
-  const connection = new Connection(process.env.RPC_URL);
-  const wallet = useWallet();
-
   return (
     <JupiverseKitProvider
       endpoint={process.env.RPC_URL}
@@ -95,7 +90,7 @@ export function WalletProvider({ children }) {
 import { UnifiedWalletButton } from "@jup-ag/wallet-adapter";
 import { WalletIcon } from "lucide-react";
 
-const WalletPage = () => {
+const WalletConnectDemo = () => {
   return (
     <div className="min-h-screen w-full flex items-center justify-center">
       <UnifiedWalletButton
@@ -105,15 +100,45 @@ const WalletPage = () => {
     </div>
   );
 }`,
+  Swap: `"use client";
+
+import { Swap } from "jupiverse-kit";
+
+const SwapDemo = () => {
+  return (
+    <div className="min-h-screen w-full flex items-center justify-center">
+        <Swap
+          rpcUrl={process.env.NEXT_PUBLIC_RPC_URL || "https://api.mainnet-beta.solana.com"}
+          referralKey={process.env.NEXT_PUBLIC_REFERRAL_KEY as string}
+          platformFeeBps={20}
+          apiKey={process.env.NEXT_PUBLIC_JUP_SWAP_V1_API_KEY as string}
+        />
+    </div>
+  );
+}`,
   Terminal: {
     IntegratedTerminal: `"use client";
 
 import { IntegratedTerminal } from "jupiverse-kit";
 
-const IntegratedTerminalPage = () => {
+const IntegratedTerminalDemo = () => {
   return (
     <div className="min-h-screen w-full flex items-center justify-center">
-      <IntegratedTerminal />
+       <IntegratedTerminal
+          rpcUrl={process.env.NEXT_PUBLIC_RPC_URL}
+          onSuccess={({ txid, swapResult }) => {
+            toast.success("Swap successful: " + txid);
+          }}
+          onSwapError={({ error }) => {
+            toast.error("Error: An unknown error occurred");
+          }}
+          containerStyles={{
+            zIndex: 100,
+            width: "400px",
+            height: "568px",
+            display: "flex",
+          }}
+        />
     </div>
   );
 }`,
@@ -121,10 +146,21 @@ const IntegratedTerminalPage = () => {
 
 import { WidgetTerminal } from "jupiverse-kit";
 
-const WidgetTerminalPage = () => {
+const WidgetTerminalDemo = () => {
   return (
     <div className="min-h-screen w-full flex items-center justify-center">
-      <WidgetTerminal />
+      <WidgetTerminal
+        key={key}
+        rpcUrl={process.env.NEXT_PUBLIC_RPC_URL}
+        widgetPosition={position}
+        widgetSize="default"
+        onSuccess={({ txid, swapResult }) => {
+          toast.success("Swap successful: " + txid);
+        }}
+        onSwapError={({ error }) => {
+          toast.error("Error: An unknown error occurred");
+        }}
+    />
     </div>
   );
 }`,
@@ -132,86 +168,22 @@ const WidgetTerminalPage = () => {
 
 import { ModalTerminal } from "jupiverse-kit";
 
-const ModalTerminalPage = () => {
+const ModalTerminalDemo = () => {
   return (
     <div className="min-h-screen w-full flex items-center justify-center">
-      <ModalTerminal />
+        <ModalTerminal
+          rpcUrl={process.env.NEXT_PUBLIC_RPC_URL}
+          buttonText="Launch Modal Terminal"
+          buttonClassName="bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 rounded-3xl flex items-center justify-center w-full sm:w-[200px] md:w-[250px] h-[100px] relative mt-6"
+          onSuccess={({ txid, swapResult }) => {
+            toast.success("Swap successful: " + txid);
+          }}
+          onSwapError={({ error }) => {
+            toast.error("Error: An unknown error occurred");
+          }}
+        />
     </div>
   );
 }`,
-  },
-  Swap: `"use client";
-
-import { Swap } from "jupiverse-kit";
-
-const SwapPage = () => {
-  return (
-    <div className="min-h-screen w-full flex items-center justify-center">
-      <Swap />
-    </div>
-  );
-}`,
-};
-
-export const componentDemoCode: Record<string, any> = {
-  JupiverseKitProvider: `There is no demo for this component.`,
-  UnifiedWalletKit: `<UnifiedWalletButton
-        buttonClassName="font-sans font-semibold rounded-3xl px-4 py-3 text-sm flex justify-center items-center text-center gap-2 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-white dark:text-white cursor-pointer"
-        currentUserClassName="font-sans font-semibold min-w-[90px] min-h-[50px] rounded-full px-5 py-3 text-sm flex justify-center items-center text-center gap-2 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-600 transition-colors text-white dark:text-white cursor-pointer"
-        overrideContent={
-          <>
-            <WalletIcon className="h-4 w-4 opacity-70 cursor-pointer" />
-            Connect Wallet
-          </>
-        }
-      />`,
-  Terminal: {
-    IntegratedTerminal: `<IntegratedTerminal
-                rpcUrl={process.env.NEXT_PUBLIC_RPC_URL}
-                onSuccess={({ txid, swapResult }) => {
-                  console.log("Swap successful:", txid);
-                  toast.success("Swap successful: " + txid);
-                }}
-                onSwapError={({ error }) => {
-                  toast.error(
-                    "Error: "An unknown error occurred"
-                  );
-                }}
-                containerStyles={{
-                  zIndex: 100,
-                  width: "400px",
-                  height: "568px",
-                  display: "flex",
-                }}
-              />`,
-    WidgetTerminal: `<WidgetTerminal
-              key={key}
-              rpcUrl={process.env.NEXT_PUBLIC_RPC_URL}
-              widgetPosition={position}
-              widgetSize="default"
-              onSuccess={({ txid, swapResult }) => {
-                console.log("Swap successful:", txid);
-                toast.success("Swap successful: " + txid);
-              }}
-              onSwapError={({ error }) => {
-                toast.error(
-                  "Error: An unknown error occurred"
-                );
-              }}
-            />`,
-    ModalTerminal: ` <ModalTerminal
-              rpcUrl={process.env.NEXT_PUBLIC_RPC_URL}
-              buttonText="Launch Modal Terminal"
-              buttonClassName="bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 rounded-3xl flex items-center justify-center w-full sm:w-[200px] md:w-[250px] h-[100px] relative mt-6"
-              onSuccess={({ txid, swapResult }) => {
-                console.log("Swap successful:", txid);
-                toast.success("Swap successful: " + txid);
-              }}
-              onSwapError={({ error }) => {
-                toast.error(
-                  "Error: An unknown error occurred"
-                );
-              }}
-            />`,
   },
 };

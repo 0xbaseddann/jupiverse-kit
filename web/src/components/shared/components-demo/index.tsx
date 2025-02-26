@@ -94,12 +94,12 @@ export default function ComponentsDemo() {
           >
             <div className="text-center p-4 bg-black/10 dark:bg-white/10 rounded-xl">
               <motion.p
-                className="text-muted-foreground"
+                className="text-black dark:text-white"
                 initial={{ y: 10 }}
                 animate={{ y: 0 }}
                 transition={{ delay: 0.2 }}
               >
-                As this is a root component, there is no demo for it.
+                As this is a provider component, there is no demo for it.
               </motion.p>
             </div>
           </motion.div>
@@ -140,7 +140,7 @@ export default function ComponentsDemo() {
             transition={{ duration: 0.5 }}
           >
             <motion.p
-              className="text-center text-muted-foreground mb-4"
+              className="text-black dark:text-white mb-4"
               initial={{ y: 10 }}
               animate={{ y: 0 }}
               transition={{ delay: 0.2 }}
@@ -166,7 +166,7 @@ export default function ComponentsDemo() {
               transition={{ duration: 0.5 }}
             >
               <motion.p
-                className="text-center text-muted-foreground"
+                className="text-center text-black dark:text-white"
                 initial={{ y: 10 }}
                 animate={{ y: 0 }}
                 transition={{ delay: 0.2 }}
@@ -203,12 +203,12 @@ export default function ComponentsDemo() {
               transition={{ duration: 0.5 }}
             >
               <motion.p
-                className="text-center text-muted-foreground"
+                className="text-center text-black dark:text-white"
                 initial={{ y: 10 }}
                 animate={{ y: 0 }}
                 transition={{ delay: 0.2 }}
               >
-                <div className="bg-black/10 dark:bg-white/10 rounded-2xl flex items-center justify-center w-full md:w-[384px] h-[216px] relative mt-6">
+                <div className="bg-black/10 dark:bg-white/10 rounded-2xl flex items-center justify-center w-full md:w-[384px] h-[216px] relative">
                   <span className="text-xs text-black/50 dark:text-white/50 text-center w-[70%]">
                     Click on the arrows to see how the Jupiter Widget will
                     appear on your web browser.
@@ -297,7 +297,7 @@ export default function ComponentsDemo() {
               transition={{ duration: 0.5 }}
             >
               <motion.p
-                className="text-center text-muted-foreground"
+                className="text-center text-black dark:text-white"
                 initial={{ y: 10 }}
                 animate={{ y: 0 }}
                 transition={{ delay: 0.2 }}
@@ -305,7 +305,7 @@ export default function ComponentsDemo() {
                 <ModalTerminal
                   rpcUrl={process.env.NEXT_PUBLIC_RPC_URL}
                   buttonText="Launch Modal Terminal"
-                  buttonClassName="bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 rounded-3xl flex items-center justify-center w-full sm:w-[150px] md:w-[180px] h-[60px] relative mt-6"
+                  buttonClassName="bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 rounded-3xl flex items-center justify-center w-[90%] max-w-[280px] sm:w-[150px] md:w-[180px] h-[50px] sm:h-[60px] text-sm sm:text-base relative mx-auto sm:mx-0"
                   onSuccess={({ txid, swapResult }) => {
                     console.log("Swap successful:", txid);
                     toast.success("Swap successful: " + txid);
@@ -332,7 +332,7 @@ export default function ComponentsDemo() {
           >
             <div className="text-center">
               <motion.p
-                className="text-muted-foreground"
+                className="text-black dark:text-white"
                 initial={{ y: 10 }}
                 animate={{ y: 0 }}
                 transition={{ delay: 0.2 }}
@@ -445,7 +445,7 @@ export default function ComponentsDemo() {
               transition={{ delay: 0.3 }}
             >
               <motion.p
-                className="text-sm text-muted-foreground"
+                className="text-sm text-black dark:text-white"
                 key={activeTab}
                 initial={{ opacity: 0, y: 5 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -594,7 +594,7 @@ export default function ComponentsDemo() {
                     onValueChange={(value) => setActiveTab(value as TabType)}
                   >
                     <SelectTrigger
-                      className="w-full"
+                      className="w-full text-black dark:text-white rounded-none"
                       aria-label="Select component"
                     >
                       <SelectValue placeholder="Select component" />
@@ -679,7 +679,7 @@ export default function ComponentsDemo() {
               </motion.div>
 
               <motion.p
-                className="text-xs text-muted-foreground"
+                className="text-xs text-black dark:text-white"
                 key={activeTab}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
