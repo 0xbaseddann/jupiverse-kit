@@ -85,14 +85,14 @@ const Footer = () => {
             rel="noopener noreferrer"
           >
             <Image
-              src="/logo/logo-bright.svg"
+              src="/jupiter/logo-bright.svg"
               alt="Jup.ag"
               width={22}
               height={22}
               className="dark:hidden"
             />
             <Image
-              src="/logo/logo-dark.svg"
+              src="/jupiter/logo-dark.svg"
               alt="Jup.ag"
               width={22}
               height={22}
