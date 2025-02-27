@@ -79,6 +79,42 @@ const Footer = () => {
             </svg>
           </Link>
           <Link
+            href="https://www.npmjs.com/package/jupiverse-kit"
+            className="hover:text-gray-500 transition-transform transform hover:scale-110 text-sm font-light text-black dark:text-white flex items-center cursor-pointer"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg 
+              viewBox="0 0 24 24" 
+              xmlns="http://www.w3.org/2000/svg" 
+              className="w-5 h-5"
+              style={{ fill: "url(#gradient)", stroke: "url(#gradient)" }}
+            >
+              <path d="m0 0h24v24h-24z" fill="none" opacity="0"/>
+              <path d="m18 3h-12a3 3 0 0 0 -3 3v12a3 3 0 0 0 3 3h7v-10h4v10h1a3 3 0 0 0 3-3v-12a3 3 0 0 0 -3-3z"/>
+            </svg>
+            <svg width="0" height="0">
+              <defs>
+                <linearGradient
+                  id="gradient"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
+                  <stop
+                    offset="0%"
+                    style={{ stopColor: "#A4D756", stopOpacity: 1 }}
+                  />
+                  <stop
+                    offset="100%"
+                    style={{ stopColor: "#00B6E7", stopOpacity: 1 }}
+                  />
+                </linearGradient>
+              </defs>
+            </svg>
+          </Link>
+          <Link
             href="https://jup.ag"
             className="hover:text-gray-500 transition-transform transform hover:scale-110 text-sm font-light text-black dark:text-white flex items-center cursor-pointer"
             target="_blank"
