@@ -44,7 +44,7 @@ import { toast } from "sonner";
 import { WidgetPosition } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-export default function ComponentsDemo() {
+export default function Playground() {
   const [activeTab, setActiveTab] = useState<TabType>("JupiverseKitProvider");
   const [copied, setCopied] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -187,7 +187,7 @@ export default function ComponentsDemo() {
                   containerStyles={{
                     zIndex: 100,
                     width: "400px",
-                    height: "568px",
+                    height: "450px",
                     display: "flex",
                   }}
                 />
