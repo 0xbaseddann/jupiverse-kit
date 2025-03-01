@@ -186,8 +186,8 @@ export default function Playground() {
                   }}
                   containerStyles={{
                     zIndex: 100,
-                    width: "400px",
-                    height: "450px",
+                    width: "480px",
+                    height: "500px",
                     display: "flex",
                   }}
                 />
