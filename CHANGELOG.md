@@ -38,3 +38,10 @@
 ### Release Notes
 
 - fix: bug fixes and ui improvements in the terminal components
+
+## [1.2.9] - 2025-03-01
+
+### Release Notes
+
+- fix: updated terminal components to v4
+- chore: added @jup-ag/api package to dependencies

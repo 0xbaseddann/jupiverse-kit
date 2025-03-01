@@ -16,7 +16,7 @@ export const useScriptLoader = (
 
     const loadScript = () => {
       const existingScript = document.querySelector(
-        'script[src="https://terminal.jup.ag/main-v3.js"]'
+        'script[src="https://terminal.jup.ag/main-v4.js"]'
       );
 
       if (existingScript) {
@@ -28,7 +28,7 @@ export const useScriptLoader = (
       }
 
       const script = document.createElement("script");
-      script.src = "https://terminal.jup.ag/main-v3.js";
+      script.src = "https://terminal.jup.ag/main-v4.js";
       script.async = true;
       script.defer = true;
       script.setAttribute("data-preload", "");
