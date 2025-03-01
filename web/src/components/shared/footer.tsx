@@ -11,7 +11,7 @@ const Footer = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="w-full z-0 backdrop-blur-lg shadow-md bg-transparent text-black dark:text-white pb-3 mt-auto"
+      className="w-full z-0 backdrop-blur-lg shadow-md bg-transparent text-black dark:text-white pb-3 mt-auto fixed bottom-0 left-0 right-0"
     >
       <div className="container mx-auto px-4 h-16 flex flex-col items-center justify-center">
         {/* Navigation Links */}
