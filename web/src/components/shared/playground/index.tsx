@@ -98,14 +98,14 @@ export default function Playground() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <motion.p
+            <motion.div
               className="text-sm font-medium"
               initial={{ y: 10 }}
               animate={{ y: 0 }}
               transition={{ delay: 0.2 }}
             >
               <UnifiedWalletKitDemo />
-            </motion.p>
+            </motion.div>
           </motion.div>
         );
       case "Swap":
@@ -116,14 +116,14 @@ export default function Playground() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <motion.p
+            <motion.div
               className="text-black dark:text-white mb-4"
               initial={{ y: 10 }}
               animate={{ y: 0 }}
               transition={{ delay: 0.2 }}
             >
               <SwapDemo />
-            </motion.p>
+            </motion.div>
           </motion.div>
         );
       case "Terminal":
@@ -135,14 +135,14 @@ export default function Playground() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <motion.p
+              <motion.div
                 className="text-center text-black dark:text-white"
                 initial={{ y: 10 }}
                 animate={{ y: 0 }}
                 transition={{ delay: 0.2 }}
               >
                 <IntegratedTerminalDemo />
-              </motion.p>
+              </motion.div>
             </motion.div>
           );
         } else if (terminalType === "WidgetTerminal") {
@@ -153,7 +153,7 @@ export default function Playground() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <motion.p
+              <motion.div
                 className="text-center text-black dark:text-white"
                 initial={{ y: 10 }}
                 animate={{ y: 0 }}
@@ -165,7 +165,7 @@ export default function Playground() {
                   key={key}
                   setKey={setKey}
                 />
-              </motion.p>
+              </motion.div>
             </motion.div>
           );
         } else {
@@ -176,14 +176,14 @@ export default function Playground() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <motion.p
+              <motion.div
                 className="text-center text-black dark:text-white"
                 initial={{ y: 10 }}
                 animate={{ y: 0 }}
                 transition={{ delay: 0.2 }}
               >
                 <ModalTerminalDemo />
-              </motion.p>
+              </motion.div>
             </motion.div>
           );
         }
