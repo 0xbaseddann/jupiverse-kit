@@ -8,6 +8,7 @@ export type WidgetPosition =
   | "top-right"
   | "bottom-left"
   | "bottom-right";
+  
 export type WidgetSize = "sm" | "default";
 
 export type DefaultExplorer =

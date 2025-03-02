@@ -3,15 +3,7 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import {
-  ArrowDownLeft,
-  ArrowDownRight,
-  ArrowUpLeft,
-  ArrowUpRight,
-  Check,
-  Copy,
-  WalletIcon,
-} from "lucide-react";
+import { Check, Copy } from "lucide-react";
 import { useTheme } from "next-themes";
 import {
   JUPIVERSEKIT_DEMO_TABS,
@@ -33,16 +25,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { motion, AnimatePresence } from "framer-motion";
-import { UnifiedWalletButton } from "@jup-ag/wallet-adapter";
-import {
-  IntegratedTerminal,
-  ModalTerminal,
-  Swap,
-  WidgetTerminal,
-} from "jupiverse-kit";
-import { toast } from "sonner";
 import { WidgetPosition } from "@/lib/types";
-import { cn } from "@/lib/utils";
+import UnifiedWalletKitDemo from "./UnifiedWalletKitDemo";
+import SwapDemo from "./SwapDemo";
+import IntegratedTerminalDemo from "./TerminalDemo/IntegratedTerminalDemo";
+import WidgetTerminalDemo from "./TerminalDemo/WidgetTerminalDemo";
+import ModalTerminalDemo from "./TerminalDemo/ModalTerminalDemo";
 
 export default function Playground() {
   const [activeTab, setActiveTab] = useState<TabType>("JupiverseKitProvider");
@@ -64,7 +52,6 @@ export default function Playground() {
 
   const handlePositionChange = (newPosition: WidgetPosition) => {
     setPosition(newPosition);
-    // Force re-render of the WidgetTerminal component when position changes
     setKey((prevKey) => prevKey + 1);
   };
 
@@ -82,7 +69,6 @@ export default function Playground() {
   const demoComponent = useMemo(() => {
     if (!mounted) return null;
 
-    // Render the appropriate component based on the active tab
     switch (activeTab) {
       case "JupiverseKitProvider":
         return (
@@ -118,16 +104,7 @@ export default function Playground() {
               animate={{ y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              <UnifiedWalletButton
-                buttonClassName="font-sans font-semibold rounded-3xl px-4 py-3 text-sm flex justify-center items-center text-center gap-2 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-white dark:text-white cursor-pointer"
-                currentUserClassName="font-sans font-semibold min-w-[90px] min-h-[50px] rounded-full px-5 py-3 text-sm flex justify-center items-center text-center gap-2 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-600 transition-colors text-white dark:text-white cursor-pointer"
-                overrideContent={
-                  <>
-                    <WalletIcon className="h-4 w-4 opacity-70 cursor-pointer" />
-                    Connect Wallet
-                  </>
-                }
-              />
+              <UnifiedWalletKitDemo />
             </motion.p>
           </motion.div>
         );
@@ -145,14 +122,7 @@ export default function Playground() {
               animate={{ y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              <Swap
-                rpcUrl={
-                  process.env.NEXT_PUBLIC_RPC_URL ||
-                  "https://api.mainnet-beta.solana.com"
-                }
-                referralKey={process.env.NEXT_PUBLIC_REFERRAL_KEY as string}
-                platformFeeBps={20}
-              />
+              <SwapDemo />
             </motion.p>
           </motion.div>
         );
@@ -171,26 +141,7 @@ export default function Playground() {
                 animate={{ y: 0 }}
                 transition={{ delay: 0.2 }}
               >
-                <IntegratedTerminal
-                  rpcUrl={process.env.NEXT_PUBLIC_RPC_URL}
-                  onSuccess={({ txid, swapResult }) => {
-                    console.log("Swap successful:", txid);
-                    toast.success("Swap successful: " + txid);
-                  }}
-                  onSwapError={({ error }) => {
-                    toast.error(
-                      `Error: ${
-                        error?.toString() || "An unknown error occurred"
-                      }`
-                    );
-                  }}
-                  containerStyles={{
-                    zIndex: 100,
-                    width: "480px",
-                    height: "500px",
-                    display: "flex",
-                  }}
-                />
+                <IntegratedTerminalDemo />
               </motion.p>
             </motion.div>
           );
@@ -208,82 +159,11 @@ export default function Playground() {
                 animate={{ y: 0 }}
                 transition={{ delay: 0.2 }}
               >
-                <div className="bg-black/10 dark:bg-white/10 rounded-2xl flex items-center justify-center w-full md:w-[384px] h-[216px] relative">
-                  <span className="text-xs text-black/50 dark:text-white/50 text-center w-[70%]">
-                    Click on the arrows to see how the Jupiter Widget will
-                    appear on your web browser.
-                    <br />
-                    Click on the logo to view the Jupiter Swap Modal.
-                  </span>
-
-                  {/* Top left  */}
-                  <div
-                    className={cn(
-                      "absolute left-0 top-0 cursor-pointer hover:bg-black/20 dark:hover:bg-white/20 rounded-full p-1",
-                      {
-                        "text-green-500": position === "top-left",
-                      }
-                    )}
-                    onClick={() => handlePositionChange("top-left")}
-                  >
-                    <ArrowUpLeft className="h-5 w-5" />
-                  </div>
-
-                  {/* Top right  */}
-                  <div
-                    className={cn(
-                      "absolute right-0 top-0 cursor-pointer hover:bg-black/20 dark:hover:bg-white/20 rounded-full p-1",
-                      {
-                        "text-green-500": position === "top-right",
-                      }
-                    )}
-                    onClick={() => handlePositionChange("top-right")}
-                  >
-                    <ArrowUpRight className="h-5 w-5" />
-                  </div>
-
-                  {/* Bottom left  */}
-                  <div
-                    className={cn(
-                      "absolute left-0 bottom-0 cursor-pointer hover:bg-black/20 dark:hover:bg-white/20 rounded-full p-1",
-                      {
-                        "text-green-500": position === "bottom-left",
-                      }
-                    )}
-                    onClick={() => handlePositionChange("bottom-left")}
-                  >
-                    <ArrowDownLeft className="h-5 w-5" />
-                  </div>
-
-                  {/* Bottom right  */}
-                  <div
-                    className={cn(
-                      "absolute right-0 bottom-0 cursor-pointer hover:bg-black/20 dark:hover:bg-white/20 rounded-full p-1",
-                      {
-                        "text-green-500": position === "bottom-right",
-                      }
-                    )}
-                    onClick={() => handlePositionChange("bottom-right")}
-                  >
-                    <ArrowDownRight className="h-5 w-5" />
-                  </div>
-                </div>
-                <WidgetTerminal
+                <WidgetTerminalDemo
+                  position={position}
+                  setPosition={handlePositionChange}
                   key={key}
-                  rpcUrl={process.env.NEXT_PUBLIC_RPC_URL}
-                  widgetPosition={position}
-                  widgetSize="default"
-                  onSuccess={({ txid, swapResult }) => {
-                    console.log("Swap successful:", txid);
-                    toast.success("Swap successful: " + txid);
-                  }}
-                  onSwapError={({ error }) => {
-                    toast.error(
-                      `Error: ${
-                        error?.toString() || "An unknown error occurred"
-                      }`
-                    );
-                  }}
+                  setKey={setKey}
                 />
               </motion.p>
             </motion.div>
@@ -302,22 +182,7 @@ export default function Playground() {
                 animate={{ y: 0 }}
                 transition={{ delay: 0.2 }}
               >
-                <ModalTerminal
-                  rpcUrl={process.env.NEXT_PUBLIC_RPC_URL}
-                  buttonText="Launch Modal Terminal"
-                  buttonClassName="bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 rounded-3xl flex items-center justify-center w-[90%] max-w-[280px] sm:w-[150px] md:w-[180px] h-[50px] sm:h-[60px] text-sm sm:text-base relative mx-auto sm:mx-0"
-                  onSuccess={({ txid, swapResult }) => {
-                    console.log("Swap successful:", txid);
-                    toast.success("Swap successful: " + txid);
-                  }}
-                  onSwapError={({ error }) => {
-                    toast.error(
-                      `Error: ${
-                        error?.toString() || "An unknown error occurred"
-                      }`
-                    );
-                  }}
-                />{" "}
+                <ModalTerminalDemo />
               </motion.p>
             </motion.div>
           );
@@ -358,7 +223,7 @@ export default function Playground() {
     >
       <style>{codeStyles}</style>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Desktop View */}
         <div className="hidden md:block">
           <motion.div
