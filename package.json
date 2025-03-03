@@ -20,7 +20,15 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "keywords": [],
+  "keywords": [
+    "solana",
+    "jupiter-exchange",
+    "jupiverse-kit",
+    "@jup-ag/terminal",
+    "@jup-ag/wallet-adapter",
+    "@jup-ag/react-hook",
+    "@jup-ag/api"
+  ],
   "author": "Dann Wee",
   "license": "ISC",
   "dependencies": {
