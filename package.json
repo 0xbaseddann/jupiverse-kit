@@ -2,6 +2,7 @@
   "name": "jupiverse-kit",
   "version": "1.2.9",
   "description": "Jupiverse Kit is the ultimate ready-to-use React components library powered by Jupiter's APIs for building onchain applications on Solana effortlessly.",
+  "repository": "https://github.com/dannweeeee/jupiverse-kit.git",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -30,7 +31,7 @@
     "@jup-ag/api"
   ],
   "author": "Dann Wee",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@jup-ag/api": "^6.0.40",
     "@jup-ag/react-hook": "^6.2.0",

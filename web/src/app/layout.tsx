@@ -8,6 +8,7 @@ import Navbar from "@/components/shared/navbar";
 import NProgressBar from "@/components/ui/nprogressbar";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { WalletProvider } from "@/components/providers/wallet-provider";
+import { Analytics } from "@vercel/analytics/react"
 
 import { Toaster } from "sonner";
 import { AuroraBackground } from "@/components/ui/aurora-background";
@@ -80,6 +81,7 @@ export default function RootLayout({
                 {children}
                 <Footer />
                 <Toaster position="bottom-left" />
+                <Analytics />
               </main>
             </NProgressBar>
           </WalletProvider>
