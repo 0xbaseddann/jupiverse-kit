@@ -5,14 +5,11 @@ import { Highlight } from "@/components/ui/hero-highlight";
 import { motion } from "framer-motion";
 import { Check, Clipboard } from "lucide-react";
 import { useState } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
-import { useTheme } from "next-themes";
 import { Separator } from "../ui/separator";
 
 const Hero = () => {
   const [copied, setCopied] = useState(false);
-  const { theme } = useTheme();
 
   const installCommands = {
     npm: "npm i jupiverse-kit",
@@ -20,6 +17,9 @@ const Hero = () => {
     yarn: "yarn add jupiverse-kit",
     bun: "bun add jupiverse-kit",
   };
+
+  const [selectedCommand, setSelectedCommand] =
+    useState<keyof typeof installCommands>("npm");
 
   const handleCopy = (command: string) => {
     navigator.clipboard.writeText(command);
@@ -110,36 +110,27 @@ const Hero = () => {
         className="mt-6 sm:mt-10 flex flex-col items-center justify-center w-full"
       >
         <div className="relative w-full max-w-[500px] mx-auto bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-800 dark:to-gray-900 rounded-xl p-4 sm:p-6 shadow-lg border border-gray-300 dark:border-gray-700">
-          <Tabs defaultValue="npm" className="w-full">
+          <div className="w-full">
             <div className="flex w-full justify-between mb-1">
-              <TabsList className="flex gap-1">
-                <TabsTrigger
-                  value="npm"
-                  className="text-sm text-gray-800 dark:text-gray-200 data-[state=active]:bg-trifid dark:data-[state=active]:bg-trifid dark:data-[state=active]:text-black hover:bg-gray-200 dark:hover:bg-gray-700"
-                >
-                  npm
-                </TabsTrigger>
-                <TabsTrigger
-                  value="pnpm"
-                  className="text-sm text-gray-800 dark:text-gray-200 data-[state=active]:bg-trifid dark:data-[state=active]:bg-trifid dark:data-[state=active]:text-black hover:bg-gray-200 dark:hover:bg-gray-700"
-                >
-                  pnpm
-                </TabsTrigger>
-                <TabsTrigger
-                  value="yarn"
-                  className="text-sm text-gray-800 dark:text-gray-200 data-[state=active]:bg-trifid dark:data-[state=active]:bg-trifid dark:data-[state=active]:text-black hover:bg-gray-200 dark:hover:bg-gray-700"
-                >
-                  yarn
-                </TabsTrigger>
-                <TabsTrigger
-                  value="bun"
-                  className="text-sm text-gray-800 dark:text-gray-200 data-[state=active]:bg-trifid dark:data-[state=active]:bg-trifid dark:data-[state=active]:text-black hover:bg-gray-200 dark:hover:bg-gray-700"
-                >
-                  bun
-                </TabsTrigger>
-              </TabsList>
+              <div className="flex gap-1 bg-gray-100 dark:bg-gray-900 p-1 rounded-lg">
+                {Object.keys(installCommands).map((pkg) => (
+                  <button
+                    key={pkg}
+                    onClick={() =>
+                      setSelectedCommand(pkg as keyof typeof installCommands)
+                    }
+                    className={`whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
+                      selectedCommand === pkg
+                        ? "bg-white dark:bg-gray-800 text-black dark:text-white shadow-sm"
+                        : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200"
+                    }`}
+                  >
+                    {pkg}
+                  </button>
+                ))}
+              </div>
               <Button
-                onClick={() => handleCopy(installCommands.npm)}
+                onClick={() => handleCopy(installCommands[selectedCommand])}
                 className="text-black dark:text-white bg-transparent hover:bg-gray-200 dark:hover:bg-gray-700 shadow-none flex items-center gap-1 p-3 transition-colors duration-200"
               >
                 {copied ? (
@@ -149,21 +140,15 @@ const Hero = () => {
                 )}
               </Button>
             </div>
-            <Separator className="mb-4 opacity-15 dark:opacity-30 dark:bg-white" />
+            <Separator className="mb-4 opacity-15 dark:opacity-30 dark:bg-white mt-3" />
             <div className="relative min-h-[30px]">
-              {Object.entries(installCommands).map(([pkg, command]) => (
-                <TabsContent
-                  key={pkg}
-                  value={pkg}
-                  className="flex justify-center items-center absolute inset-0"
-                >
-                  <pre className="text-emerald-600 dark:text-emerald-400 font-mono text-sm">
-                    <code>{command}</code>
-                  </pre>
-                </TabsContent>
-              ))}
+              <div className="flex justify-center items-center">
+                <pre className="text-black dark:text-white font-mono text-sm mt-2">
+                  <code>{installCommands[selectedCommand]}</code>
+                </pre>
+              </div>
             </div>
-          </Tabs>
+          </div>
         </div>
       </motion.div>
     </div>
