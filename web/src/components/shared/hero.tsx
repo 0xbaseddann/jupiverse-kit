@@ -109,10 +109,10 @@ const Hero = () => {
         }}
         className="mt-6 sm:mt-10 flex flex-col items-center justify-center w-full"
       >
-        <div className="relative w-full max-w-[500px] mx-auto bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-800 dark:to-gray-900 rounded-xl p-4 sm:p-6 shadow-lg border border-gray-300 dark:border-gray-700">
+        <div className="relative w-full max-w-[500px] mx-auto rounded-xl p-4 sm:p-6 shadow-lg border border-gray-300 bg-gray-100 dark:bg-black dark:border-gray-700">
           <div className="w-full">
             <div className="flex w-full justify-between mb-1">
-              <div className="flex gap-1 bg-gray-100 dark:bg-gray-900 p-1 rounded-lg">
+              <div className="flex gap-1 bg-gray-100 dark:bg-black p-1 rounded-lg">
                 {Object.keys(installCommands).map((pkg) => (
                   <button
                     key={pkg}
