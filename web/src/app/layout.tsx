@@ -9,6 +9,8 @@ import NProgressBar from "@/components/ui/nprogressbar";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { WalletProvider } from "@/components/providers/wallet-provider";
 import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from '@vercel/speed-insights/next';
+
 
 import { Toaster } from "sonner";
 import { AuroraBackground } from "@/components/ui/aurora-background";
@@ -81,6 +83,7 @@ export default function RootLayout({
                 {children}
                 <Footer />
                 <Toaster position="bottom-left" />
+                <SpeedInsights />
                 <Analytics />
               </main>
             </NProgressBar>
