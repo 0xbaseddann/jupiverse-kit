@@ -45,3 +45,9 @@
 
 - fix: updated terminal components to v4
 - chore: added @jup-ag/api package to dependencies
+
+## [1.3.0] - 2025-04-01
+
+### Release Notes
+
+- feat: added reown and jupiter adapters to the provider
