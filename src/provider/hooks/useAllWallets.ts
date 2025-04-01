@@ -7,11 +7,30 @@ import {
 import * as AllWalletAdapters from "@solana/wallet-adapter-wallets";
 import { WalletAdapterWithMutableSupportedTransactionVersions } from "../utils/types";
 import { IUnifiedWalletProvider } from "../utils/interfaces";
+import { useWrappedReownAdapter } from "@jup-ag/jup-mobile-adapter";
 
 export const useAllWallets = (
   metadata: IUnifiedWalletProvider["metadata"],
   walletConnectProjectId: string
 ) => {
+  const { reownAdapter, jupiterAdapter } = useWrappedReownAdapter({
+    appKitOptions: {
+      metadata: {
+        name: metadata?.name || "",
+        description: metadata?.description || "",
+        url: metadata?.url || "",
+        icons: metadata?.iconUrls || [],
+      },
+      projectId: walletConnectProjectId,
+      features: {
+        analytics: false,
+        socials: ["google", "x", "apple"],
+        email: false,
+      },
+      enableWallets: false,
+    },
+  });
+
   return useMemo(() => {
     if (typeof window === "undefined") {
       return [];
@@ -51,8 +70,11 @@ export const useAllWallets = (
         return adapter;
       })();
 
-    return [...walletAdapters, walletConnectWalletAdapter].filter(
-      (item) => item && item.name && item.icon
-    );
-  }, [metadata, walletConnectProjectId]);
+    return [
+      ...walletAdapters,
+      walletConnectWalletAdapter,
+      reownAdapter,
+      jupiterAdapter,
+    ].filter((item) => item && item.name && item.icon);
+  }, [metadata, walletConnectProjectId, reownAdapter, jupiterAdapter]);
 };
