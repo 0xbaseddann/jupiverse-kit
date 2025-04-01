@@ -21,7 +21,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^11.16.4",
-    "jupiverse-kit": "^1.2.9",
+    "jupiverse-kit": "^1.3.0",
     "lucide-react": "^0.469.0",
     "mini-svg-data-uri": "^1.4.4",
     "motion": "^12.4.7",
