@@ -8,6 +8,7 @@ export default function SwapDemo() {
       }
       referralKey={process.env.NEXT_PUBLIC_REFERRAL_KEY as string}
       platformFeeBps={20}
+      apiKey={process.env.NEXT_PUBLIC_JUPITER_API_KEY as string}
     />
   );
 }
