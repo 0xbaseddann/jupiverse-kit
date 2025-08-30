@@ -18,9 +18,9 @@ This document outlines guidelines for contributing to Jupiverse Kit. These are m
 
 Before submitting a bug report:
 
-1. **Search existing issues** in the [Issues tab](https://github.com/dannweeeee/jupiverse-kit/issues) to avoid duplicates
+1. **Search existing issues** in the [Issues tab](https://github.com/0xbaseddann/jupiverse-kit/issues) to avoid duplicates
 
-2. If the issue hasn't been reported, [create a new issue](https://github.com/dannweeeee/jupiverse-kit/issues/new) with:
+2. If the issue hasn't been reported, [create a new issue](https://github.com/0xbaseddann/jupiverse-kit/issues/new) with:
    - A clear, descriptive title
    - Detailed steps to reproduce the bug
    - Expected vs actual behavior
@@ -33,7 +33,7 @@ Have an idea to improve Jupiverse Kit?
 
 1. First, **review existing issues** to see if someone else has suggested something similar
 
-2. If it's a new idea, [open an issue](https://github.com/dannweeeee/jupiverse-kit/issues/new) that includes:
+2. If it's a new idea, [open an issue](https://github.com/0xbaseddann/jupiverse-kit/issues/new) that includes:
    - A clear description of the feature
    - The problem it solves
    - Potential implementation approaches

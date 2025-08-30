@@ -31,7 +31,7 @@ import "jupiverse-kit/dist/styles.css";
 
 ## Usage
 
-Refer to the [web](https://github.com/dannweeeee/jupiverse-kit/tree/main/web) example to get started. _Documentation for Jupiverse Kit coming soon._
+Refer to the [web](https://github.com/0xbaseddann/jupiverse-kit/tree/main/web) example to get started. _Documentation for Jupiverse Kit coming soon._
 
 ## Requirements
 
@@ -45,7 +45,7 @@ Contributions are welcome! Please feel free to submit a pull request.
 
 ### Thanks to all our contributors
 
-<a href="https://github.com/dannweeeee/jupiverse-kit/graphs/contributors">
+<a href="https://github.com/0xbaseddann/jupiverse-kit/graphs/contributors">
   <img src="CONTRIBUTORS.svg" alt="Contributors" />
 </a>
 
