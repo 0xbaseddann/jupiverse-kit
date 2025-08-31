@@ -48,7 +48,7 @@ const Footer = () => {
             </svg>
           </Link>
           <Link
-            href="https://github.com/0xbaseddann/jupiverse-kit"
+            href="https://github.com/dannweeeee/jupiverse-kit"
             className="hover:text-gray-500 transition-transform transform hover:scale-110 text-sm font-light text-black dark:text-white flex items-center cursor-pointer"
             target="_blank"
             rel="noopener noreferrer"

@@ -5,7 +5,7 @@
 1. Clone the repository
 
 ```bash
-git clone https://github.com/0xbaseddann/jupiverse-kit.git
+git clone https://github.com/dannweeeee/jupiverse-kit.git
 ```
 
 2. Navigate to the web directory
